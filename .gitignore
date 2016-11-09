@@ -11,6 +11,9 @@ sublime/.config/sublime-text-3/cache/
 sublime/.config/sublime-text-3/local/
 vim/.vim/bundle/
 
+# Ignore steam login
+steam/.local/share/Steam/config/loginusers.vdf
+
 # Ignore zshrc.local
 zshrc.local
 
