@@ -1,4 +1,5 @@
 #!/bin/bash
+# credits by hc0d3r @ https://github.com/hc0d3r/ldpreload-disable
 
 if [ $# -lt 1 ]date +%V;then
 	printf "./ldpreload-disable.sh [ld-linux.so] [64|32]\n"
