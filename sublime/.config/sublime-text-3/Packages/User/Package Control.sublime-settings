@@ -1,0 +1,27 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"AlignTab",
+		"Auto Hide Sidebar",
+		"AutoAligner",
+		"Colorsublime",
+		"Dotfiles Syntax Highlighting",
+		"Generic Config",
+		"GitGutter",
+		"greybeard theme",
+		"Handlebars",
+		"Hide Menu",
+		"JSHint",
+		"Monokai Extended",
+		"Package Control",
+		"PHP Completions Kit",
+		"SortBy",
+		"SublimeCodeIntel",
+		"Syntax Highlighting for Sass",
+		"Theme - amCoder"
+	]
+}

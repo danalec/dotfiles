@@ -17,12 +17,12 @@ Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'dietsche/vim-lastplace'
 Plug 'godlygeek/tabular'
+Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree'
 Plug 'morhetz/gruvbox'
 Plug 'neomake/neomake'
-Plug 'Raimondi/delimitMate'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
@@ -36,8 +36,6 @@ call plug#end()
 """"""""""""""""""""""""
 " plugin configuration "
 """"""""""""""""""""""""
-" closetag
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml"
 " deoplete
 let g:deoplete#enable_at_startup = 1
 " gruvbox

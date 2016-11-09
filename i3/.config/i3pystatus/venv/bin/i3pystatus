@@ -1,0 +1,12 @@
+#!/home/danalec/dotfiles/i3/.config/i3pystatus/venv/bin/python3
+# EASY-INSTALL-ENTRY-SCRIPT: 'i3pystatus','console_scripts','i3pystatus'
+__requires__ = 'i3pystatus'
+import re
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
+    sys.exit(
+        load_entry_point('i3pystatus', 'console_scripts', 'i3pystatus')()
+    )

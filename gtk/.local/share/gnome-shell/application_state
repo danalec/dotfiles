@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<application-state>
+  <context id="">
+    <application id="sublime_text_3.desktop" open-window-count="0" score="0" last-seen="1478057517"/>
+    <application id="pcmanfm.desktop" open-window-count="0" score="242" last-seen="1478053329"/>
+    <application id="keybase.desktop" open-window-count="0" score="0" last-seen="1478236067"/>
+    <application id="termite.desktop" open-window-count="2" score="2338" last-seen="1478236339"/>
+    <application id="chromium.desktop" open-window-count="0" score="415" last-seen="1478236051"/>
+    <application id="gthumb.desktop" open-window-count="0" score="0" last-seen="0"/>
+    <application id="veracrypt.desktop" open-window-count="0" score="2" last-seen="1478057475"/>
+  </context>
+</application-state>

@@ -1,3 +1,20 @@
+#                             ████ ██        
+#                            ░██░ ░░   █████ 
+#  █████   ██████  ███████  ██████ ██ ██░░░██
+# ██░░░██ ██░░░░██░░██░░░██░░░██░ ░██░██  ░██
+#░██  ░░ ░██   ░██ ░██  ░██  ░██  ░██░░██████
+#░██   ██░██   ░██ ░██  ░██  ░██  ░██ ░░░░░██
+#░░█████ ░░██████  ███  ░██  ░██  ░██  █████ 
+# ░░░░░   ░░░░░░  ░░░   ░░   ░░   ░░  ░░░░░  
+#
+# ░ author ░ Dan Alec <danalec@gmail.com>
+# ░  code  ░ https://github.com/danalec/dotfiles
+#
+# ~danalec/.config/i3pystatus/config.py
+# last modified : 2016-11-09
+#
+#█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
+
 from i3pystatus import Status, battery
 from i3pystatus.updates import pacman, cower
 
@@ -15,25 +32,45 @@ def make_bar(percentage):
 battery.make_bar = make_bar
 status = Status()
 
+#status.register("mail",
+#    email_client="/usr/local/bin/mutt",
+#    format=": {unread}",
+#    format_plural=": {unread}",
+#    color_unread="#00FFFF",
+#    backends=[
+#        imap.IMAP(
+             # port and ssl are the defaults
+#             host="localhost", port=11111, username="danalec", password="XXXXXXXXXXXX"
+#            )
+#])
+
 # show updates in pacman/aur
 status.register(
     "updates",
     format=" {Pacman}/{Cower}",
     backends=[pacman.Pacman(), cower.Cower()],
+    on_leftclick="""termite -e 'zsh -c "pacaur --noconfirm --noedit -Syu && read"'""",
+    on_upscroll=None,
+    on_downscroll=None,
 )
 
 # show clock
 status.register(
     "clock",
-    format=[" %H:%M:%S", " %a %d/%m"],
-    on_leftclick="scroll_format",
+    #format=[" %H:%M:%S", " %a X%d/%m"],
+    format=[" %H:%M:%S", " %a %m/%d"],
+    #on_leftclick="""termite -e 'zsh -c "calendar 2017"'""",
+    on_leftclick="open https://calendar.google.com/calendar/",
+    on_rightclick=None,
+    on_upscroll="scroll_format",
+    on_downscroll="scroll_format",
 )
 
 # show/change current keyboard layout
 status.register(
     "xkblayout",
     format="  {name}",
-    layouts=["br", "us intl"],
+    layouts=["us intl","br"],
 )
 
 # show/change volume using PA
@@ -41,7 +78,6 @@ status.register(
     "pulseaudio",
     format=" {volume}%",
     format_muted=" Mute",
-    on_leftclick="pavucontrol",
 )
 
 # show/control screen brightness
@@ -56,18 +92,6 @@ status.register(
     format_inhibit=["", ""],
 )
 
-# show network speed
-status.register(
-    "network",
-    format_up="[ {essid} \[{quality}%\] ] {bytes_recv}K  {bytes_sent}K",
-    format_down=" {interface}",
-    interface="enp3s0",
-    next_if_down=True,
-    on_leftclick="termite -e nmtui",
-    on_upscroll=None,
-    on_downscroll=None,
-)
-
 # show battery status
 status.register(
     battery,
@@ -80,6 +104,10 @@ status.register(
         "DIS": "",
         "FULL": "",
     },
+    on_leftclick=None,
+    on_rightclick=None,
+    on_upscroll=None,
+    on_downscroll=None,
 )
 
 # show disk available space
@@ -87,6 +115,10 @@ status.register(
     "disk",
     format=" {avail:.1f}G",
     path="/",
+    on_leftclick=None,
+    on_rightclick=None,
+    on_upscroll=None,
+    on_downscroll=None,
 )
 
 # show available memory
@@ -96,47 +128,60 @@ status.register(
     warn_percentage=70,
     alert_percentage=90,
     divisor=1024**3,
+    on_leftclick=None,
+    on_rightclick=None,
+    on_upscroll=None,
+    on_downscroll=None,
 )
 
 # show cpu usage
 status.register(
     "load",
-    format=" {avg1} {avg5}",
+    format=" {avg1} {avg5} {avg15}",
     interval=5,
+    on_leftclick="termite -e 'htop'",
+    on_rightclick=None,
+    on_upscroll=None,
+    on_downscroll=None,
 )
 
 # show CPU temperature
 status.register(
     "temp",
     format=" {temp:.0f}°C",
-    file="/sys/class/thermal/thermal_zone7/temp",
+    file="/sys/class/thermal/thermal_zone1/temp",
     alert_temp=70,
-)
-
-# show current music info
-status.register(
-    "now_playing",
-    format='{status} [{artist} - {title} \[{song_length}\]]',
-    status={
-        'play': '',
-        'pause': '',
-        'stop': '',
-    },
-    on_leftclick="playerctl play-pause",
-    on_rightclick="playerctl next",
+    on_leftclick=None,
+    on_rightclick=None,
     on_upscroll=None,
     on_downscroll=None,
 )
 
+# show network speed
 status.register(
-    "mpd",
-    format='{status} [{artist} - {title} \[{song_length}\]]',
+    "network",
+    format_up="[ {essid} \[{quality}%\] ] {bytes_recv}K  {bytes_sent}K",
+    format_down=" {interface}",
+    interface="enp3s0",
+    next_if_down=True,
+    on_leftclick="termite -e 'sudo nmtui'",
+    on_rightclick=None,
+    on_upscroll=None,
+    on_downscroll=None,
+)
+
+# show current music info
+status.register(
+    "playerctl",
+    format='{status} [{artist} - {title} \[{length}\]]',
+    format_not_running='',
     status={
-        'play': '',
-        'pause': '',
-        'stop': '',
+        'playing': '',
+        'paused': '',
+        'stopped': '',
     },
-    hide_inactive=True,
+    on_leftclick="playerctl play-pause",
+    on_rightclick="playerctl next",
     on_upscroll=None,
     on_downscroll=None,
 )

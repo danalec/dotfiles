@@ -1,4 +1,24 @@
-# check if zplug is installed, if not install it
+#                 888                                
+#                 888                                
+#                 888                                
+# 8888888888888b. 888888  888 .d88b. 888d888 .d8888b 
+#    d88P 888 "88b888888  888d88P"88b888P"  d88P"    
+#   d88P  888  888888888  888888  888888    888      
+#  d88P   888 d88P888Y88b 888Y88b 888888    Y88b.    
+# 8888888888888P" 888 "Y88888 "Y88888888     "Y8888P 
+#         888                     888                
+#         888                Y8b d88P                
+#         888                 "Y88P"                 
+# 
+# ░ author ░ Dan Alec <danalec@gmail.com>
+# ░  code  ░ https://github.com/danalec/dotfiles
+#
+# ~danalec/.zplugrc
+# last modified : 2016-11-04
+#
+# █▓▒░ 修正、改変、再配布何でも可 ░▒▓█
+
+# is zplug installed?
 if [[ ! -d ~/.zplug ]]; then
   git clone https://github.com/zplug/zplug ~/.zplug
   source ~/.zplug/init.zsh && zplug update --self
@@ -7,7 +27,8 @@ fi
 # source zplug/zplug
 source ~/.zplug/init.zsh
 
-# zsh theme, disabled when terminal does not support 256 colors
+# powerlevel9k
+# disabled when terminal does not support 256 colors
 zplug "bhilburn/powerlevel9k", \
   use:"powerlevel9k.zsh-theme", \
   if: "[ `tput colors` -ge 256 ]"
@@ -19,28 +40,12 @@ zplug "modules/editor", from:prezto
 zplug "modules/environment", from:prezto
 zplug "modules/helper", from:prezto
 zplug "modules/history", from:prezto
-zplug "modules/history-substring-search", from:prezto # only for setup
+zplug "modules/history-substring-search", from:prezto
 zplug "modules/spectrum", from:prezto
 zplug "modules/ssh", from:prezto
 zplug "modules/terminal", from:prezto
 zplug "modules/utility", from:prezto
 
-# zsh-users
-zplug "zsh-users/zsh-completions", use:""
-zplug "zsh-users/zsh-history-substring-search", nice:19
-zplug "zsh-users/zsh-syntax-highlighting", nice:18
-
-# misc
-# zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
-zplug "junegunn/fzf", use:"shell/*.zsh", nice:10
-zplug "Tarrasch/zsh-autoenv"
-zplug "schischi/xcwd", \
-  as:command, \
-  hook-build:"make", \
-  use:"xcwd"
-
-# configuration here needs to be processed before zplug load
-# prezto
 zstyle ':prezto:*' color 'yes'
 zstyle ':prezto:module:editor' dot-expansion 'yes'
 zstyle ':prezto:module:editor' key-bindings 'vi'
@@ -49,7 +54,78 @@ zstyle ':prezto:module:terminal' auto-title 'yes'
 zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
 zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
 
-# Install plugins if there are plugins that have not been installed
+# zsh-users
+zplug "zsh-users/zsh-completions", use:""
+zplug "zsh-users/zsh-history-substring-search", nice:19
+zplug "zsh-users/zsh-syntax-highlighting", nice:18
+
+# oh-my-zsh
+zplug "plugins/cp",   from:oh-my-zsh
+zplug "plugins/bower", from:oh-my-zsh
+zplug "plugins/composer", from:oh-my-zsh
+zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/node",   from:oh-my-zsh
+zplug "plugins/npm", from:oh-my-zsh
+zplug "plugins/pip", from:oh-my-zsh
+zplug "plugins/systemd",   from:oh-my-zsh
+zplug "plugins/rsync",   from:oh-my-zsh
+#zplug "plugins/tmux",   from:oh-my-zsh, nice:10
+#zplug "plugins/ssh-agent",   from:oh-my-zsh
+#zplug "plugins/golang",   from:oh-my-zsh, nice:10
+#zplug "plugins/rvm", from:oh-my-zsh
+#zplug "plugins/docker", from:oh-my-zsh
+#zplug "plugins/docker-compose", from:oh-my-zsh
+#zplug "plugins/colored-man", from:oh-my-zsh
+
+zplug "glidenote/hub-zsh-completion"
+zplug "lukechilds/zsh-nvm"
+zplug "Tarrasch/zsh-autoenv"
+zplug "jhawthorn/fzy", \
+    as:command, \
+    hook-build:"make && sudo make install"
+zplug "junegunn/fzf-bin", \
+    as:command, \
+    from:gh-r, \
+    rename-to:"fzf", \
+    frozen:1
+zplug "schischi/xcwd", \
+  as:command, \
+  hook-build:"make", \
+  use:"xcwd"
+zplug "peco/peco", \
+    as:command, \
+    from:gh-r, \
+    frozen:1
+zplug "b4b4r07/peco-tmux.sh", \
+    as:command, \
+    use:'*.sh', \
+    rename-to:'peco-tmux'
+zplug "philovivero/distribution", \
+    as:command, \
+    use:distribution, \
+    if:'(( $+commands[perl] ))'
+zplug "mrowa44/emojify", \
+    as:command
+zplug "stedolan/jq", \
+    from:gh-r, \
+    as:command, \
+    rename-to:jq
+    
+zplug "b4b4r07/emoji-cli", \
+    on:"stedolan/jq"
+zplug "mitmproxy/mitmproxy", \
+    as:command, \
+    hook-build:"sudo python ./setup.py install"
+zplug "reorx/httpstat", \
+    as:command, \
+    use:'httpstat.py', \
+    if:'(( $+commands[python] ))', \
+    rename-to:'httpstat'
+#zplug "wg/wrk", \
+#    as:command, \
+#    hook-build:"make"
+
+# install plugins
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
@@ -58,6 +134,7 @@ if ! zplug check --verbose; then
 fi
 
 # run zplug
-zplug load
+zplug load --verbose
 
+# eval "$(fasd --init auto)"
 # vim: ft=zsh

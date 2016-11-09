@@ -1,6 +1,6 @@
 [user]
-	email = thiago.mast3r@gmail.com
-	name = Thiago Kenji Okada
+	email = danalec@gmail.com
+	name = Dan Alec Yamaguchi
 [push]
 	default = simple
 [core]
@@ -15,3 +15,16 @@
 	command = xz -c
 [alias]
 	gi = "!gi() { curl -s http://www.gitignore.io/api/$@ ;}; gi"
+[credential]
+	helper = cache
+[alias]
+	graph = log --graph --color --pretty=format:"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n"
+	stat = status -sb
+	last = log -1 --stat
+	unstage = reset HEAD --
+	cached = diff --cached
+	d = difftool
+[diff]
+	tool = nvimdiff
+[difftool]
+	prompt = false

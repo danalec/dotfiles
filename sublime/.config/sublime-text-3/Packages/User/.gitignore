@@ -1,0 +1,9 @@
+.DS_Store
+.git
+.hg
+.svn
+*.pyc
+*.pyo
+*.o
+Package Control.merged-ca-bundle
+Package Control.user-ca-bundle

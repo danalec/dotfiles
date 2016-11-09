@@ -1,0 +1,19 @@
+#  _                   _               _ 
+# (_)_ __ _____      _| |__   ___  ___| |
+# | | '_ ` _ \ \ /\ / / '_ \ / _ \/ _ \ |
+# | | | | | | \ V  V /| | | |  __/  __/ |
+# |_|_| |_| |_|\_/\_/ |_| |_|\___|\___|_|
+# ░ author ░ Dan Alec <danalec@gmail.com>
+# ░  code  ░ https://github.com/danalec/dotfiles
+#
+# ~danalec/.imwheel
+# last modified : 2016-11-01
+#
+#mouse wheel 5 lines
+".*"
+None,      Up,   Button4, 5
+None,      Down, Button5, 5
+Control_L, Up,   Control_L|Button4
+Control_L, Down, Control_L|Button5
+Shift_L,   Up,   Shift_L|Button4
+Shift_L,   Down, Shift_L|Button5

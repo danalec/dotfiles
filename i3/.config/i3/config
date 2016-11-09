@@ -1,8 +1,25 @@
-# This config file depends on the following programs:
+#                             ████ ██        
+#                            ░██░ ░░   █████ 
+#  █████   ██████  ███████  ██████ ██ ██░░░██
+# ██░░░██ ██░░░░██░░██░░░██░░░██░ ░██░██  ░██
+#░██  ░░ ░██   ░██ ░██  ░██  ░██  ░██░░██████
+#░██   ██░██   ░██ ░██  ░██  ░██  ░██ ░░░░░██
+#░░█████ ░░██████  ███  ░██  ░██  ░██  █████ 
+# ░░░░░   ░░░░░░  ░░░   ░░   ░░   ░░  ░░░░░  
+#
+# ░ author ░ Dan Alec <danalec@gmail.com>
+# ░  code  ░ https://github.com/danalec/dotfiles
+#
+# ~danalec/.config/i3/config
+# last modified : 2016-11-09
+#
+#█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
+#
+# this config file depends on the following programs:
 # - PulseAudio (sound)
-# - systemd (for energy management)
+# - systemd (energy management)
 # - Nitrogen (wallpaper)
-# - i3lock/Scrot/imagemagick/xautolock (lock screen)
+# - i3lock/Scrot/imagemagick/xautolock (lockscreen)
 # - dunst (notification)
 # - rofi (launcher)
 # - py3status (status bar)
@@ -14,8 +31,9 @@
 # default applications
 set $terminal termite -d "`xcwd`"
 set $browser chromium
-set $file_manager nautilus "`xcwd`"
-set $lock_screen "$HOME/.config/i3/scripts/lock_screen.sh"
+set $file_manager pcmanfm "`xcwd`"
+set $lock_screen "$HOME/.config/i3/scripts/venv/bin/python \
+$HOME/.config/i3/scripts/lock_screen.py"
 set $set_wallpaper nitrogen --restore
 set $fs_screenshot "scrot `xdg-user-dir PICTURES`/%Y-%m-%d-%T-screenshot.png"
 
@@ -115,27 +133,16 @@ bindsym $mod+a focus parent
 bindsym $mod+z focus child
 
 # workspace names
-# text
-# set $ws1  "1 term"
-# set $ws2  "2 files"
-# set $ws3  "3 www"
-# set $ws4  "4 dev"
-# set $ws5  "5 dev"
-# set $ws6  "6 docs"
-# set $ws7  "7 notes"
-# set $ws8  "8 msg"
-# set $ws9  "9 misc"
-# set $ws10 "10 media"
 # font awesome
 set $ws1  "1:  "
-set $ws2  "2:  "
-set $ws3  "3:  "
+set $ws2  "2:  "
+set $ws3  "3:  "
 set $ws4  "4:  "
-set $ws5  "5:  "
-set $ws6  "6:  "
-set $ws7  "7:  "
-set $ws8  "8:  "
-set $ws9  "9:  "
+set $ws5  "5:  "
+set $ws6  "6:  "
+set $ws7  "7:  "
+set $ws8  "8:  "
+set $ws9  "9:  "
 set $ws10 "10:  "
 
 # switch to workspace
@@ -184,7 +191,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # system power management
-set $mode_system Screen [l]ock, [e]xit i3, [s]uspend, [h]ibernate, [R]eboot, [S]hutdown
+set $mode_system System [l]ock, [e]xit i3, [s]uspend, [h]ibernate, [R]eboot, [S]hutdown
 mode "$mode_system" {
     bindsym l mode "default", exec $lock_screen
     bindsym e mode "default", exec i3-msg exit
@@ -201,10 +208,6 @@ bindsym $mod+Escape mode "$mode_system"
 
 # resize window (you can also use the mouse for that)
 mode "Resize" {
-    # Pressing left will shrink the window’s width.
-    # Pressing right will grow the window’s width.
-    # Pressing up will shrink the window’s height.
-    # Pressing down will grow the window’s height.
     # vi-like
     bindsym h resize shrink width 10 px or 10 ppt
     bindsym j resize grow height 10 px or 10 ppt
@@ -224,36 +227,25 @@ mode "Resize" {
 bindsym $mod+r mode "Resize"
 
 # external screen management
-set $display_layout_vga Display VGA:  ,  , [o]ff
-mode "$display_layout_vga" {
-    bindsym Left exec xrandr --output VGA1 --auto --left-of LVDS1 && $set_wallpaper, mode "default"
-    bindsym Right exec xrandr --output VGA1 --auto --right-of LVDS1 && $set_wallpaper, mode "default"
-    bindsym o exec xrandr --output VGA1 --auto --off && $set_wallpaper, mode "default"
+set $mode_display Screen  :CR [v]ga on, [h]dmi on, v[g]a off, h[d]mi off
+mode "$mode_display" {
+    bindsym v exec --no-startup-id xrandr --output VGA-0 --auto && $set_wallpaper, mode "default" && \
+    notify-send -u normal -t 300 -i info ' VGA-0' 'screen'
 
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
+    bindsym h exec --no-startup-id xrandr --output HDMI-0 --auto && $set_wallpaper, mode "default" && \
+    notify-send -u normal -t 300 -i info ' HDMI-0' 'screen'
 
-set $display_layout_hdmi Display HDMI:  ,  , [o]ff
-mode "$display_layout_hdmi" {
-    bindsym Left exec xrandr --output HDMI1 --auto --left-of LVDS1 && $set_wallpaper, mode "default"
-    bindsym Right exec xrandr --output HDMI1 --auto --right-of LVDS1 && $set_wallpaper, mode "default"
-    bindsym o exec xrandr --output HDMI1 --auto --off && $set_wallpaper, mode "default"
+    bindsym g exec --no-startup-id xrandr --output VGA-0 --auto --off && $set_wallpaper, mode "default" && \
+    notify-send -u normal -t 300 -i info ' VGA1' 'screen'
 
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-set $display_mode Screen [v]ga, [h]dmi
-mode "$display_mode" {
-    bindsym v mode "$display_layout_vga"
-    bindsym h mode "$display_layout_hdmi"
+    bindsym d exec --no-startup-id xrandr --output HDMI-0 --auto --off && $set_wallpaper, mode "default" && \
+    notify-send -u normal -t 300 -i info ' HDMI-0' 'screen'
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+p mode "$display_mode"
+bindsym $mod+p mode "$mode_display"
 
 # start i3pystatus to display status bar
 bar {
@@ -272,31 +264,54 @@ bar {
 }
 
 # volume control
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 1 +5% && \
+notify-send -u normal -t 300 -i info '' 'volume'
+
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 1 -5% && \
+notify-send -u normal -t 300 -i info '' 'volume'
+
+bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle && \
+notify-send -u normal -t 300 -i info '' 'volume'
+
+# i don't have mute key :(
+bindsym Ctrl+XF86AudioLowerVolume exec pactl set-sink-mute 1 toggle && \
+notify-send -u normal -t 300 -i info '' 'volume'
 
 # screen brightness control
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5 && \
-pkill -SIGUSR1 -f $status_bar
+pkill -SIGUSR1 -f $status_bar && \
+notify-send -u normal -t 300 -i info '+' 'backlight'
+
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5 && \
-pkill -SIGUSR1 -f $status_bar
+pkill -SIGUSR1 -f $status_bar && \
+notify-send -u normal -t 300 -i info '-' 'backlight'
 
 # media control
-bindsym XF86AudioPlay exec playerctl play-pause || mpc toggle && \
-pkill -SIGUSR1 -f $status_bar
-bindsym XF86AudioStop exec playerctl stop || mpc stop && \
-pkill -SIGUSR1 -f $status_bar
-bindsym XF86AudioNext exec playerctl next || mpc next && \
-pkill -SIGUSR1 -f $status_bar
-bindsym XF86AudioPrev exec playerctl previous || mpc prev && \
-pkill -SIGUSR1 -f $status_bar
+bindsym XF86AudioPlay exec playerctl play-pause && \
+pkill -SIGUSR1 -f $status_bar && \
+notify-send -u normal -t 300 -i info ' / ' 'playerctl'
+
+
+bindsym XF86AudioStop exec playerctl stop && \
+pkill -SIGUSR1 -f $status_bar && \
+notify-send -u normal -t 300 -i info '' 'playerctl'
+
+bindsym XF86AudioNext exec playerctl next && \
+pkill -SIGUSR1 -f $status_bar && \
+notify-send -u normal -t 300 -i info '' 'playerctl'
+
+bindsym XF86AudioPrev exec playerctl previous && \
+pkill -SIGUSR1 -f $status_bar && \
+notify-send -u normal -t 300 -i info '' 'playerctl'
 
 # keyboard layout stuff
 set $mode_keyboard Keyboard layout: [u]s-intl, [b]r-abnt2
 mode "$mode_keyboard" {
-    bindsym u mode "default", exec setxkbmap us -variant intl
-    bindsym b mode "default", exec setxkbmap br -variant abnt2
+    bindsym u mode "default", exec setxkbmap us -variant intl && \
+    notify-send -u normal -t 300 -i info 'us-intl' 'keyboard'
+
+    bindsym b mode "default", exec setxkbmap br -variant abnt2 && \
+    notify-send -u normal -t 300 -i info 'br-abnt2' 'keyboard'
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -323,8 +338,15 @@ exec --no-startup-id xautolock -detectsleep -time 10 -notify 30 \
 -corners 0-00 -locker $lock_screen &
 
 # misc startup programs
-exec --no-startup-id dropbox
-exec --no-startup-id i3-msg "workspace $ws1; exec $terminal"
+#exec --no-startup-id insync start
+exec --no-startup-id imwheel && \
+notify-send -u normal -t 300 -i info 'loaded: imwheel' 'startup'
+
+exec --no-startup-id keybase && \
+notify-send -u normal -t 300 -i info 'loaded: keybase' 'startup'
+
+exec --no-startup-id i3-msg "workspace $ws1; exec $terminal" && \
+notify-send -u normal -t 300 -i info 'loaded: terminal' 'startup'
 
 # color theme
 client.focused #81a2be #81a2be #1d1f21 #282a2e

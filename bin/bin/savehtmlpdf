@@ -1,0 +1,43 @@
+#/bin/bash
+# saves html page and generates pdf
+# prototype version
+
+URL="https://"
+read -e -i "$URL" -p "URL: " input
+URL="${input:-$URL}"
+
+username=""
+read -e -i "$username" -p "Username: " input
+username="${input:-$username}"
+
+formusername="Username="
+read -e -i "$formusername" -p "Username form: " input
+formusername="${input:-$formusername}"
+
+username="$formusername$username"
+
+password=""
+read -e -i "$password" -p "Password: " input
+password="${input:-$password}"
+
+formpassword="Password="
+read -e -i "$formpassword" -p "Password form: " input
+formpassword="${input:-$formpassword}"
+
+upassword="$formpassword$pass"
+
+cookie="cookie.txt"
+read -e -i "$cookie" -p "cookie: " input
+cookie="${input:-$cookie}"
+cookie="/tmp/$cookie"
+
+pagename="article"
+read -e -i "$pagename" -p "pagename: " input
+pagename="${input:-$pagename}"
+pagename="$pagename"
+htmlpage="$pagename.html"
+pdfpage="$pagename.pdf"
+
+curl -c $cookie -d $username -d $password $url
+curl -# -b $cookie $URL > $htmlpage
+wkhtmltopdf --no-background --page-size A4 --margin-top 20 --margin-bottom 20 --margin-left 20 - $pdfpage < $htmlpage

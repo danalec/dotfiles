@@ -1,0 +1,10 @@
+{
+	"color_scheme": "Packages/Theme - amCoder/amCoder (Bright).tmTheme",
+	"font_face": "Inconsolata",
+	"font_size": 14,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"theme": "amCoder.sublime-theme"
+}

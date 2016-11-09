@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=imwheel
+GenericName=imwheel
+Comment=Launch imwheel
+Icon=imwheel
+Categories=Utility;
+Exec=imwheel
+TryExec=imwheel
+Terminal=false
+X-GNOME-Autostart-Delay=3
