@@ -1,5 +1,8 @@
 # taken from github/gitignore
 
+# Mac osx
+.DS_Store
+
 # Vim
 [._]*.s[a-w][a-z]
 [._]s[a-w][a-z]
@@ -50,3 +53,6 @@ local.properties
 
 #sftp configuration file
 sftp-config.json
+
+# VirtualEnv
+venv/

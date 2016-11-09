@@ -6,15 +6,30 @@
 [core]
 	excludesfile = ~/.gitignore_ignore
 	editor = nvim
+	ignorecase = false
 	whitespace = trailing-space,space-before-tab,indent-with-non-tab
 [merge]
 	tool = nvim -d
 [color]
 	ui = true
+[color "diff"]
+  meta = yellow bold ul  
+  frag = cyan bold ul
+  old = red bold  
+  new = green bold
+[color "status"]  
+  added = green bold  
+  changed = yellow bold  
+  untracked = red bold
+[grep]
+  break = true
+  heading = true
+  lineNumber = true<Paste>
 [tar "tar.xz"]
 	command = xz -c
 [alias]
 	gi = "!gi() { curl -s http://www.gitignore.io/api/$@ ;}; gi"
+	g = grep --extended-regexp --break --heading --line-number
 [credential]
 	helper = cache
 [alias]
