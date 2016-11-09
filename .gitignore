@@ -1,4 +1,4 @@
-i3/.config/i3/scripts/venv
+i3/.config/i3/scripts/venv/
 icons/
 mpd/.config/mpd/mpd.log
 ncmpcpp/.ncmpcpp/error.log
@@ -7,6 +7,12 @@ ranger/.config/ranger/colorschemes/__init__.py
 ranger/.config/ranger/colorschemes/__pycache__/
 ranger/.config/ranger/history
 ranger/.config/ranger/tagged
-sublime/.config/sublime-text-3/cache
-sublime/.config/sublime-text-3/local
+sublime/.config/sublime-text-3/cache/
+sublime/.config/sublime-text-3/local/
 vim/.vim/bundle/
+
+# Ignore zshrc.local
+zshrc.local
+
+# Ignore python virtualenvs
+venv/
