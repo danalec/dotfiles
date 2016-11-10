@@ -15,41 +15,6 @@
 #
 #█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
 
-# 環境変数
-#export LANG=ja_JP.UTF-8         # 日本語環境(ja_JP.UTF-8)
-#export LANG=pt-BR.UTF-8         # Português-Brasileiro(pt-BR.UTF-8)
-export LANG="en_US.UTF-8"
-
-# グローバル変数
-export BROWSER="chromium"
-export EDITOR='nvim'
-export GIT_EDITOR='nvim'
-export IMAGEVIEWER="gthumb"
-export PAGER='less'
-export VISUAL='nvim'
-
-export XAUTHORITY="$HOME/.Xauthority"
-export SSH_KEY_PATH="~/.ssh/id_rsa"
-export DISPLAY=:0
-export KEYTIMEOUT=1   # vi mode
-
-if [ -f "$HOME/.pythonrc.py" ]; then
-  export PYTHONSTARTUP="$HOME/.pythonrc.py"
-fi
-
-# ホストネーム
-if [ -x /bin/hostname ]; then
-    export HOST=`hostname`
-fi;
-export host=`echo $HOST | sed -e 's/\..*//'`
-
-# リモートから起動するコマンド用の環境変数を設定(必要なら)
-export RSYNC_RSH=ssh
-export CVS_RSH=ssh
-
-# デフォルトのブロック・サイズのセット (ls, df, du)
-export BLOCKSIZE=1k 
-
 # misc
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
 

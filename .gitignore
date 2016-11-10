@@ -11,8 +11,5 @@ sublime/.config/sublime-text-3/cache/
 sublime/.config/sublime-text-3/local/
 vim/.vim/bundle/
 
-# Ignore zshrc.local
-zshrc.local
-
 # Ignore python virtualenvs
 venv/
