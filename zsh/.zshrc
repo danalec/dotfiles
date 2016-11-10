@@ -15,10 +15,15 @@
 #
 #█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
 
-# 環境変数の設定 
+# 環境変数の設定
+
+# if $ZDOTDIR is not set, force $HOME
+if [ -z "$ZDOTDIR" ]; then
+  export ZDOTDIR="$HOME"
+fi
 
 # zplug
-source ~/.zplugrc
+source "$ZDOTDIR/.zplugrc"
 
 # powerlevel9k
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
@@ -27,7 +32,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs status)
 
 # zsh
 alias open="xdg-open "$@" &>/dev/null"
-alias reload='clear; source ~/.zshrc && zsh --version'
+alias reload='clear; source $ZDOTDIR/.zshrc && rm -rf "$ZPLUG_HOME/zcompdump*" && zsh --version'
 
 # keybindings (zkbd compatible hash)
 typeset -A key
@@ -40,8 +45,8 @@ key[Up]=${terminfo[kcuu1]}
 key[Down]=${terminfo[kcud1]}
 key[Left]=${terminfo[kcub1]}
 key[Right]=${terminfo[kcuf1]}
-key[PageUp]=${terminfo[kpp]}
-key[PageDown]=${terminfo[knp]}
+#key[PageUp]=${terminfo[kpp]}
+#key[PageDown]=${terminfo[knp]}
 
 [[ -n "${key[Home]}"     ]]  && bindkey  "${key[Home]}"     beginning-of-line
 [[ -n "${key[End]}"      ]]  && bindkey  "${key[End]}"      end-of-line
@@ -55,8 +60,8 @@ key[PageDown]=${terminfo[knp]}
 #[[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}" end-of-buffer-or-history
 [[ -n "${key[^[[A]]]}"   ]]  && bindkey  "^[[A"             history-substring-search-up
 [[ -n "${key[^[[B]]]}"   ]]  && bindkey  "^[[B"             history-substring-search-down
-[[ -n "${key[k]}"        ]]  && bindkey  -M vicmd "k"       history-substring-search-up
-[[ -n "${key[j]}"        ]]  && bindkey  -M vicmd "j"       history-substring-search-down
+#[[ -n "${key[k]}"        ]]  && bindkey  -M vicmd "k"       history-substring-search-up
+#[[ -n "${key[j]}"        ]]  && bindkey  -M vicmd "j"       history-substring-search-down
 
 # make sure the terminal is in application mode, when zle is active
 # only then are the values from $terminfo valid
@@ -71,7 +76,8 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
 	zle -N zle-line-finish
 fi
 
-# 環境個別設定を読み込む (.zshrc.local)
-if [ -f "$HOME/.zshrc.local" ]; then
-  source "$HOME/.zshrc.local"
+# 環境個別設定を読み込む
+#(.zshrc.local)
+if [ -f "$ZDOTDIR/.zshrc.local" ]; then
+  source "$ZDOTDIR/.zshrc.local"
 fi

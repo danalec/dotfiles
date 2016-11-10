@@ -15,10 +15,14 @@
 #
 #█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
 
-# misc
-export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
+# if $ZDOTDIR is not set, force $HOME
+if [ -z "$ZDOTDIR" ]; then
+  export ZDOTDIR="$HOME"
+fi
 
+#
 # 径路
+#
 # ensure path arrays do not contain duplicates
 typeset -gU cdpath fpath mailpath manpath path
 typeset -gUT INFOPATH infopath
@@ -31,7 +35,7 @@ if type npm > /dev/null; then
     $NPM_PACKAGES/bin
     $path
   )
-  manpath='$NPM_PACKAGES/share/man'
+  manpath="$NPM_PACKAGES/share/man"
 fi
 
 # check if ruby-gem is installed, if yes then import it to PATH
@@ -69,6 +73,11 @@ path=(
   $path
 )
 
+# check if pythonrc is present
+if [ -f "$HOME/.pythonrc.py" ]; then
+  export PYTHONSTARTUP="$HOME/.pythonrc.py"
+fi
+
 # create automatically virtualenv
 _virtualenv_auto_activate() {
     if [ -d "venv" ]; then
@@ -82,7 +91,11 @@ _virtualenv_auto_activate() {
     fi
 }
 
-# 環境個別設定を読み込む (.zshenv.local)
-if [ -f "$HOME/.zshenv.local" ]; then
-  source "$HOME/.zshenv.local"
+# set tips text
+export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
+
+# 環境個別設定を読み込む
+#(.zshenv.local)
+if [ -f "$ZDOTDIR/.zshenv.local" ]; then
+  source "$ZDOTDIR/.zshenv.local"
 fi
