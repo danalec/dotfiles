@@ -48,7 +48,6 @@ zplug "zsh-users/zsh-syntax-highlighting", nice:10
 # oh-my-zsh
 zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh"
 
-zplug "plugins/archlinux", from:oh-my-zsh
 zplug "plugins/cp", from:oh-my-zsh
 zplug "plugins/extract", from:oh-my-zsh
 zplug "plugins/github", from:oh-my-zsh
@@ -60,6 +59,7 @@ zplug "plugins/sudo", from:oh-my-zsh
 zplug "plugins/systemd", from:oh-my-zsh
 zplug "plugins/torrent", from:oh-my-zsh
 zplug "plugins/vi-mode", from:oh-my-zsh
+#zplug "plugins/archlinux", from:oh-my-zsh
 #zplug "plugins/autopep8", from:oh-my-zsh
 #zplug "plugins/boot2docker", from:oh-my-zsh
 #zplug "plugins/bower", from:oh-my-zsh
