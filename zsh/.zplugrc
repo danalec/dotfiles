@@ -18,6 +18,9 @@
 #
 # █▓▒░ 修正、改変、再配布何でも可 ░▒▓█
 
+# zplug location
+export ZPLUG_HOME="$HOME/.zplug"
+
 # is zplug installed?
 if [[ ! -d ~/.zplug ]]; then
   git clone https://github.com/zplug/zplug ~/.zplug
@@ -27,6 +30,9 @@ fi
 # source zplug/zplug
 source ~/.zplug/init.zsh
 
+# let zplug manage zplug
+zplug "zplug/zplug"
+
 # powerlevel9k
 # disabled when terminal does not support 256 colors
 zplug "bhilburn/powerlevel9k", \
@@ -34,9 +40,9 @@ zplug "bhilburn/powerlevel9k", \
   if: "[ `tput colors` -ge 256 ]"
 
 # prezto
-zplug "modules/completion", from:prezto
+#zplug "modules/completion", from:prezto
+#zplug "modules/editor", from:prezto
 zplug "modules/directory", from:prezto
-zplug "modules/editor", from:prezto
 zplug "modules/environment", from:prezto
 zplug "modules/helper", from:prezto
 zplug "modules/history", from:prezto
@@ -46,6 +52,8 @@ zplug "modules/ssh", from:prezto
 zplug "modules/terminal", from:prezto
 zplug "modules/utility", from:prezto
 
+# configuration here needs to be processed before zplug load
+# prezto
 zstyle ':prezto:*' color 'yes'
 zstyle ':prezto:module:editor' dot-expansion 'yes'
 zstyle ':prezto:module:editor' key-bindings 'vi'
@@ -55,20 +63,22 @@ zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
 zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
 
 # zsh-users
-zplug "zsh-users/zsh-completions", use:""
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-history-substring-search", nice:19
 zplug "zsh-users/zsh-syntax-highlighting", nice:18
 
 # oh-my-zsh
-zplug "plugins/cp",   from:oh-my-zsh
 zplug "plugins/bower", from:oh-my-zsh
 zplug "plugins/composer", from:oh-my-zsh
+zplug "plugins/cp",   from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/node",   from:oh-my-zsh
 zplug "plugins/npm", from:oh-my-zsh
 zplug "plugins/pip", from:oh-my-zsh
-zplug "plugins/systemd",   from:oh-my-zsh
 zplug "plugins/rsync",   from:oh-my-zsh
+zplug "plugins/systemd",   from:oh-my-zsh
+zplug "plugins/vi-mode",   from:oh-my-zsh
 #zplug "plugins/tmux",   from:oh-my-zsh, nice:10
 #zplug "plugins/ssh-agent",   from:oh-my-zsh
 #zplug "plugins/golang",   from:oh-my-zsh, nice:10
@@ -111,8 +121,8 @@ zplug "stedolan/jq", \
     as:command, \
     rename-to:jq
     
-zplug "b4b4r07/emoji-cli", \
-    on:"stedolan/jq"
+#zplug "b4b4r07/emoji-cli", \
+#    on:"stedolan/jq"
 zplug "mitmproxy/mitmproxy", \
     as:command, \
     hook-build:"sudo python ./setup.py install"

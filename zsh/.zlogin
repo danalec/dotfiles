@@ -18,14 +18,8 @@
 #
 #█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
 
-# バックグラウンドで現在のセッションには影響しないコードを実行します。
-{
-  # 起動速度を上げるために完了ダンプをコンパイルします。
-  zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
-  if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
-    zcompile "$zcompdump"
-  fi
-} &!
+# グローバル変数
+export XINITRC="$HOME/.xinitrc"
 
 # X11自動スタート
 if [ -z "$DISPLAY" ] && [ -f "$XINITRC" ]; then
@@ -38,3 +32,12 @@ if [ -z "$DISPLAY" ] && [ -f "$XINITRC" ]; then
       ;;
   esac
 fi
+
+# バックグラウンドで現在のセッションには影響しないコードを実行します。
+{
+  # 起動速度を上げるために完了ダンプをコンパイルします。
+  zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
+  if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
+    zcompile "$zcompdump"
+  fi
+} &!
