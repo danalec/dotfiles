@@ -7,3 +7,4 @@
 *.o
 Package Control.merged-ca-bundle
 Package Control.user-ca-bundle
+Package Control.cache
