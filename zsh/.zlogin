@@ -14,7 +14,7 @@
 # ░  code  ░ https://github.com/danalec/dotfiles
 #
 # ~danalec/.zlogin
-# last modified : 2016-11-04
+# last modified : 2016-11-10
 #
 #█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
 
@@ -26,3 +26,15 @@
     zcompile "$zcompdump"
   fi
 } &!
+
+# X11自動スタート
+if [ -z "$DISPLAY" ] && [ -f "$XINITRC" ]; then
+  case "$XDG_VTNR" in
+    1)
+      exec startx "$XINITRC" i3
+      ;;
+    2)
+      exec startx "$XINITRC" gnome
+      ;;
+  esac
+fi

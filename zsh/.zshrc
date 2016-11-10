@@ -11,14 +11,9 @@
 # ░  code  ░ https://github.com/danalec/dotfiles
 #
 # ~danalec/.zshrc
-# last modified : 2016-11-09
+# last modified : 2016-11-10
 #
 #█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
-
-# .zshrc is for interactive shell configuration
-# you set options for the interactive shell there with the setopt and unsetopt commands
-# you can also load shell modules, set your history options, change your prompt, setup zplug, completion etc
-# you also set any variables that are only used in the interactive shell
 
 # 環境変数の設定 
 
@@ -264,6 +259,10 @@ key[PageDown]=${terminfo[knp]}
 [[ -n "${key[Right]}"    ]]  && bindkey  "${key[Right]}"    forward-char
 #[[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"   beginning-of-buffer-or-history
 #[[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}" end-of-buffer-or-history
+[[ -n "${key[^[[A]]]}"   ]]  && bindkey  "^[[A"             history-substring-search-up
+[[ -n "${key[^[[B]]]}"   ]]  && bindkey  "^[[B"             history-substring-search-down
+[[ -n "${key[k]}"        ]]  && bindkey  -M vicmd "k"       history-substring-search-up
+[[ -n "${key[j]}"        ]]  && bindkey  -M vicmd "j"       history-substring-search-down
 
 # make sure the terminal is in application mode, when zle is active
 # Only then are the values from $terminfo valid.
@@ -278,8 +277,7 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
 	zle -N zle-line-finish
 fi
 
-
 # 環境個別設定を読み込む (.zshrc.local)
-if [ -f "$HOME/.zshrc.local" ]; then
-  source "$HOME/.zshrc.local"
-fi
+#if [ -f "$HOME/.zshrc.local" ]; then
+#  source "$HOME/.zshrc.local"
+#fi

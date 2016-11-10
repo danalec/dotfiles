@@ -11,12 +11,9 @@
 # ░  code  ░ https://github.com/danalec/dotfiles
 #
 # ~danalec/.zshenv
-# last modified : 2016-11-09
+# last modified : 2016-11-10
 #
 #█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
-
-# .zshenv is always sourced, it often contains exported variables that should be available to other programs
-# for example, $PATH, $EDITOR, and $PAGER are often set in .zshenv also, you can set $ZDOTDIR
 
 # 環境変数
 #export LANG=ja_JP.UTF-8         # 日本語環境(ja_JP.UTF-8)
@@ -34,42 +31,20 @@ export LC_ALL=en_US.UTF-8
 
 
 # グローバル変数
-export EDITOR='/usr/bin/nvim'
-export VISUAL='/usr/bin/nvim'
-
 export BROWSER="chromium"
+export EDITOR='nvim'
+export GIT_EDITOR='nvim'
 export IMAGEVIEWER="gthumb"
-
+export PAGER='less'
+export VISUAL='nvim'
+export XAUTHORITY="$HOME/.Xauthority"
+export XINITRC="$HOME/.xinitrc"
+export SSH_KEY_PATH="~/.ssh/id_rsa"
+export DISPLAY=:0
 export KEYTIMEOUT=1   # vi mode
 
-export XAUTHORITY=~/.Xauthority
-export DISPLAY=:0
-
-export SSH_KEY_PATH="~/.ssh/id_rsa"
-export GIT_EDITOR='/usr/bin/nvim'
-export PAGER='less'
-export ACK_PAGER='less'
-export GEM_HOME=~/.gem
-export NPM_PACKAGES="$HOME/.npm-packages"
-export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 if [ -f "$HOME/.pythonrc.py" ]; then
   export PYTHONSTARTUP="$HOME/.pythonrc.py"
-fi
-
-# OSを確認します
-if [ -x /usr/bin/uname ] || [ -x /bin/uname ]; then
-    case "`uname -sr`" in
-        FreeBSD*); export OS="freebsd" ;;
-        Linux*);   export OS="linux"   ;;
-        CYGWIN*);  export OS="cygwin"  ;;
-        IRIX*);    export OS="irix"    ;;
-        OSF1*);    export OS="osf1"    ;;
-        SunOS*);   export OS="sunos"   ;;
-        Darwin*);  export OS="darwin"  ;;
-        *);        export OS="dummy"   ;;
-    esac
-else
-    export OS="dummy"
 fi
 
 # ホストネーム
@@ -93,24 +68,31 @@ export BLOCKSIZE=1k
 # misc
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
 
-# non-login, non-interactive シェルが定義された環境があることを確認します。
-#if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
-#  source "${ZDOTDIR:-$HOME}/.zprofile"
-#fi
-
 # 径路
-# ensure path arrays do not contain duplicates.
+# ensure path arrays do not contain duplicates
 typeset -gU cdpath fpath mailpath manpath path
 typeset -gUT INFOPATH infopath
 
-# check if the path exists before setting
-if [ -d "$NPM_PACKAGES" ]; then
-  path='$NPM_PACKAGES/bin'
+# check if npm is installed, if yes make -g install location in user directory
+if type npm > /dev/null; then
+  export NPM_PACKAGES="$HOME/.npm-packages"
+  export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
+  path=(
+    $NPM_PACKAGES/bin
+    $path
+  )
   manpath='$NPM_PACKAGES/share/man'
 fi
-if [ -d "$HOME/.gem/" ]; then
-  path='$HOME/.gem/ruby/*/bin'
+
+# check if ruby-gem is installed, if yes then import it to PATH
+if type gem > /dev/null; then
+  export GEM_HOME="$HOME/.gem"
+  path=(
+    $GEM_HOME/ruby/*/bin
+    $path
+  )
 fi
+
 manpath=(
   $HOME/local/man
   $HOME/local/share/man
@@ -121,11 +103,13 @@ manpath=(
   /usr/share/man
   $manpath
 )
+
 infopath=(
   /usr/local/share/info
   /usr/share/info
   $infopath
 )
+
 path=(
   $HOME/.local/bin
   $HOME/.zplug/bin

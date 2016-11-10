@@ -14,23 +14,8 @@
 # ░  code  ░ https://github.com/danalec/dotfiles
 #
 # ~danalec/.zprofile
-# last modified : 2016-11-09
+# last modified : 2016-11-10
 #
 #█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
-
-# X11自動スタート
-if [ -z "$DISPLAY" ]; then
-  case "$(fgconsole)" in
-    1)
-      [ -f "$HOME/.xinitrc" ] && exec startx
-      ;;
-    2)
-      [ -f "/usr/bin/sway" ] && exec sway
-      ;;
-  esac
-fi
-
-# 環境個別設定を読み込む (.zprofile.local)
-#if [ -f "$HOME/.zprofile.local" ]; then
-#  source "$HOME/.zprofile.local"
-#fi
+#
+# empty
