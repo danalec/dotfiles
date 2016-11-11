@@ -463,6 +463,7 @@ tem esse também
 
 ⠀
 ____________
+<a name="steam"></a>
 ##### /r/PCMASTERRACE
 `# pacaur --noconfirm --noedit -S steam-fonts`
 
@@ -485,6 +486,16 @@ ____________
     aqui em diante está em manutenção, volte mais tarde :3
 ____________
 ____________
+⠀
+____________
+<a name="limpeza"></a>
+
+##### faxina no pacman
+
+`sudo pacman -Rsn $(pacman -Qdtq)`
+
+`sudo pacman -Sc && sudo pacman-optimize`
+
 ⠀
 <a name="parte5"></a>
 ##### este wrapper de lixeira é excelente:
@@ -551,9 +562,9 @@ ____________
 ##### fail2ban
 `$ sudo pacman --noconfirm -S fail2ban`
 
-`sudo systemctl start fail2ban`
+`$ sudo systemctl start fail2ban`
 
-`sudo systemctl enable fail2ban`
+`$ sudo systemctl enable fail2ban`
 
 ⠀
 ____________
@@ -581,8 +592,8 @@ ____________
 > ##### options zswap.enabled=1 zswap.compressor=lz4
 
 ⠀
-###### linux-lqx linux-lqx-headers nvidia-lqx
-`# pacaur --noconfirm --noedit -S linux-lqx linux-lqx-headers nvidia-lqx`
+###### linux-lqx linux-lqx-headers linux-lqx-docs nvidia-lqx
+`# pacaur --noconfirm --noedit -S linux-lqx linux-lqx-docs linux-lqx-headers nvidia-lqx`
 
 `$ sudo nvim /boot/loader/entries/arch3.conf`
 
@@ -601,6 +612,12 @@ para inicializar o driver: `$ sudo modprobe nvidiabl`
 `$ sudo systemctl mask systemd-backlight@backlight\:acpi_video0.service`
 
 ⠀
+##### grsec: grsec-common linux-grsec linux-grsec-docs linux-grsec-headers nvidia-grsec
+
+⠀
+##### grsec: linux-libre-grsec linux-libre-grsec-docs linux-libre-grsec-headers acpi_call-grsec nvidia-grsec
+
+⠀
 ##### llvm
 mantenha seu sistema atualizado antes de começar
 
@@ -614,37 +631,33 @@ só para os corajosos
 ##### se você acha que o llvm-svn demora muito pra compilar (quase uma hora no meu sistema), o Kerberizer é mantenedor AUR (llvm-svn & lib32-llvm-svn) e possui um [repo não-oficial](https://wiki.archlinux.org/index.php/Unofficial_user_repositories#llvm-svn)
 
 ⠀
-##### grsec
-
-⠀
 ##### ferm
 
 ⠀
 ##### brute
-`pacaur -S fbruteforcer rarcrack`
+`# pacaur -S fbruteforcer rarcrack`
 
 ⠀
 ____________
 
 <a name="parte8"></a>
-### [archstrike](https://archstrike.org/wiki/setup)
+##### [archstrike](https://archstrike.org/wiki/setup)
 
 `$ sudo nvim /etc/pacman.conf`
 > ##### [archstrike]
 > ##### Server = https://mirror.archstrike.org/$arch/$repo
 
-`pacman -Sg | grep archstrike`
+`# pacman -Sg | grep archstrike`
 
-`pacman -Sgg | grep archstrike-`
+`# pacman -Sgg | grep archstrike-`
 
 ⠀
 ____________
 
 <a name="parte9"></a>
-### [blackarch](http://blackarch.org/downloads.html#install-repo)
+##### [blackarch](http://blackarch.org/downloads.html#install-repo)
 
-# dependancies
-`$ sudo pacman -S php-pear`
+###### dependancies: `$ sudo pacman -S php-pear`
 
 `curl -O https://blackarch.org/strap.sh && sha1sum strap.sh`
 
