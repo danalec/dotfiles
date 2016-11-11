@@ -283,10 +283,9 @@ ou caso queira clonar meu dotfiles, inclua os meus aliases de zsh:
 
 `cd dotfiles && stow zsh`
 
-(e inicie uma sessão zsh):`/bin/zsh`
+para adicionar a configuração do pacman: `sudo stow pacman -t /`
 
-e utilize como o exemplo `pacauru stow` e `pacaman mc`
-
+(e inicie uma sessão zsh):`/bin/zsh` e utilize como o exemplo `pacauru stow` e `pacaman mc`
 ⠀
 ----------
 <a name="parte4"></a>
