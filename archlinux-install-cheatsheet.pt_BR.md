@@ -8,12 +8,23 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
  - [parte 1: bootando o live](#parte1)
  - [parte 2: instalando programas](#parte2)
  - [parte 3: economize tempo](#parte3)⠀
- - [parte 4: instalando mais programas](#parte4)
+ - [parte 4: instalando programas](#parte4)
+ - [parte 5: instalando mais programas](#parte5)
+ - [parte 6: instalando mais e mais programas](#parte6)
+ - [parte 7: instalando mais e mais e mais programas](#parte7)
+ - [parte 8: repositórios adicionais](#parte8)
+ 
+ - [archstrike](#archstrike)
+ - [blackarch](#blackarch)
+ - [hdparm](#hdparm)
+ - [limpeza](#limpeza)
 
 
 ----------
-# introdução<a name="introdução"></a>
- este guia foi escrito para guiar amigos familiarizados com [Archlinux Wiki Installation Guide](https://wiki.archlinux.org/index.php/Installation_guide), para um **fresh install** com [btrfs](https://wiki.archlinux.org/index.php/Btrfs) [criptografado](https://wiki.archlinux.org/index.php/Dm-crypt) e [swap sem suporte a suspend](https://wiki.archlinux.org/index.php/Dm-crypt/Swap_encryption#Without_suspend-to-disk_support).
+<a name="introdução"></a>
+# introdução
+ este guia, inicialmente, foi escrito para uso próprio.
+ familiarizados com [Archlinux Wiki Installation Guide](https://wiki.archlinux.org/index.php/Installation_guide) poderão utilizar este guia como referência para um **fresh install** com [btrfs](https://wiki.archlinux.org/index.php/Btrfs) [criptografado](https://wiki.archlinux.org/index.php/Dm-crypt) e [swap sem suporte a suspend](https://wiki.archlinux.org/index.php/Dm-crypt/Swap_encryption#Without_suspend-to-disk_support).
  
  caso você queira instalar de uma instalação prévia do Linux (outra distro) e quiser manter seus arquivos, este guia não serve pra nada, portanto [clique aqui](https://wiki.archlinux.org/index.php/Install_from_existing_Linux).
 
@@ -440,7 +451,7 @@ tem esse também
 `# pacaur --noconfirm --noedit -S albert`
 
 ⠀
-# leitor de pdf, djvu, postscript levinho (chrome é melhor pra pdf)
+###### leitor de pdf, djvu, postscript levinho (chrome é melhor pra pdf)
 `# pacaur --noconfirm --noedit -S zathura`
 
 ⠀
@@ -486,16 +497,6 @@ ____________
     aqui em diante está em manutenção, volte mais tarde :3
 ____________
 ____________
-⠀
-____________
-<a name="limpeza"></a>
-
-##### faxina no pacman
-
-`sudo pacman -Rsn $(pacman -Qdtq)`
-
-`sudo pacman -Sc && sudo pacman-optimize`
-
 ⠀
 <a name="parte5"></a>
 ##### este wrapper de lixeira é excelente:
@@ -570,7 +571,7 @@ ____________
 ____________
 
 <a name="parte7"></a>
-## recompilando o kernel
+#### recompilando o kernel
 ##### vamos pegar a assinatura do Linus Torvalds
 `gpg --recv-keys 79BE3E4300411886`
 
@@ -640,7 +641,7 @@ só para os corajosos
 ⠀
 ____________
 
-<a name="parte8"></a>
+<a name="archstrike"></a>
 ##### [archstrike](https://archstrike.org/wiki/setup)
 
 `$ sudo nvim /etc/pacman.conf`
@@ -654,7 +655,7 @@ ____________
 ⠀
 ____________
 
-<a name="parte9"></a>
+<a name="blackarch"></a>
 ##### [blackarch](http://blackarch.org/downloads.html#install-repo)
 
 ###### dependancies: `$ sudo pacman -S php-pear`
@@ -676,5 +677,28 @@ ____________
 `$ sudo pacman-key --populate archlinux`
 
 `$ sudo pacman -Syy`
+
+⠀
+____________
+
+<a name="hdparm"></a>
+##### diagnóstico com hdparm
+info: `hdparm -I /dev/sda | more`
+
+velocidade de leitura: `hdparm -t --direct /dev/sda`
+
+velocidade de escrita: `sync;time bash -c "(dd if=/dev/zero of=bf bs=8k count=500000; sync)"`
+
+hdd diagnóstico:`sudo smartctl --all /dev/sda2`
+
+⠀
+____________
+<a name="limpeza"></a>
+
+##### faxina no pacman
+
+`sudo pacman -Rsn $(pacman -Qdtq)`
+
+`sudo pacman -Sc && sudo pacman-optimize`
 
 ⠀
