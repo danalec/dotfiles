@@ -1,6 +1,6 @@
 Arch Linux Installation Cheatsheet (pt_BR)
 ---------
-por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@gmail.com))
+por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@gmail.com)) // atualizado: sempre que houver necessidade
 ⠀
 # conteúdo
  - [introdução](#introdução)
@@ -19,26 +19,25 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
  - [hdparm](#hdparm)
  - [limpeza](#limpeza)
 
-
+⠀
 ----------
 <a name="introdução"></a>
 # introdução
  este guia, inicialmente, foi escrito para uso próprio.
 
- o processo de instalação, mantém a instalação prévia do Microsoft Windows 10 e o método de cópia do boot utilizado, resulta numa instalação totalmente compatível para Insiders e possíveis atualizações futuras.
-
  familiarizados com [Archlinux Wiki Installation Guide](https://wiki.archlinux.org/index.php/Installation_guide) poderão utilizar este guia como referência para um **fresh install** com [btrfs](https://wiki.archlinux.org/index.php/Btrfs) [criptografado](https://wiki.archlinux.org/index.php/Dm-crypt) e [swap sem suporte a suspend](https://wiki.archlinux.org/index.php/Dm-crypt/Swap_encryption#Without_suspend-to-disk_support).
+
+ o processo de instalação, mantém a instalação prévia do Microsoft Windows 10 e o método de cópia do boot utilizado, resulta numa instalação totalmente compatível para Insiders e possíveis atualizações futuras.
  
  caso você queira instalar de uma instalação prévia do Linux (outra distro) e quiser manter seus arquivos, este guia não serve pra nada, portanto [clique aqui](https://wiki.archlinux.org/index.php/Install_from_existing_Linux).
 
-
+⠀
 ----------
 <a name="instalador"></a>
 # parte 0: instalador
 
 #### item necessário: um pendrive (minimo 4GB) ou dispositivo com [DriveDroid](https://play.google.com/store/apps/details?id=com.softwarebakery.drivedroid&hl=en)
 
-⠀
 #### download necessário: [imagem ISO do Arch Linux](https://www.archlinux.org/download/)
 
 #### - para usuário windows, utilize [Rufus](http://rufus.akeo.ie/)
@@ -127,7 +126,10 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
 `pacstrap /mnt base base-devel`
 
 ⠀
-##### edite o pacman.conf `nano /etc/pacman.conf` para descomentar: [multilib] e seu endereço; Color; adicione numa nova linha: ILoveCandy
+##### edite o pacman.conf `nano /etc/pacman.conf` e
+##### descomente: [multilib] e seu endereço
+##### descomente: Color;
+##### adicione numa nova linha: ILoveCandy
 
 ⠀
 ##### copiando o que já fizemos para o disco da máquina
@@ -268,7 +270,7 @@ se precisar desligar wifi: `$ sudo systemctl disable netctl-auto@wlp4s0.service`
 <a name="parte2"></a>
 ## parte 2: bootando pela primeira vez a máquina
 
-nessa altura do campeonato, o símbolo **$** irá denotar a necessidade de previlégio elevado e **#** a ausência.
+agora, o símbolo **$** irá denotar a necessidade de previlégio elevado e **#** a ausência.
 
 ##### vamos instalar as dependências do cower e pacaur antes, para poder usá-los:
 `$ sudo pacman --noconfirm -S yajl expac`
@@ -294,7 +296,7 @@ nessa altura do campeonato, o símbolo **$** irá denotar a necessidade de previ
 <a name="parte3"></a>
 ## parte 3: economize tempo
 
-note que iremos usar bastante alguns comandos como `sudo pacman --noconfirm -S`
+note que iremos usar bastante alguns comandos como: `sudo pacman --noconfirm -S`
 
 tome a liberdade de criar um alias: `alias pac="sudo pacman --noconfirm -S "` para que se instale diretamente como o exemplo: `pac tmux`
 
