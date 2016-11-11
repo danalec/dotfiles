@@ -4,7 +4,7 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
 ⠀
 # conteúdo
  - [introdução](#introdução)
- - [parte 0: instalador](#parte0)
+ - [parte 0: instalador](#instalador)
  - [parte 1: bootando o live](#parte1)
  - [parte 2: instalando programas](#parte2)
  - [parte 3: economize tempo](#parte3)⠀
@@ -13,7 +13,7 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
  - [parte 6: instalando mais e mais programas](#parte6)
  - [parte 7: instalando mais e mais e mais programas](#parte7)
  - [parte 8: repositórios adicionais](#parte8)
- 
+
  - [archstrike](#archstrike)
  - [blackarch](#blackarch)
  - [hdparm](#hdparm)
@@ -24,13 +24,16 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
 <a name="introdução"></a>
 # introdução
  este guia, inicialmente, foi escrito para uso próprio.
+
+ o processo de instalação, mantém a instalação prévia do Microsoft Windows 10 e o método de cópia do boot utilizado, resulta numa instalação totalmente compatível para Insiders e possíveis atualizações futuras.
+
  familiarizados com [Archlinux Wiki Installation Guide](https://wiki.archlinux.org/index.php/Installation_guide) poderão utilizar este guia como referência para um **fresh install** com [btrfs](https://wiki.archlinux.org/index.php/Btrfs) [criptografado](https://wiki.archlinux.org/index.php/Dm-crypt) e [swap sem suporte a suspend](https://wiki.archlinux.org/index.php/Dm-crypt/Swap_encryption#Without_suspend-to-disk_support).
  
  caso você queira instalar de uma instalação prévia do Linux (outra distro) e quiser manter seus arquivos, este guia não serve pra nada, portanto [clique aqui](https://wiki.archlinux.org/index.php/Install_from_existing_Linux).
 
 
 ----------
-<a name="parte0"></a>
+<a name="instalador"></a>
 # parte 0: instalador
 
 #### item necessário: um pendrive (minimo 4GB) ou dispositivo com [DriveDroid](https://play.google.com/store/apps/details?id=com.softwarebakery.drivedroid&hl=en)
@@ -38,14 +41,11 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
 ⠀
 #### download necessário: [imagem ISO do Arch Linux](https://www.archlinux.org/download/)
 
-⠀
 #### - para usuário windows, utilize [Rufus](http://rufus.akeo.ie/)
 
-⠀
 #### - para usuário linux: 
 `dd if=archlinux.img of=/dev/sdX bs=16M && sync`
 
-⠀
 #### obs: lembrando que para listar os discos lógicos:
 `lsblk -Sp`
 
@@ -411,7 +411,7 @@ alguns extras:
 ____________
 ____________
     se você sobreviveu até aqui: parabéns!
-                         a partir daqui é opcional...
+                         a partir daqui é opcional (ou quase isso)
 ____________
 ____________
 ⠀
@@ -446,8 +446,7 @@ ____________
 ###### app launcher legal para gnome (é meio parecido com alfred)
 `# pacaur --noconfirm --noedit -S mutate-git`
 
-tem esse também
-
+###### tem esse também:
 `# pacaur --noconfirm --noedit -S albert`
 
 ⠀
@@ -514,7 +513,7 @@ ____________
 
 [mais informações sobre numlock](https://wiki.archlinux.org/index.php/Activating_Numlock_on_Bootup)
 
-se você usa gdm:
+###### se você usa gdm:
 
 `$ sudo pacman --noconfirm -S numlockx`
 
