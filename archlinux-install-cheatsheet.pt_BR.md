@@ -13,7 +13,7 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
 
 ----------
 # introdução<a name="introdução"></a>
- este guia foi escrito para guiar amigos familiarizados com [Archlinux Wiki Installation Guide](https://wiki.archlinux.org/index.php/Installation_guide), para um **fresh install**.
+ este guia foi escrito para guiar amigos familiarizados com [Archlinux Wiki Installation Guide](https://wiki.archlinux.org/index.php/Installation_guide), para um **fresh install** com [btrfs](https://wiki.archlinux.org/index.php/Btrfs) [criptografado](https://wiki.archlinux.org/index.php/Dm-crypt) e [swap sem suporte a suspend](https://wiki.archlinux.org/index.php/Dm-crypt/Swap_encryption#Without_suspend-to-disk_support).
  
  caso você queira instalar de uma instalação prévia do Linux (outra distro) e quiser manter seus arquivos, este guia não serve pra nada, portanto [clique aqui](https://wiki.archlinux.org/index.php/Install_from_existing_Linux).
 
@@ -116,8 +116,13 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
 `pacstrap /mnt base base-devel`
 
 ⠀
+##### edite o pacman.conf `nano /etc/pacman.conf` para descomentar: [multilib] e seu endereço; Color; adicione numa nova linha: ILoveCandy
+
+⠀
 ##### copiando o que já fizemos para o disco da máquina
 `cp -f /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist`
+
+`cp -f /etc/pacman.conf /mnt/etc/pacman.conf`
 
 ⠀
 ##### não esqueça de salvar as tabela das partições que você montou
@@ -165,7 +170,7 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
 
 ⠀
 ##### agora configurar é só: `EDITOR=nano visudo`
-##### descomenta o `#wheel` e logo na linha de baixo adicione: `Defaults rootpw`
+##### descomenta o `#wheel` e logo na linha de baixo adicione: `Defaults rootpw` (para que a senha do sudo seja a mesma do root, não do usuário).
 
 ⠀
 ##### agora vamos editar o fstab: `nano /etc/fstab`
@@ -223,7 +228,11 @@ note que: `cryptdevice=/dev/sda6` e `root=/dev/mapper/root`
 ##### agora vamos instalar uns pacotes básicos
 `pacman --noconfirm -S iw wpa_supplicant dialog wireless_tools networkmanager`
 
-##### e já deixa ligado
+se precisar desligar ethernet: `$ sudo systemctl disable dhcpcd@enp3s0.service`
+
+se precisar desligar wifi: `$ sudo systemctl disable netctl-auto@wlp4s0.service`
+
+##### mas já deixa ligado
 `systemctl enable NetworkManager.service`
 
 ⠀
@@ -279,13 +288,15 @@ note que iremos usar bastante alguns comandos como `sudo pacman --noconfirm -S`
 tome a liberdade de criar um alias: `alias pac="sudo pacman --noconfirm -S "` para que se instale diretamente como o exemplo: `pac tmux`
 
 ou caso queira clonar meu dotfiles, inclua os meus aliases de zsh:
-`git clone https://github.com/danalec/dotfiles`
+`git clone https://github.com/danalec/dotfiles ~/dotfiles`
 
 `cd dotfiles && stow zsh`
 
 para adicionar a configuração do pacman: `sudo stow pacman -t /`
 
-(e inicie uma sessão zsh):`/bin/zsh` e utilize como o exemplo `pacauru stow` e `pacaman mc`
+(e inicie uma sessão zsh):`/bin/zsh` ou altere a sessão do usuário: `chsh -s $(which zsh)`
+
+utilize como o exemplo `pacauru stow` e `pacaman mc`
 ⠀
 ----------
 <a name="parte4"></a>
@@ -294,7 +305,7 @@ para adicionar a configuração do pacman: `sudo stow pacman -t /`
 
 `$ sudo pacman --noconfirm -S stow compton rsync unzip unrar tmux tree lsof lha mc`
 
-`$ sudo pacman --noconfirm -S pygmentize lm_sensors xclip hub termite htop psutils`
+`$ sudo pacman --noconfirm -S pygmentize lm_sensors xclip hub termite htop psutils ccze`
 
 `# pacaur --noconfirm --noedit -S sux playerctl dtrx pcmanfm-gtk3-git`
 
@@ -360,18 +371,32 @@ e para corrigir o controle do brightness:
 
 `# pacaur --noconfirm -S powerline-fonts ttf-hack ttf-font-awesome`
 
-`# pacaur --noconfirm -S font-mathematica ttf-monapo ttf-liberation`
-
 `$ sudo pacman --noconfirm -S noto-fonts`
 
 `$ sudo pacman --noconfirm -S ttf-liberation wqy-zenhei wqy-microhei wqy-microhei-lite`
 
-⠀
+alguns extras:
 
+`# pacaur --noconfirm -S font-mathematica ttf-monapo ttf-liberation`
+
+⠀
 ##### painel de volume completão
 `# pacaur --noconfirm --noedit -S pavucontrol`
 
 ⠀
+##### acpi para ler algumas informações da máquina
+`$ sudo pacman --noconfirm -S acpi`
+
+##### é usuário SLI ou CrossFire? edite: /etc/modprobe.d/acpi.conf
+> ##### video.allow_duplicates=1
+> ##### acpi_enforce_resources=lax
+
+⠀
+##### vamos remover porque nunca mais iremos usar (pelo menos eu não quero)
+`$ sudo pacman -Rns nano vi`
+
+⠀
+
 ____________
 ____________
     se você sobreviveu até aqui: parabéns!
@@ -379,16 +404,12 @@ ____________
 ____________
 ____________
 ⠀
-##### não é necessário mas é delicioso:
+##### mpv e seus amiguinhos:
 `# pacaur --noconfirm -S mpv-build-git youtube-dl-git youtube-mpv-git youtube-upload-git`
 
 ⠀
-###### kodi é mais outro player pra sua coleção, mas é delicioso
+###### kodi é cheio de plugins legais
 `pacaur --noconfirm --noedit -S kodi`
-
-⠀
-##### vamos remover porque nunca mais iremos usar (pelo menos eu não quero)
-`$ sudo pacman -Rns nano vi`
 
 ⠀
 ##### visualizador de imagens que adoro
@@ -403,20 +424,6 @@ ____________
 `# pacaur --noconfirm --noedit -S 4kyoutubetomp3`
 
 ⠀
-##### este wrapper de lixeira é excelente:
-`# gpg --recv-keys 50F33E2E5B0C3D900424ABE89BDCF497A4BBCC7F`
-
-`$ sudo pacman-key --refresh-keys`
-
-`# pacaur -S trash-cli`
-
-⠀
-##### vamos colocar numlock automaticamente
-`$ sudo pacman -S xorg-xmodmap xkeycaps`
-
-`# pacaur -S autonumlock`
-
-⠀
 ###### esse downloader eh da hora, eh uploader tb
 `# pacaur --noconfirm --noedit -S plowshare`
 
@@ -425,8 +432,16 @@ ____________
 `# pacaur --noconfirm --noedit -S raccoon`
 
 ⠀
-###### um app launcher legal para gnome
+###### app launcher legal para gnome (é meio parecido com alfred)
 `# pacaur --noconfirm --noedit -S mutate-git`
+
+tem esse também
+
+`# pacaur --noconfirm --noedit -S albert`
+
+⠀
+# leitor de pdf, djvu, postscript levinho (chrome é melhor pra pdf)
+`# pacaur --noconfirm --noedit -S zathura`
 
 ⠀
 ###### rtorrent
@@ -437,6 +452,10 @@ ____________
 ⠀
 ###### mas na falta de saco pra configurar, vamos usar o deluge mesmo
 `# pacaur --noconfirm --noedit -S deluge`
+
+⠀
+##### tradutor e calculadora commandline
+`# pacaur --noconfirm -S translate-git wcalc`
 
 ⠀
 ##### inúteis mas legais (reparou né?)
@@ -468,8 +487,87 @@ ____________
 ____________
 ⠀
 <a name="parte5"></a>
+##### este wrapper de lixeira é excelente:
+`# gpg --recv-keys 50F33E2E5B0C3D900424ABE89BDCF497A4BBCC7F`
+
+`$ sudo pacman-key --refresh-keys`
+
+`# pacaur --noconfirm --noedit -S trash-cli`
+
+⠀
+##### vamos colocar numlock automaticamente
+`$ sudo pacman -S xorg-xmodmap xkeycaps`
+
+`# pacaur -S autonumlock`
+
+[mais informações sobre numlock](https://wiki.archlinux.org/index.php/Activating_Numlock_on_Bootup)
+
+se você usa gdm:
+
+`$ sudo pacman --noconfirm -S numlockx`
+
+###### edite /etc/gdm/Init/Default e coloca antes do exit
+> ##### if [ -x /usr/bin/numlockx ]; then
+> ##### /usr/bin/numlockx on
+> ##### fi
+
+`# pacaur --noconfirm --noedit -S systemd-numlockontty`
+
+e para ativar
+
+`$ sudo systemctl enable numLockOnTty`
+
+⠀
+##### ibus para os poliglotas
+
+`$ sudo pacman -S ibus`
+
+⠀
+____________
+____________
+⠀
+<a name="parte6"></a>
+##### meld é um comparador visual de texto e binários
+`$ sudo pacman --noconfirm -S meld`
+
+⠀
+##### sublime-text-dev para versão 3
+`$ pacaur --noconfirm --noedit -S sublime-text-dev`
+
+⠀
+##### nginx
+`# pacaur --noconfirm --noedit -S php php-fpm nginx ngxtop`
+
+⠀
+##### chromium-dev
+`# gpg --recv-keys 702353E0F7E48EDB`
+`# pacaur -S ncurses5-compat-libs`
+
+⠀
+##### net-tools e amigos
+`$ sudo pacman --noconfirm -S openssh openssl net-tools mtr traceroute dnsutils whois nmap wavemon gnome-nettool`
+
+⠀
+##### fail2ban
+`$ sudo pacman --noconfirm -S fail2ban`
+
+`sudo systemctl start fail2ban`
+
+`sudo systemctl enable fail2ban`
+
+⠀
+____________
+
+<a name="parte7"></a>
+## recompilando o kernel
+##### vamos pegar a assinatura do Linus Torvalds
+`gpg --recv-keys 79BE3E4300411886`
+
 ⠀
 ###### linux-ck linux-ck-headers nvidia-ck
+#####vamos precisar de mais uma outra assinatura
+`gpg --recv-keys 38DBBDC86092693E`
+
 `# pacaur --noconfirm --noedit -S linux-ck linux-ck-headers nvidia-ck`
 
 `$ sudo nvim /boot/loader/entries/arch2.conf`
@@ -481,5 +579,89 @@ ____________
 > ##### options cryptdevice=UUID=bbe334f1-f9a9-455e-8e76-1425184d70cb:root root=UUID="938b6700-d1ad-4556-a0b0-0c2e6554286d" rw
 > ##### options sysrq_always_enabled=1
 > ##### options zswap.enabled=1 zswap.compressor=lz4
+
+⠀
+###### linux-lqx linux-lqx-headers nvidia-lqx
+`# pacaur --noconfirm --noedit -S linux-lqx linux-lqx-headers nvidia-lqx`
+
+`$ sudo nvim /boot/loader/entries/arch3.conf`
+
+> ##### title Arch Linux-lqx
+> ##### linux /vmlinuz-linux-lqx
+> ##### initrd /intel-ucode.img
+> ##### initrd /initramfs-linux-lqx.img
+> ##### options cryptdevice=UUID=bbe334f1-f9a9-455e-8e76-1425184d70cb:root root=UUID="938b6700-d1ad-4556-a0b0-0c2e6554286d" rw
+> ##### options sysrq_always_enabled=1
+> ##### options zswap.enabled=1 zswap.compressor=lz4_compress
+
+o controle de brightness do lqx tenta instalar automaticamente o **nvidiabl** porém a configuração é manual, [mais informações](https://wiki.archlinux.org/index.php/NVIDIA#Enabling_brightness_control): `# pacaur -S nvidiabl`
+
+para inicializar o driver: `$ sudo modprobe nvidiabl`
+
+`$ sudo systemctl mask systemd-backlight@backlight\:acpi_video0.service`
+
+⠀
+##### llvm
+mantenha seu sistema atualizado antes de começar
+
+`$ sudo pacman -Syu`
+
+só para os corajosos
+`# pacaur --noconfirm --noedit -S llvm-svn lib32-llvm-svn`
+
+`# pacaur --noconfirm --noedit -S mesa-git lib32-mesa-git`
+
+##### se você acha que o llvm-svn demora muito pra compilar (quase uma hora no meu sistema), o Kerberizer é mantenedor AUR (llvm-svn & lib32-llvm-svn) e possui um [repo não-oficial](https://wiki.archlinux.org/index.php/Unofficial_user_repositories#llvm-svn)
+
+⠀
+##### grsec
+
+⠀
+##### ferm
+
+⠀
+##### brute
+`pacaur -S fbruteforcer rarcrack`
+
+⠀
+____________
+
+<a name="parte8"></a>
+### [archstrike](https://archstrike.org/wiki/setup)
+
+`$ sudo nvim /etc/pacman.conf`
+> ##### [archstrike]
+> ##### Server = https://mirror.archstrike.org/$arch/$repo
+
+`pacman -Sg | grep archstrike`
+
+`pacman -Sgg | grep archstrike-`
+
+⠀
+____________
+
+<a name="parte9"></a>
+### [blackarch](http://blackarch.org/downloads.html#install-repo)
+
+# dependancies
+`$ sudo pacman -S php-pear`
+
+`curl -O https://blackarch.org/strap.sh && sha1sum strap.sh`
+
+`$ sudo ./strap.sh`
+
+`$ sudo pacman -Sgg | grep blackarch | cut -d' ' -f2 | sort -u`
+
+`$ sudo pacman -S blackarch` 
+
+`$ sudo nvim /etc/pacman.conf`
+> ##### [blackarch]
+> ##### Server = http://arch.localmsp.org/blackarch//$repo/os/$arch
+
+`$ sudo pacman-key --init`
+
+`$ sudo pacman-key --populate archlinux`
+
+`$ sudo pacman -Syy`
 
 ⠀
