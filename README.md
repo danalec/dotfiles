@@ -101,14 +101,14 @@ $ cat fsociety00.dat
  gdm-theme      > microsoft windows 3.11 vap0rwave background
  git            > global git config and aliases
  gtk            > gtk and some gnome configs
- i3             > m45t3r's fucking awesome i3pystatus hacks, workspace theme config
+ guide          > archlinux installation cheatsheet
+ i3             > m45t3r's fucking awesome i3pystatus hacks, theme, imwheel, xmodmap configs
  ├─dunst        > lightweight and customizable notification daemon config
  ├─i3pystatus   > m45t3r's awesome fork, next-generation of status
  ├─rofi         > window switcher, run dialog and dmenu replacement config
  └─termite      > terminal emulator with vte3 color config and vi bindings
  irssi          > the best irc client theme
  mc             > midnight commander ui colors
- misc           > imwheel xmodmap config
  mpd            > music player daemon setup & ncurses mpc++ ui/color
  mpv            > m45t3r's awesome mpv, very fucking high quality stuff
  nvim           > the future of vim config, zplug and powerlevel9k
