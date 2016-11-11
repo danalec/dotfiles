@@ -9,14 +9,18 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
  - [parte 2: instalando programas](#parte2)
  - [parte 3: economize tempo](#parte3)⠀
  - [parte 4: instalando mais programas](#parte4)
+
+
 ----------
 # introdução<a name="introdução"></a>
  este guia foi escrito para guiar amigos familiarizados com [Archlinux Wiki Installation Guide](https://wiki.archlinux.org/index.php/Installation_guide), para um **fresh install**.
  
  caso você queira instalar de uma instalação prévia do Linux (outra distro) e quiser manter seus arquivos, este guia não serve pra nada, portanto [clique aqui](https://wiki.archlinux.org/index.php/Install_from_existing_Linux).
 
+
 ----------
-# parte 0: instalador<a name="parte0"></a>
+<a name="parte0"></a>
+# parte 0: instalador
 
 #### item necessário: um pendrive (minimo 4GB) ou dispositivo com [DriveDroid](https://play.google.com/store/apps/details?id=com.softwarebakery.drivedroid&hl=en)
 
@@ -36,7 +40,8 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
 
 ⠀
 ----------
-## parte 1: bootando o live<a name="parte1"></a>
+<a name="parte1"></a>
+## parte 1: bootando o live
 
 ###### conectando: `dhcpcd enp3s0`
 ##### para wifi: `wifi-menu`
@@ -240,7 +245,8 @@ note que: `cryptdevice=/dev/sda6` e `root=/dev/mapper/root`
 `reboot`
 
 ----------
-## parte 2: bootando pela primeira vez a máquina<a name="parte2"></a>
+<a name="parte2"></a>
+## parte 2: bootando pela primeira vez a máquina
 
 nessa altura do campeonato, o símbolo **$** irá denotar a necessidade de previlégio elevado e **#** a ausência.
 
@@ -265,7 +271,8 @@ nessa altura do campeonato, o símbolo **$** irá denotar a necessidade de previ
 
 ⠀
 ----------
-## parte 3: economize tempo<a name="parte3"></a>
+<a name="parte3"></a>
+## parte 3: economize tempo
 
 note que iremos usar bastante alguns comandos como `sudo pacman --noconfirm -S`
 
@@ -282,7 +289,8 @@ e utilize como o exemplo `pacauru stow` e `pacaman mc`
 
 ⠀
 ----------
-## parte 4: moar!<a name="parte4"></a>
+<a name="parte4"></a>
+## parte 4: moar!
 ##### tá faltando um montão de programa, temos ainda que instalar vários:
 
 `$ sudo pacman --noconfirm -S stow compton rsync unzip unrar tmux tree lsof lha mc`
@@ -460,6 +468,7 @@ ____________
 ____________
 ____________
 ⠀
+<a name="parte5"></a>
 ⠀
 ###### linux-ck linux-ck-headers nvidia-ck
 `# pacaur --noconfirm --noedit -S linux-ck linux-ck-headers nvidia-ck`
