@@ -69,7 +69,6 @@ export VISUAL="$EDITOR"
 
 export XAUTHORITY="$HOME/.Xauthority"
 export SSH_KEY_PATH="$HOME/.ssh/id_rsa"
-export DISPLAY=:0
 export KEYTIMEOUT=1   # vi mode
 
 # リモートから起動するコマンド用の環境変数を設定(必要なら)
@@ -293,6 +292,7 @@ alias 'cd..'='cd ../'
 alias -- -='cd -'
 alias ag="ag --color --color-line-number '0;35' --color-match '46;30' --color-path '4;36'"
 alias b='ranger'
+alias bat='acpi -i'
 alias c="tr -d '\n' | pbcopy"
 alias catn="cat -n"
 alias cdd='cd -'

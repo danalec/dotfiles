@@ -18,10 +18,9 @@
 #
 #█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
 
-# グローバル変数
-export XINITRC="$HOME/.xinitrc"
-
 # X11自動スタート
+XINITRC="$HOME/.xinitrc"
+
 if [ -z "$DISPLAY" ] && [ -f "$XINITRC" ]; then
   case "$XDG_VTNR" in
     1)
