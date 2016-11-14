@@ -17,7 +17,7 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
 
  - [archstrike](#archstrike)
  - [blackarch](#blackarch)
- 
+
  - [hdparm](#hdparm)
  - [limpeza](#limpeza)
 
@@ -538,7 +538,25 @@ e para ativar
 ⠀
 ##### ibus para os poliglotas
 
-`$ sudo pacman -S ibus`
+`$ sudo pacman --noconfirm -S ibus`
+
+⠀
+##### [video editors](https://wiki.archlinux.org/index.php/List_of_applications/Multimedia)
+###### não testei nenhum, tou aqui listando pra posterioridade
+
+`$ sudo pacman --noconfirm -S openshot`
+
+`$ sudo pacman --noconfirm -S kdenlive`
+
+`$ sudo pacman --noconfirm -S shotcut`
+
+`$ sudo pacman --noconfirm -S pitivi`
+
+`$ sudo pacman --noconfirm -S cinelerra-cv`
+
+`# pacaur --noconfirm --noedit -S vlmc`
+
+`# pacaur --noconfirm --noedit -S openmovieeditor`
 
 ⠀
 ____________
@@ -550,7 +568,7 @@ ____________
 
 ⠀
 ##### sublime-text-dev para versão 3
-`$ pacaur --noconfirm --noedit -S sublime-text-dev`
+`# pacaur --noconfirm --noedit -S sublime-text-dev`
 
 ⠀
 ##### nginx

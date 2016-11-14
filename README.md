@@ -136,6 +136,7 @@ $ cat fsociety00.dat
  - [editors](#editors)
  - [misc](#misc)
 
+<a name="dotfiles"></a>
 #dotfiles
 in the *nix world programs are commonly configured in two different ways: 
 via shell arguments or text based configuration files.
@@ -149,6 +150,7 @@ it's been said of every console user:
 > _"you are your dotfiles"_.
 
 
+<a name="howto"></a>
 #howto
 i manage the dotfiles with [gnu stow](http://www.gnu.org/software/stow/), a free, portable, lightweight
 symlink farm manager. it allows me to keep a versioned directory of all my config files that are
@@ -158,6 +160,7 @@ it let me share these files super simple. and does not clutter your home directo
 with version control files.
 
 
+<a name="installing"></a>
 #installing
 stow is available for all linux and most other unix like distributions.
 
@@ -170,6 +173,7 @@ stow is available for all linux and most other unix like distributions.
 or clone it [from source](https://savannah.gnu.org/git/?group=stow) and [build it](http://git.savannah.gnu.org/cgit/stow.git/tree/INSTALL) yourself.
 
 
+<a name="how-stow-works"></a>
 #how-stow-works
 by default the stow command will create symlinks for files in the parent directory of where you execute.
 
@@ -185,6 +189,7 @@ if a default file was created upon program installation you must delete it first
 a new one with stow. this does not apply to directories, only files.
 
 
+<a name="tldr"></a>
 #tl;dr
 navigate to your home directory
 
@@ -204,21 +209,27 @@ install the zsh settings:
 
 install gdm-theme
 
-`sudo stow gdm-theme -t /`
+`sudo stow -t / gdm-theme`
 
 install pacman
 
-`sudo stow pacman -t /`
+`sudo stow -t / pacman `
+
+install pygments
+
+`sudo stow -t / pygments `
 
 install zsh settings for the root user
 
-`sudo stow zsh -t /root`
+`sudo stow -t /root zsh`
 
 install sublime settings for the root user
 
-`sudo stow sublime -t /root`
+`sudo stow -t /root sublime `
 
 
+
+<a name="workspace"></a>
 #workspace
 i used to use [gnome](https://www.gnome.org/gnome-3/) before [i3](https://i3wm.org/), thanks [m45t3r](https://github.com/m45t3r) for 
 introducing me to the fabulous world of tiling wm.
@@ -236,6 +247,7 @@ it is a console file manager with VI key bindings and provides a minimalistic cu
 view on the directory hierarchy. i'm using z3bra theme.
 
 
+<a name="editors"></a>
 #editors
 [nvim](https://neovim.io) is [literally the future of vim](http://geoff.greer.fm/2015/01/15/why-neovim-is-better-than-vim/) and its dependencies are managed by [vimplug](https://github.com/junegunn/vim-plug).
 
@@ -247,6 +259,7 @@ for both (n)vim, to install all plugins, use `:PlugInstall` in command mode.
 [sublime](https://www.sublimetext.com/) stuffs are managed by [packagecontrol](https://packagecontrol.io/installation).
 
 
+<a name="misc"></a>
 #misc
 [mpd](http://linux.die.net/man/1/mpd) is my music server and i use [ncmpcpp](http://ncmpcpp.rybczak.net/) as it's frontend.
 
