@@ -11,13 +11,13 @@
 # ░  code  ░ https://github.com/danalec/dotfiles
 #
 # ~danalec/.zshenv
-# last modified : 2016-11-10
+# last modified : 2016-11-14
 #
 #█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
 
 # if $ZDOTDIR is not set, force $HOME
 if [ -z "$ZDOTDIR" ]; then
-  export ZDOTDIR="$HOME"
+  ZDOTDIR="$HOME"
 fi
 
 #
@@ -77,19 +77,6 @@ path=(
 if [ -f "$HOME/.pythonrc.py" ]; then
   export PYTHONSTARTUP="$HOME/.pythonrc.py"
 fi
-
-# create automatically virtualenv
-_virtualenv_auto_activate() {
-    if [ -d "venv" ]; then
-        # check if already activated, avoids redundant activating
-        if [ "$VIRTUAL_ENV" != "$(pwd -P)/venv" ]; then
-            export _VENV_NAME=${$(pwd):t}
-            echo Activating virtualenv \"$_VENV_NAME\"...
-            export VIRTUAL_ENV_DISABLE_PROMPT=1
-            source venv/bin/activate
-        fi
-    fi
-}
 
 # set tips text
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '

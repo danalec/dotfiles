@@ -37,7 +37,7 @@
 		}
 		"xpos"		"2"
 		"ypos"		"28"
-		"wide"		"956"
+		"wide"		"1916"
 		"tall"		"1050"
 	}
 	"SteamRootDialog"
@@ -63,7 +63,7 @@
 					"sort_column_asc"		"1"
 					"sort_column_secondary_asc"		"1"
 					"selection"		"360940"
-					"section"		"#steam_recentlyplayed_yesterday"
+					"section"		"#steam_recentlyplayed_lastweek"
 					"Collapsers"
 					{
 						"#Steam_GamesSection_Favorites"		"0"
@@ -434,7 +434,7 @@
 					"sort_column_asc"		"1"
 					"sort_column_secondary_asc"		"1"
 					"selection"		"360940"
-					"section"		"#steam_recentlyplayed_yesterday"
+					"section"		"#steam_recentlyplayed_lastweek"
 					"Collapsers"
 					{
 						"#Steam_GamesSection_Favorites"		"0"
@@ -818,7 +818,7 @@
 					"sort_column_asc"		"0"
 					"sort_column_secondary_asc"		"0"
 					"selection"		"360940"
-					"section"		"#steam_recentlyplayed_yesterday"
+					"section"		"#steam_recentlyplayed_lastweek"
 					"Collapsers"
 					{
 						"#Steam_GamesSection_Favorites"		"0"
@@ -1316,9 +1316,9 @@
 		{
 		}
 		"DialogMode"		"0"
-		"xpos"		"962"
+		"xpos"		"928"
 		"ypos"		"28"
-		"wide"		"956"
+		"wide"		"992"
 		"tall"		"1050"
 	}
 	"Servers"
@@ -2839,6 +2839,43 @@
 			"xpos"		"642"
 			"ypos"		"28"
 			"wide"		"636"
+			"tall"		"1050"
+		}
+		"ChatRoomDlgFriend.res_74909431"
+		{
+			"TitlePanel"
+			{
+			}
+			"VoiceBar"
+			{
+				"micvolume"
+				{
+				}
+				"SpeakerVolume"
+				{
+				}
+			}
+			"GameInviteBar"
+			{
+			}
+			"BIBar"
+			{
+			}
+			"BABar"
+			{
+			}
+			"TradeInviteBar"
+			{
+			}
+			"ToolWindowSheet"
+			{
+				"ChatRoomDlg"
+				{
+				}
+			}
+			"xpos"		"2"
+			"ypos"		"28"
+			"wide"		"1452"
 			"tall"		"1050"
 		}
 	}

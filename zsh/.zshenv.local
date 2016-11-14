@@ -11,47 +11,66 @@
 # ░  code  ░ https://github.com/danalec/dotfiles
 #
 # ~danalec/.zshenv.local
-# last modified : 2016-11-10
+# last modified : 2016-11-14
 #
 #█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
 
 # グローバル変数
 # history
-HISTFILE=~/.zhistory
-HISTSIZE=4096
-SAVEHIST=1024
+HISTFILE=~/.zsh_history
+HISTSIZE=40960
+SAVEHIST=10240
+
+# Show history
+case $HIST_STAMPS in
+  "mm/dd/yyyy") alias history='fc -fl 1' ;;
+  "dd.mm.yyyy") alias history='fc -El 1' ;;
+  "yyyy-mm-dd") alias history='fc -il 1' ;;
+  *) alias history='fc -l 1' ;;
+esac
 
 # setopt
+#setopt extended_history
+#setopt hist_expire_dups_first
+#setopt hist_ignore_dups    # 歴史の中で重複して無視します。
+#setopt hist_verify          # show before executing history commands
+#setopt no_share_history    # セッションごとに履歴を保存。
+#setopt share_history       # share history between sessions
+#unsetopt beep              # wut
+#unsetopt hist_beep         # no bell on error in history
+#unsetopt list_beep         # no bell on ambiguous completion
+setopt append_history       # 複数のターミナルセッションは1 zshのコマンド履歴に追加します。
 setopt auto_cd              # if command is a path, cd into it
+setopt auto_pushd
 setopt auto_remove_slash    # self explicit
 setopt bang_hist            # gang history
 setopt chase_links          # resolve symlinks
 setopt correct              # try to correct spelling of commands
+setopt correctall           # 引数のスペル修正。
 setopt extended_glob        # activate complex pattern globbing
+setopt extended_history
 setopt glob_dots            # include dotfiles in globbing
+setopt hist_expire_dups_first
+setopt hist_ignore_all_dups # no duplicate
+setopt hist_ignore_dups # ignore duplication command history list
+setopt hist_ignore_space    # 余分な空白を削除します.
+setopt hist_reduce_blanks   # 余分な空白を削除します.
+setopt hist_verify
+setopt inc_append_history   # シェル出口まで待ってない、それらが入力されてコマンドを追加します。
+setopt interactivecomments
+setopt long_list_jobs
+setopt multios
+setopt no_beep              # 補完候補がないときなどにビープ音を鳴らさない。
 setopt print_exit_value     # print return value if non-zero
+setopt prompt_subst         # allow functions in the prompt
+setopt pushd_ignore_dups
+setopt pushdminus
+setopt share_history # share command history data
 unsetopt bg_nice            # no lower prio for background jobs
 unsetopt clobber            # must use >| to truncate existing files
 unsetopt hup                # no hup signal at shell exit
 unsetopt ignore_eof         # do not exit on end-of-file
 unsetopt rm_star_silent     # ask for confirmation for `rm *' or `rm path/*'
-setopt no_beep              # 補完候補がないときなどにビープ音を鳴らさない。
-#unsetopt beep              # wut
-#unsetopt list_beep         # no bell on ambiguous completion
-#unsetopt hist_beep         # no bell on error in history
-setopt correctall           # 引数のスペル修正。
-setopt append_history       # 複数のターミナルセッションは1 zshのコマンド履歴に追加します。
-setopt inc_append_history   # シェル出口まで待ってない、それらが入力されてコマンドを追加します。
-setopt prompt_subst         # allow functions in the prompt
-#setopt hist_verify          # show before executing history commands
-setopt hist_reduce_blanks   # 余分な空白を削除します.
-setopt hist_ignore_space    # 余分な空白を削除します.
-setopt hist_ignore_all_dups # no duplicate
-#setopt hist_expire_dups_first
-#setopt extended_history
-#setopt share_history       # share history between sessions
-#setopt no_share_history    # セッションごとに履歴を保存。
-#setopt hist_ignore_dups    # 歴史の中で重複して無視します。
 
 # 環境変数
 #export LANG=ja_JP.UTF-8         # 日本語環境(ja_JP.UTF-8)
@@ -62,6 +81,7 @@ export LANG="en_US.UTF-8"
 export EDITOR='nvim'
 export BROWSER="chromium"
 export PAGER='less'
+export LESS='-R'
 export IMAGEVIEWER="gthumb"
 
 export GIT_EDITOR="$EDITOR"
@@ -85,6 +105,7 @@ export GTK_IM_MODULE="$QT_IM_MODULE"
 
 export LANGUAGE="$LANG"
 export LESSCHARSET=utf-8
+
 export LC_COLLATE="$LANG"
 export LC_CTYPE="$LANG"
 export LC_MESSAGES="$LANG"
@@ -93,360 +114,13 @@ export LC_NUMERIC="$LANG"
 export LC_TIME="$LANG"
 export LC_ALL="$LANG"
 
+# only define LC_CTYPE if undefined
+if [[ -z "$LC_CTYPE" && -z "$LC_ALL" ]]; then
+  export LC_CTYPE=${LANG%%:*} # pick the first entry from LANG
+fi
+
 # git
 export GIT_AUTHOR_NAME="Dan Alec Yamaguchi"
 export GIT_AUTHOR_EMAIL="danalec@gmail.com"
 export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
 export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
-
-# quick find by filename
-qf (){
-  if [ "$1" != "" ] && [ -"$2" != "" ]; then
-    find $1 -name $2 2>/dev/null
-  else
-    echo "usage: qf path filename"
-  fi
-}
-
-# generate random password
-randpwd () { 
-  if [ "$1" != "" ]; then
-    gpg --gen-random --armor 1 $1
-  else
-    echo "usage: randpwd passlength"
-  fi
-}
-# remove duplicated lines without sort
-removeduplicates () { 
-  if [ "$1" != "" ]; then
-    awk '!x[$0]++' $1
-  else
-    echo "usage: removeduplicates filename"
-  fi
-}
-
-# year calendar or current month
-calendar () { 
-  if [ "$1" != "" ]; then
-    paste <(cal -y $1) | expand -t70
-    read
-  else
-    cal
-    read
-  fi
-}
-
-# simple counter
-beep() {
-    local __timer=0
-    [[ -n "$1" ]] && __timer=$1
-    until [[ $__timer = 0 ]]; do
-        printf "  T minus $__timer     \r"
-        __timer=$((__timer - 1))
-        sleep 1
-    done
-    echo '- BEEP! -    \a\r'
-}
-
-# lazypack
-cd() { builtin cd "$@"; ls -lahF --color=auto; }
-
-edit() { sudo subl3 "$@"; }
-
-greppy() { grep -n "$1" *.py; }
-
-mcd () { mkdir -p "$1" && cd "$1"; }
-
-myps() { ps $@ -u "$USER" -o pid,%cpu,%mem,start,time,bsdtime,command ; }
-
-zipf () { zip -r "$1".zip "$1" ; }
-
-fpid () { lsof -t -c "$@" ; }               # find pid of process
-
-ff () { /usr/bin/find . -name "$@" ; }      # find file under the current directory
-
-ffs () { /usr/bin/find . -name "$@"'*' ; }  # find file whose name starts with a given string
-
-ffe () { /usr/bin/find . -name '*'"$@" ; }  # find file whose name ends with a given string
-
-extract () {
-    if [ -f $1 ] ; then
-      case $1 in
-        *.tar.bz2)   tar xjf $1     ;;
-        *.tar.gz)    tar xzf $1     ;;
-        *.bz2)       bunzip2 $1     ;;
-        *.rar)       unrar e $1     ;;
-        *.gz)        gunzip $1      ;;
-        *.tar)       tar xf $1      ;;
-        *.tbz2)      tar xjf $1     ;;
-        *.tgz)       tar xzf $1     ;;
-        *.zip)       unzip $1       ;;
-        *.Z)         uncompress $1  ;;
-        *.7z)        7z x $1        ;;
-        *)     echo "'$1' cannot be extracted via extract()" ;;
-         esac
-     else
-         echo "'$1' is not a valid file"
-     fi
-}
-
-ii() {
-    echo "# hostname: ${RED}$HOST"
-    echo "# kernel:$NC " ; uname -a
-    echo "# users logged on:$NC " ; w -h
-    echo "# current date :$NC " ; date
-    echo "# machine stats :$NC " ; uptime
-    echo "# public facing IP Address :$NC " ; curl ipinfo.io/ip
-}
-
-# nullpointer url shortener
-short() { curl -F"shorten=$*" https://0x0.st }
-
-httpHeaders () { /usr/bin/curl -I -L $@ ; }
-
-httpDebug () { /usr/bin/curl $@ -o /dev/null -w "dns: %{time_namelookup} connect: %{time_connect} pretransfer: %{time_pretransfer} starttransfer: %{time_starttransfer} total: %{time_total}\n" ; }
-
-json_post() {
-  url=$1
-  method=$2
-  json=$3
-  curl -v -H "Accept: application/json" -H "Content-type: application/json" -X ${method} -d ${json} ${url}
-}
-
-# git rebase -i
-grbi() {
-  if [ "$1" -gt 0 ]; then
-    git rebase -i "HEAD~${1}"
-  else
-    echo "usage: grbi n\n  (n is number greater then 0)"
-  fi
-}
-
-bqj() {
-  local job_id=$1
-  shift
-  bq --format=json show -j $job_id | jq $@
-}
-
-# read markdown files like manpages
-md() { pandoc -s -f markdown -t man "$*" | man -l - }
-
-# colorized less
-l() { pygmentize -O style=sourcerer -f console256 -g $1 | less -r }
-
-# colorized cat
-c() {
-  for file in "$@"
-  do
-    pygmentize -O style=sourcerer -f console256 -g "$file" 
-  done
-}
-
-dls () {
- # directory LS
- echo `ls -l | grep "^d" | awk '{ print $9 }' | tr -d "/"`
-}
-
-dgrep() {
-    # A recursive, case-insensitive grep that excludes binary files
-    grep -iR "$@" * | grep -v "Binary"
-}
-
-dfgrep() {
-    # A recursive, case-insensitive grep that excludes binary files
-    # and returns only unique filenames
-    grep -iR "$@" * | grep -v "Binary" | sed 's/:/ /g' | awk '{ print $1 }' | sort | uniq
-}
-
-psgrep() {
-    if [ ! -z $1 ] ; then
-        echo "Grepping for processes matching $1..."
-        ps aux | grep $1 | grep -v grep
-    else
-        echo "!! Need name to grep for"
-    fi
-}
-
-if type hub > /dev/null 2>&1; then
-  function git() {
-    hub "$@"
-  }
-fi
-
-# colors for permissions
-if [[ "$EUID" -ne "0" ]]
-then  # if user is not root
-  USER_LEVEL="%F{cyan}"
-else # root!
-  USER_LEVEL="%F{red}"
-fi
-
-
-# aliases
-alias ...='cd ../..'
-alias ':e'='$EDITOR'
-alias ':q'="systemctl poweroff"
-alias ':r'="systemctl restart"
-alias ':s'='subl3'
-alias 'cd..'='cd ../'
-alias -- -='cd -'
-alias ag="ag --color --color-line-number '0;35' --color-match '46;30' --color-path '4;36'"
-alias b='ranger'
-alias bat='acpi -i'
-alias c="tr -d '\n' | pbcopy"
-alias catn="cat -n"
-alias cdd='cd -'
-alias chmod="chmod -c"
-alias chown="chown -c"
-alias clbin="curl -F 'clbin=<-' https://clbin.com"
-alias cls='clear; ls'
-alias count='sort | uniq -c | sort -n'  # count something fed in on stdin
-alias cp='cp -ivr'
-alias cpu_hogs='ps wwaxr -o pid,stat,%cpu,time,command | head -10'
-alias disks='echo "╓───── m o u n t . p o i n t s"; echo "╙────────────────────────────────────── ─ ─ "; lsblk -a; echo ""; echo "╓───── d i s k . u s a g e"; echo "╙────────────────────────────────────── ─ ─ "; df -h;'
-alias egrep='egrep --color=auto'
-alias emacs='$EDITOR'
-alias fgrep='fgrep --color=auto'
-alias h='history'
-alias identify='cat ~/.zhistory | sort | uniq -c | sort -n'
-alias ip="curl ipinfo.io/ip"
-alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
-alias irc="irssi"
-alias k9='kill -9'
-alias ka9='killall -9'
-alias l='ls --color -lah'
-alias less='less -FSRXc'
-alias ll="ls -lahF --color=auto"
-alias ln="ln -v"
-alias ln='ln -v'
-alias lol="base64 </dev/urandom | lolcat"
-alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
-alias ls='ls --color=auto -hFg --color=auto'
-alias lsa='ls -lah --color=auto'
-alias lsl="ls -lhF --color=auto"
-alias manhtml='man --html=$BROWSER '
-alias md='mkdir -v -p'
-alias mem_hogs='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
-alias mkdir="mkdir -v -p"
-alias mkpkg='makepkg'
-alias mroe=more
-alias mv='mv -iv'
-alias nano='$EDITOR'
-alias netCons='lsof -i'                             # show all open TCP/IP sockets
-alias nFiles='echo $(ls -1 | wc -l)'                # count of non-hidden files in current dir
-alias nvimdiff="nvim -d"
-alias path='echo $PATH | tr -s ":" "\n"'
-alias pi='seq -f '4/%g' 1 2 99999 | paste -sd-+ | bc -l'
-alias prikey="more ~/.ssh/id_rsa | xclip -selection clipboard | echo '=> private key copied to pasteboard.'"
-alias pubkey="more ~/.ssh/id_rsa.pub | xclip -selection clipboard | echo '=> public key copied to pasteboard.'"
-alias rcp='rsync -v --progress'
-alias record="ffmpeg -f x11grab -s 1920x1080 -an -r 16 -loglevel quiet -i :0.0 -b:v 15M -y" #pass a filename
-alias rm='rm -iv'
-alias rmdir='rmdir -v'
-alias rmv='rsync -v --progress --remove-source-files'
-alias scp='scp -r'
-alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
-alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
-alias stripcomments="egrep -v '^([\ \t]*#|$)'"      # strip comment & blank lines from an output
-alias t='tree -C'
-alias ta="tree -Ca"
-alias tempwatch="while :; do sensors; sleep 1 && clear; done;"
-alias timer='echo "timer started. stop: ^d" && date && time cat && date'
-alias toiletlist='for i in ${TOILET_FONT_PATH:=/usr/share/figlet}/*.{t,f}lf; do j=${i##*/}; echo ""; echo "╓───── "$j; echo "╙────────────────────────────────────── ─ ─ "; echo ""; toilet -d "${i%/*}" -f "$j" "${j%.*}"; done'
-alias tree='tree -CAFa -I "CVS|*.*.package|.svn|.git|.hg|node_modules|bower_components" --dirsfirst'
-alias up='cd ../'
-alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"' # URL-encode strings
-alias vi='$EDITOR'
-alias week='date +%V'
-alias xsel='xsel -b'
-alias ~='cd ~'
-
-# experimental
-alias back='popd > /dev/null'
-#alias ...='while read line; do echo -n "."; done && echo ""'
-#alias cd='pushd > /dev/null'   # experimental
-#alias fuck=sudo !!
-#alias gp='git push origin HEAD'
-#alias npminstall="sudo rm -rf node_modules && sudo npm cache clear && sudo npm cache clean && sudo PYTHON=/usr/bin/python2 npm install"
-#alias puush="puush -a"
-#alias rainbowclock='while true; do echo "$(date '+%D %T' | toilet -f term -F border --gay)"; sleep 1; done'
-#alias rootx='xhost +local:root'
-
-# fun
-alias ascii="toilet -t -f 3d"
-alias cafe='cat /dev/urandom | hexdump -C | grep "ca fe"'
-alias clock='watch -t -n1 "date +%T|figlet -f 3d"'
-alias future="toilet -t -f future"
-alias matrix="cmatrix -b"
-alias multiplication_table='for i in {1..9}; do for j in $(seq 1 $i); do echo -ne $i×$j=$((i*j))\\t;done; echo;done'
-alias rusto="toilet -t -f rusto"
-alias rustofat="toilet -t -f rustofat"
-
-# git
-alias g="hub"
-alias ga="git add"
-alias gac='git add -A && git commit -m'
-alias gb='git branch'
-alias gba='git branch -a'
-alias gc="git commit -m"
-alias gca='git commit -a'
-alias gcb='git copy-branch-name'
-alias gco="git checkout"
-alias gd='git diff --color | sed "s/^\([^-+ ]*\)[-+ ]/\\1/" | less -r'
-alias gdm='git diff master'
-alias gf="git fetch"
-alias gg="git graph"
-alias git="hub"
-alias gl='git pull --prune'
-alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
-alias gm="git merge"
-alias gp="git push"
-alias gpr="hub pull-request"
-alias gr="git rebase"
-alias grep='grep --color=auto'
-alias gs="git status"
-alias gs='git status -sb'
-alias gu="git unstage"
-
-# log
-alias apachelogs="less +F /var/log/apache2/error.log"
-alias nginxlogs="less +F /var/log/nginx/error.log"
-alias herr='tail /var/log/httpd/error_log'
-
-# pacaur
-alias pacaru="pacaur --noconfirm --noedit -S "
-alias pacauru="pacaru"
-alias yaourt="pacaur"
-
-# sudo
-alias _='sudo '
-alias checkrootkits="sudo rkhunter --update; sudo rkhunter --propupd; sudo rkhunter --check"
-alias checkvirus="sudo clamscan --recursive=yes --infected /home"
-alias fuck='sudo $(fc -ln -1)'
-alias lsock='sudo /usr/sbin/lsof -i -P'             # display open sockets
-alias lsocktcp='sudo /usr/sbin/lsof -nP | grep TCP' # display only open TCP sockets
-alias lsockudp='sudo /usr/sbin/lsof -nP | grep UDP' # display only open UDP sockets
-alias node="sudo node"
-alias npm="sudo npm"
-alias npminstall="sudo rm -rf node_modules && sudo npm cache clear && sudo npm cache clean && npm install"
-alias openports='sudo lsof -i | grep LISTEN'        # all listening connections
-alias pacaman="sudo pacman --noconfirm -S "
-alias pacman="sudo pacman "
-alias please='sudo $(fc -ln -1)'
-alias pls='sudo '
-alias plz='sudo '
-alias showBlocked='sudo ipfw list'                  # all ipfw rules inc/ blocked IPs
-alias suco='sudo '
-alias sudo='sudo '
-alias systemctl="sudo systemctl"
-alias updateantivirus="sudo freshclam"
-
-# tar
-alias -s bz2='tar -jxvf'
-alias -s gz='tar -zxvf'
-alias untar='tar -xvf'
-alias gz='tar -zcvf'
-
-# trash
-alias trash='trash-put'
-alias trash_empty="trash-empty"

@@ -14,7 +14,7 @@
 # ░  code  ░ https://github.com/danalec/dotfiles
 #
 # ~danalec/.zlogout
-# last modified : 2016-11-04
+# last modified : 2016-11-14
 #
 #█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
 #
