@@ -1,4 +1,5 @@
 Arch Linux Installation Cheatsheet (pt_BR)
+==========================================
 ---------
 por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@gmail.com)) // atualizado: sempre que houver necessidade
 ⠀
@@ -704,3 +705,84 @@ ____________
 
 ⠀
 ____________
+<a name="stylish"></a>
+
+[Amazon - Dark slate](https://userstyles.org/styles/133725/amazon-dark-slate)
+
+[Archlinux and ArchAssault Dark](https://userstyles.org/styles/108169/archlinux-and-archassault-dark)
+
+[Black & Orange [pocketappz]](https://userstyles.org/styles/99401/greasyfork-org-black-orange-pocketappz)
+
+[Crunchyroll - Dark Theme](https://userstyles.org/styles/68293/crunchyroll-dark-theme)
+
+[Dark Google - Material](https://userstyles.org/styles/125727/dark-google-material)
+
+[Dark Inverted](https://userstyles.org/styles/132158/dark-inverted)
+
+[Dark LWN](https://userstyles.org/styles/37157/dark-lwn)
+
+[Dark/Night (Facebook) Messenger](https://userstyles.org/styles/134433/dark-night-facebook-messenger)
+
+[Darker Pirate Bay](https://userstyles.org/styles/94506/darker-pirate-bay)
+
+[DarkSearch for Google](https://userstyles.org/styles/118959/darksearch-for-google)
+
+[DarkTube](https://userstyles.org/styles/117673/darktube)
+
+[Dusky Gray Facebook [Dark Theme]](https://userstyles.org/styles/118180/dusky-gray-facebook-dark-theme)
+
+[Facebook Messenger - the dark side](https://userstyles.org/styles/112397/facebook-messenger-the-dark-side)
+
+[GitHub Dark](https://userstyles.org/styles/37035/github-dark)
+
+[gnome LightsOut Dark grey / sombre](https://userstyles.org/styles/122231/gnome-lightsout-dark-grey-sombre)
+
+[Google Calendar - Dark Style](https://userstyles.org/styles/102256/google-calendar-dark-style)
+
+[Google Docs Dark UI](https://userstyles.org/styles/120097/google-docs-dark-ui)
+
+[Google Drive Dark](https://userstyles.org/styles/105045/google-drive-dark)
+
+[Google Play Music | Clean Simple Dark | CSD](https://userstyles.org/styles/126966/google-play-music-clean-simple-dark-csd)
+
+[Humble Store - Eye Friendly](https://userstyles.org/styles/101319/humble-store-eye-friendly)
+
+[Library Genesis (LibGen) | libgen.io](https://userstyles.org/styles/99196/library-genesis-libgen-libgen-io)
+
+[NewsBlur - Dark Theme by Splike](https://userstyles.org/styles/124890/newsblur-dark-theme-by-splike)
+
+[NT Dark](https://userstyles.org/styles/132961/nt-dark)
+
+[Phoronix nightmode](https://userstyles.org/styles/118469/phoronix-nightmode)
+
+[Pixiv - Dark Theme](https://userstyles.org/styles/133057/pixiv-dark-theme)
+
+[Simplify Google Calendar Design](https://userstyles.org/styles/114656/simplify-google-calendar-design)
+
+[Slashdot Flat Greyscale](https://userstyles.org/styles/15710/slashdot-flat-greyscale)
+
+[StackExchange Dark](https://userstyles.org/styles/35345/stackoverflow-dark)
+
+[Stackoverflow Dark](https://userstyles.org/styles/35345/stackoverflow-dark)
+
+[Stylish Extra Dark Chrome Editor (High Contrast)](https://userstyles.org/styles/113469/stylish-extra-dark-chrome-editor-high-contrast)
+
+[Telegram Solarized Dark Grey](https://userstyles.org/styles/125669/telegram-solarized-dark-grey)
+
+[Twitter - Dark n Simple](https://userstyles.org/styles/128569/twitter-dark-n-simple)
+
+[Twitter Theme](https://userstyles.org/styles/103677/twitter-theme)
+
+[Undistractify StackOverflow](https://userstyles.org/styles/110637/undistractify-stackoverflow)
+
+[Userstyles Dark | aperopia](https://userstyles.org/styles/105609/userstyles-dark-aperopia)
+
+[Viki Black-Silver Edition 1.4](https://userstyles.org/styles/130971/viki-black-silver-edition-1-4)
+
+[WA-Web - Dark Skin [WITH MORE CONTRAST]](https://userstyles.org/styles/131071/wa-web-dark-skin-with-more-contrast)
+
+[Wikipedia Minimalistic Dark Material Design](https://userstyles.org/styles/122072/wikipedia-minimalistic-dark-material-design)
+
+[YouTube - Nyan Cat progress bar video player theme](https://userstyles.org/styles/95033/youtube-nyan-cat-progress-bar-video-player-theme)
+
+[◆Techcrunch](https://userstyles.org/styles/85918/techcrunch)
