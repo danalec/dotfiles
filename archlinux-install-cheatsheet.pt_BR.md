@@ -17,8 +17,12 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
 
  - [archstrike](#archstrike)
  - [blackarch](#blackarch)
+ 
  - [hdparm](#hdparm)
  - [limpeza](#limpeza)
+
+ - [userstyles](#userstyles)
+ - [userscripts](#userscripts)
 
 ⠀
 ----------
@@ -705,7 +709,7 @@ ____________
 
 ⠀
 ____________
-<a name="stylish"></a>
+<a name="userstyles"></a>
 
 [Amazon - Dark slate](https://userstyles.org/styles/133725/amazon-dark-slate)
 
@@ -786,3 +790,6 @@ ____________
 [YouTube - Nyan Cat progress bar video player theme](https://userstyles.org/styles/95033/youtube-nyan-cat-progress-bar-video-player-theme)
 
 [◆Techcrunch](https://userstyles.org/styles/85918/techcrunch)
+⠀
+____________
+<a name="userscripts"></a>
