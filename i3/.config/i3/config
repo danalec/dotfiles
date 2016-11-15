@@ -11,7 +11,7 @@
 # ░  code  ░ https://github.com/danalec/dotfiles
 #
 # ~danalec/.config/i3/config
-# last modified : 2016-11-14
+# last modified : 2016-11-15
 #
 #█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
 #
@@ -31,7 +31,7 @@
 # default applications
 set $terminal termite -d "`xcwd`"
 set $browser chromium
-set $file_manager pcmanfm "`xcwd`"
+set $file_manager pcmanfm -n "`xcwd`"
 set $lock_screen "$HOME/.config/i3/scripts/venv/bin/python \
 $HOME/.config/i3/scripts/lock_screen.py"
 set $set_wallpaper nitrogen --restore
@@ -361,8 +361,8 @@ exec --no-startup-id xautolock -detectsleep -time 10 -notify 30 \
 -corners 0-00 -locker $lock_screen &
 
 # misc startup programs
-#exec --no-startup-id udisksvm -a >/dev/null & on && \
-#notify-send -u normal -t 300 -i info 'loaded: udisksvm' 'startup'
+exec --no-startup-id pcmanfm -d on && \
+notify-send -u normal -t 300 -i info 'loaded: pcmanfm' 'startup'
 
 exec --no-startup-id xmodmap ~/.xmodmap on && \
 notify-send -u normal -t 300 -i info 'loaded: xmodmap' 'startup'
