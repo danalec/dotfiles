@@ -11,7 +11,7 @@
 # ░  code  ░ https://github.com/danalec/dotfiles
 #
 # ~danalec/.config/i3/config
-# last modified : 2016-11-09
+# last modified : 2016-11-14
 #
 #█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
 #
@@ -142,7 +142,7 @@ set $ws5  "5:  "
 set $ws6  "6:  "
 set $ws7  "7:  "
 set $ws8  "8:  "
-set $ws9  "9:  "
+set $ws9  "9:  "
 set $ws10 "10:  "
 
 # switch to workspace
@@ -180,6 +180,27 @@ bindsym Ctrl+$alt+Left move workspace to output left
 bindsym Ctrl+$alt+Down move workspace to output down
 bindsym Ctrl+$alt+Up move workspace to output up
 bindsym Ctrl+$alt+Right move workspace to output right
+
+#assign
+assign [class="^Keepassx2$"] $ws9
+
+#floating
+for_window [class="^Pavucontrol$"] floating enable
+for_window [class="Wine"] floating enable
+for_window [class="Skype"] floating enable
+for_window [title="MonoDevelop External Console"] floating enable
+
+# https://github.com/ValveSoftware/steam-for-linux/issues/1040
+for_window [class="^Steam$" title="^Friends$"] floating enable
+for_window [class="^Steam$" title="Steam - News"] floating enable
+for_window [class="^Steam$" title=".* - Chat"] floating enable
+for_window [class="^Steam$" title="^Settings$"] floating enable
+for_window [class="^Steam$" title=".* - event started"] floating enable
+for_window [class="^Steam$" title=".* CD key"] floating enable
+for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
+for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
+for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
+for_window [title="^Steam Keyboard$"] floating enable
 
 # scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -278,10 +299,12 @@ bindsym Ctrl+XF86AudioLowerVolume exec pactl set-sink-mute 1 toggle && \
 notify-send -u normal -t 300 -i info '' 'volume'
 
 # screen brightness control
+#bindsym XF86KbdBrightnessUp exec "kbd_backlight up" && \
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5 && \
 pkill -SIGUSR1 -f $status_bar && \
 notify-send -u normal -t 300 -i info '+' 'backlight'
 
+#bindsym XF86KbdBrightnessDown exec "kbd_backlight down" && \
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5 && \
 pkill -SIGUSR1 -f $status_bar && \
 notify-send -u normal -t 300 -i info '-' 'backlight'
@@ -338,7 +361,18 @@ exec --no-startup-id xautolock -detectsleep -time 10 -notify 30 \
 -corners 0-00 -locker $lock_screen &
 
 # misc startup programs
-#exec --no-startup-id insync start
+#exec --no-startup-id udisksvm -a >/dev/null & on && \
+#notify-send -u normal -t 300 -i info 'loaded: udisksvm' 'startup'
+
+exec --no-startup-id xmodmap ~/.xmodmap on && \
+notify-send -u normal -t 300 -i info 'loaded: xmodmap' 'startup'
+
+exec --no-startup-id numlockx on && \
+notify-send -u normal -t 300 -i info 'loaded: numlockx' 'startup'
+
+exec --no-startup-id insync start && \
+notify-send -u normal -t 300 -i info 'loaded: insync' 'startup'
+
 exec --no-startup-id imwheel && \
 notify-send -u normal -t 300 -i info 'loaded: imwheel' 'startup'
 

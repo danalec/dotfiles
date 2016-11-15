@@ -35,10 +35,10 @@
 		"FriendsState"
 		{
 		}
-		"xpos"		"2"
-		"ypos"		"28"
-		"wide"		"1916"
-		"tall"		"1050"
+		"xpos"		"1565"
+		"ypos"		"56"
+		"wide"		"305"
+		"tall"		"962"
 	}
 	"SteamRootDialog"
 	{
@@ -62,8 +62,8 @@
 					"sort_column_secondary"		""
 					"sort_column_asc"		"1"
 					"sort_column_secondary_asc"		"1"
-					"selection"		"360940"
-					"section"		"#steam_recentlyplayed_lastweek"
+					"selection"		"494680"
+					"section"		"#steam_recentlyplayed_today"
 					"Collapsers"
 					{
 						"#Steam_GamesSection_Favorites"		"0"
@@ -433,8 +433,8 @@
 					"sort_column_secondary"		""
 					"sort_column_asc"		"1"
 					"sort_column_secondary_asc"		"1"
-					"selection"		"360940"
-					"section"		"#steam_recentlyplayed_lastweek"
+					"selection"		"494680"
+					"section"		"#steam_recentlyplayed_today"
 					"Collapsers"
 					{
 						"#Steam_GamesSection_Favorites"		"0"
@@ -817,8 +817,8 @@
 					"sort_column_secondary"		"#Steam_IconsColumn"
 					"sort_column_asc"		"0"
 					"sort_column_secondary_asc"		"0"
-					"selection"		"360940"
-					"section"		"#steam_recentlyplayed_lastweek"
+					"selection"		"494680"
+					"section"		"#steam_recentlyplayed_today"
 					"Collapsers"
 					{
 						"#Steam_GamesSection_Favorites"		"0"
@@ -1239,7 +1239,7 @@
 					{
 						"_hidden"		"0"
 						"#Steam_Game_DLC_NameColumn_hidden"		"0"
-						"#Steam_Game_DLC_Enabled_hidden"		"1"
+						"#Steam_Game_DLC_Enabled_hidden"		"0"
 						"#Steam_Game_DLC_PurchaseTime_hidden"		"0"
 						"sort_column"		"#Steam_Game_DLC_PurchaseTime"
 						"sort_column_secondary"		"#Steam_Game_DLC_NameColumn"
@@ -1316,10 +1316,10 @@
 		{
 		}
 		"DialogMode"		"0"
-		"xpos"		"928"
-		"ypos"		"28"
-		"wide"		"992"
-		"tall"		"1050"
+		"xpos"		"1"
+		"ypos"		"23"
+		"wide"		"1918"
+		"tall"		"1056"
 	}
 	"Servers"
 	{
@@ -1596,7 +1596,7 @@
 				"_collapsed"		"0"
 				"advanced_collapsed"		"0"
 				"sort_column"		"natural"
-				"sort_column_secondary"		""
+				"sort_column_secondary"		"natural"
 				"sort_column_asc"		"1"
 				"sort_column_secondary_asc"		"1"
 			}
@@ -2873,10 +2873,47 @@
 				{
 				}
 			}
-			"xpos"		"2"
-			"ypos"		"28"
-			"wide"		"1452"
-			"tall"		"1050"
+			"xpos"		"961"
+			"ypos"		"23"
+			"wide"		"958"
+			"tall"		"1056"
+		}
+		"ChatRoomDlgFriend.res_98492105"
+		{
+			"TitlePanel"
+			{
+			}
+			"VoiceBar"
+			{
+				"micvolume"
+				{
+				}
+				"SpeakerVolume"
+				{
+				}
+			}
+			"GameInviteBar"
+			{
+			}
+			"BIBar"
+			{
+			}
+			"BABar"
+			{
+			}
+			"TradeInviteBar"
+			{
+			}
+			"ToolWindowSheet"
+			{
+				"ChatRoomDlg"
+				{
+				}
+			}
+			"xpos"		"961"
+			"ypos"		"23"
+			"wide"		"958"
+			"tall"		"1056"
 		}
 	}
 }

@@ -1,9 +1,8 @@
-Arch Linux Installation Cheatsheet (pt_BR)
-==========================================
----------
-por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@gmail.com)) // atualizado: sempre que houver necessidade
+# Arch Linux Installation Cheatsheet (pt_BR)
+
+por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@gmail.com)) // atualizado sempre que houver necessidade
 ⠀
-# conteúdo
+ ## conteúdo
  - [introdução](#introdução)
  - [parte 0: instalador](#instalador)
  - [parte 1: bootando o live](#parte1)
@@ -26,39 +25,38 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
 
 ⠀
 ----------
+## introdução
 <a name="introdução"></a>
-# introdução
- este guia, inicialmente, foi escrito para uso próprio.
 
- familiarizados com [Archlinux Wiki Installation Guide](https://wiki.archlinux.org/index.php/Installation_guide) poderão utilizar este guia como referência para um **fresh install** com [btrfs](https://wiki.archlinux.org/index.php/Btrfs) [criptografado](https://wiki.archlinux.org/index.php/Dm-crypt) e [swap sem suporte a suspend](https://wiki.archlinux.org/index.php/Dm-crypt/Swap_encryption#Without_suspend-to-disk_support).
+usuários familiarizados com o [Archlinux Wiki Installation Guide](https://wiki.archlinux.org/index.php/Installation_guide) poderão utilizar este resumo para um 
+  **fresh install com [btrfs](https://wiki.archlinux.org/index.php/Btrfs) [criptografado](https://wiki.archlinux.org/index.php/Dm-crypt) e [swap sem suporte a suspend](https://wiki.archlinux.org/index.php/Dm-crypt/Swap_encryption#Without_suspend-to-disk_support)**.
 
- o processo de instalação, mantém a instalação prévia do Microsoft Windows 10 e o método de cópia do boot utilizado, resulta numa instalação totalmente compatível para Insiders e possíveis atualizações futuras.
+
+o processo de instalação, mantém a instalação prévia do Microsoft Windows 10 e o método de cópia do boot utilizado, resulta numa instalação totalmente compatível para Insiders e possíveis atualizações futuras.
  
- caso você queira instalar de uma instalação prévia do Linux (outra distro) e quiser manter seus arquivos, este guia não serve pra nada, portanto [clique aqui](https://wiki.archlinux.org/index.php/Install_from_existing_Linux).
+caso queira instalar a partir de uma instalação prévia (outra distro) e quiser manter arquivos, este guia não serve pra nada. mas graças à comunidade existe [outro guia](https://wiki.archlinux.org/index.php/Install_from_existing_Linux).
 
 ⠀
 ----------
+## parte 0: instalador
 <a name="instalador"></a>
-# parte 0: instalador
+item necessário: um pendrive (minimo 4GB) ou dispositivo com [DriveDroid](https://play.google.com/store/apps/details?id=com.softwarebakery.drivedroid&hl=en)
 
-#### item necessário: um pendrive (minimo 4GB) ou dispositivo com [DriveDroid](https://play.google.com/store/apps/details?id=com.softwarebakery.drivedroid&hl=en)
+download necessário: [imagem ISO do Arch Linux](https://www.archlinux.org/download/)
 
-#### download necessário: [imagem ISO do Arch Linux](https://www.archlinux.org/download/)
+- para usuário windows, utilize [Rufus](http://rufus.akeo.ie/)
 
-#### - para usuário windows, utilize [Rufus](http://rufus.akeo.ie/)
-
-#### - para usuário linux: 
+- para usuário linux: 
 `dd if=archlinux.img of=/dev/sdX bs=16M && sync`
 
-#### obs: lembrando que para listar os discos lógicos:
+lembrando que para listar os discos lógicos:
 `lsblk -Sp`
 
 ⠀
 ----------
-<a name="parte1"></a>
 ## parte 1: bootando o live
-
-###### conectando: `dhcpcd enp3s0`
+<a name="parte1"></a>
+conectando: `dhcpcd enp3s0`
 ##### para wifi: `wifi-menu`
 
 ⠀
@@ -67,7 +65,6 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
 ⠀
 ##### vamo fatiar o bolo com: `cfdisk`
 
-⠀
 ###### meu flango ficou assim (dualboot w10-archlinux):
 > ##### /dev/sda1 450M # win10 recovery
 > ##### /dev/sda2 100M # win10 boot ef00
@@ -77,10 +74,10 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
 > ##### /dev/sda6 97.9G # / 8300
 > ##### /dev/sda7 4G # swap
 
-###### bora checar novamente como ficou: `fdisk -l /dev/sda`
+##### bora checar novamente como ficou: `fdisk -l /dev/sda`
 ⠀
-##### lembrando que o /dev/sda5 será a partição de boot
-##### e deverá ser obrigatoriamente **ef00** (utilize o gdisk para modificar a flag)
+##### lembrando que o /dev/sda5 será a partição de boot e deverá ser obrigatoriamente **ef00**
+utilize o gdisk para modificar a flag
 
 ⠀
 ##### vamos criar os containers transparentes
@@ -93,7 +90,7 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
 `cryptsetup --type luks open /dev/sda6 root`
 
 ⠀
-##### vamos formatar
+##### formatar
 `mkfs.fat -F32 /dev/sda5`
 
 `mkfs.btrfs -L "Arch Linux" /dev/mapper/root`
@@ -101,7 +98,7 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
 `mkswap -f /dev/mapper/swap -v1 -L "swap"`
 
 ⠀
-##### vamos montar tudo
+##### e montar tudo
 `mount -o defaults,relatime,discard,ssd,nodev,nosuid /dev/mapper/root /mnt`
 
 ⠀
@@ -115,7 +112,7 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
 `mount /dev/sda5 /mnt/boot`
 
 ⠀
-##### escolhendo os espelhos do BR
+##### escolhendo os espelhos BR
 `cd /etc/pacman.d `
 
 `wget "https://archlinux.org/mirrorlist/?country=BR"`
@@ -132,9 +129,11 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
 
 ⠀
 ##### edite o pacman.conf `nano /etc/pacman.conf` e
-##### descomente: [multilib] e seu endereço
-##### descomente: Color;
-##### adicione numa nova linha: ILoveCandy
+descomente: [multilib] e seu endereço
+
+descomente: Color;
+
+adicione numa nova linha: ILoveCandy
 
 ⠀
 ##### copiando o que já fizemos para o disco da máquina
@@ -151,25 +150,25 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
 `arch-chroot /mnt`
 
 ⠀
-#####  se tiver usando btrfs já instala:
+##### se tiver usando btrfs já instala:
 `pacman -S btrfs-progs snapper`
 
 ⠀
-#####  seleciona as línguas e gera o locale
+##### selecione as línguas e gera o  locale
 `nano /etc/locale.gen`
 
 `locale-gen`
 
 ⠀
-#####  configura seu local
+##### configure o  local
 `ln -s /usr/share/zoneinfo/Brazil/East /etc/localtime`
 
 ⠀
-##### agora ajusta o relogio pra usar o relogio do sistema :D
+##### agora ajuste o  relógio
 `hwclock --systohc --localtime`
 
 ⠀
-##### dá o nome pro teu flango
+##### dá o nome pro teu  flango
 `echo flango > /etc/hostname`
 
 ⠀
@@ -221,7 +220,7 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
 
 ⠀
 ##### agora vamos editar o mkinitcpio: `nano /etc/mkinitcpio.conf`
-##### adicione: `MODULES="lz4 lz4_compress"`
+adicione: `MODULES="lz4 lz4_compress"`
 ##### se usa nvidia ou noveuau, pode colocar no **MODULES**
 ⠀
 ##### em **HOOKS**:
@@ -272,9 +271,8 @@ se precisar desligar wifi: `$ sudo systemctl disable netctl-auto@wlp4s0.service`
 `reboot`
 
 ----------
-<a name="parte2"></a>
 ## parte 2: bootando pela primeira vez a máquina
-
+<a name="parte2"></a>
 agora, o símbolo **$** irá denotar a necessidade de previlégio elevado e **#** a ausência.
 
 ##### vamos instalar as dependências do cower e pacaur antes, para poder usá-los:
@@ -298,9 +296,8 @@ agora, o símbolo **$** irá denotar a necessidade de previlégio elevado e **#*
 
 ⠀
 ----------
-<a name="parte3"></a>
 ## parte 3: economize tempo
-
+<a name="parte3"></a>
 note que iremos usar bastante alguns comandos como: `sudo pacman --noconfirm -S`
 
 tome a liberdade de criar um alias: `alias pac="sudo pacman --noconfirm -S "` para que se instale diretamente como o exemplo: `pac tmux`
@@ -317,8 +314,8 @@ para adicionar a configuração do pacman: `sudo stow pacman -t /`
 utilize como o exemplo `pacauru stow` e `pacaman mc`
 ⠀
 ----------
-<a name="parte4"></a>
 ## parte 4: moar!
+<a name="parte4"></a>
 ##### tá faltando um montão de programa, temos ainda que instalar vários:
 
 `$ sudo pacman --noconfirm -S stow compton rsync unzip unrar tmux tree lsof lha mc`
@@ -387,7 +384,7 @@ e para corrigir o controle do brightness:
 ⠀
 ##### vamos evitar tofus (retângulos vazios, caracteres não disponíveis)
 
-`# pacaur --noconfirm -S powerline-fonts ttf-hack ttf-font-awesome`
+`# pacaur --noconfirm -S powerline-fonts ttf-hack ttf-font-awesome ttf-roboto`
 
 `$ sudo pacman --noconfirm -S noto-fonts`
 
@@ -413,14 +410,6 @@ alguns extras:
 ##### vamos remover porque nunca mais iremos usar (pelo menos eu não quero)
 `$ sudo pacman -Rns nano vi`
 
-⠀
-
-____________
-____________
-    se você sobreviveu até aqui: parabéns!
-                         a partir daqui é opcional (ou quase isso)
-____________
-____________
 ⠀
 ##### mpv e seus amiguinhos:
 `# pacaur --noconfirm -S mpv-build-git youtube-dl-git youtube-mpv-git youtube-upload-git`
@@ -481,7 +470,7 @@ ____________
 ⠀
 ____________
 <a name="steam"></a>
-##### /r/PCMASTERRACE
+## /r/PCMASTERRACE
 `# pacaur --noconfirm --noedit -S steam-fonts`
 
 `$ sudo pacman --noconfirm -S lib32-alsa-plugins lib32-curl steam-native-runtime steam`
@@ -498,13 +487,26 @@ outros utilitários pro steam:
 `# gpg --recv-keys 5FB027474203454C && pacaur --noconfirm --noedit -S razercfg`
 
 ⠀
-____________
-____________
-    aqui em diante está em manutenção, volte mais tarde :3
-____________
-____________
-⠀
 <a name="parte5"></a>
+##### lxappearance 
+`# pacaur --noconfirm --noedit -S lxappearance-gtk3`
+
+⠀
+##### gtk2 theme changer
+`# pacaur --noconfirm --noedit -S gtk-chtheme`
+
+⠀
+##### paper icon theme
+`# pacaur --noconfirm --noedit -S paper-icon-theme-git-latest`
+
+⠀
+##### powerpill
+
+`# gpg --recv-keys 1D1F0DC78F173680`
+
+`# pacaur --noconfirm --noedit -S powerpill`
+
+⠀
 ##### este wrapper de lixeira é excelente:
 `# gpg --recv-keys 50F33E2E5B0C3D900424ABE89BDCF497A4BBCC7F`
 
@@ -516,7 +518,7 @@ ____________
 ##### vamos colocar numlock automaticamente
 `$ sudo pacman -S xorg-xmodmap xkeycaps`
 
-`# pacaur -S autonumlock`
+`# pacaur --noconfirm --noedit -S autonumlock`
 
 [mais informações sobre numlock](https://wiki.archlinux.org/index.php/Activating_Numlock_on_Bootup)
 
@@ -560,14 +562,14 @@ e para ativar
 
 ⠀
 ____________
-____________
-⠀
+## + programas que provavelmente não te interessarão
 <a name="parte6"></a>
-##### meld é um comparador visual de texto e binários
+
+##### meld
 `$ sudo pacman --noconfirm -S meld`
 
 ⠀
-##### sublime-text-dev para versão 3
+##### sublime3
 `# pacaur --noconfirm --noedit -S sublime-text-dev`
 
 ⠀
@@ -580,7 +582,7 @@ ____________
 `# pacaur -S ncurses5-compat-libs`
 
 ⠀
-##### net-tools e amigos
+##### net-tools and others
 `$ sudo pacman --noconfirm -S openssh openssl net-tools mtr traceroute dnsutils whois nmap wavemon gnome-nettool`
 
 ⠀
@@ -593,7 +595,7 @@ ____________
 
 ⠀
 ____________
-
+## ...
 <a name="parte7"></a>
 #### recompilando o kernel
 ##### vamos pegar a assinatura do Linus Torvalds
@@ -618,9 +620,9 @@ ____________
 
 ⠀
 ###### linux-lqx linux-lqx-headers linux-lqx-docs nvidia-lqx
-`# pacaur --noconfirm --noedit -S linux-lqx linux-lqx-docs linux-lqx-headers nvidia-lqx`
+###### `# pacaur --noconfirm --noedit -S linux-lqx linux-lqx-docs linux-lqx-headers nvidia-lqx`
 
-`$ sudo nvim /boot/loader/entries/arch3.conf`
+###### `$ sudo nvim /boot/loader/entries/arch3.conf`
 
 > ##### title Arch Linux-lqx
 > ##### linux /vmlinuz-linux-lqx
@@ -630,17 +632,17 @@ ____________
 > ##### options sysrq_always_enabled=1
 > ##### options zswap.enabled=1 zswap.compressor=lz4_compress
 
-o controle de brightness do lqx tenta instalar automaticamente o **nvidiabl** porém a configuração é manual, [mais informações](https://wiki.archlinux.org/index.php/NVIDIA#Enabling_brightness_control): `# pacaur -S nvidiabl`
+###### o controle de brightness do lqx tenta instalar automaticamente o **nvidiabl** porém a configuração é manual, [mais informações](https://wiki.archlinux.org/index.php/NVIDIA#Enabling_brightness_control): `# pacaur -S nvidiabl`
 
-para inicializar o driver: `$ sudo modprobe nvidiabl`
+###### para inicializar o driver: `$ sudo modprobe nvidiabl`
 
-`$ sudo systemctl mask systemd-backlight@backlight\:acpi_video0.service`
-
-⠀
-##### grsec: grsec-common linux-grsec linux-grsec-docs linux-grsec-headers nvidia-grsec
+###### `$ sudo systemctl mask systemd-backlight@backlight\:acpi_video0.service`
 
 ⠀
-##### grsec: linux-libre-grsec linux-libre-grsec-docs linux-libre-grsec-headers acpi_call-grsec nvidia-grsec
+###### grsec: grsec-common linux-grsec linux-grsec-docs linux-grsec-headers nvidia-grsec
+
+⠀
+###### grsec: linux-libre-grsec linux-libre-grsec-docs linux-libre-grsec-headers acpi_call-grsec nvidia-grsec
 
 ⠀
 ##### llvm
@@ -656,14 +658,15 @@ só para os corajosos
 ##### se você acha que o llvm-svn demora muito pra compilar (quase uma hora no meu sistema), o Kerberizer é mantenedor AUR (llvm-svn & lib32-llvm-svn) e possui um [repo não-oficial](https://wiki.archlinux.org/index.php/Unofficial_user_repositories#llvm-svn)
 
 ⠀
-##### ferm
+###### ferm
 
 ⠀
-##### brute
-`# pacaur -S fbruteforcer rarcrack`
+###### iptables
 
 ⠀
 ____________
+<a name="sec"></a>
+## Sec
 
 <a name="archstrike"></a>
 ##### [archstrike](https://archstrike.org/wiki/setup)
@@ -677,8 +680,6 @@ ____________
 `# pacman -Sgg | grep archstrike-`
 
 ⠀
-____________
-
 <a name="blackarch"></a>
 ##### [blackarch](http://blackarch.org/downloads.html#install-repo)
 
@@ -703,6 +704,17 @@ ____________
 `$ sudo pacman -Syy`
 
 ⠀
+
+____________
+## Limpeza
+<a name="limpeza"></a>
+##### faxina no pacman
+
+`sudo pacman -Rsn $(pacman -Qdtq)`
+
+`sudo pacman -Sc && sudo pacman-optimize`
+
+⠀
 ____________
 
 <a name="hdparm"></a>
@@ -717,97 +729,97 @@ hdd diagnóstico:`sudo smartctl --all /dev/sda2`
 
 ⠀
 ____________
-<a name="limpeza"></a>
-
-##### faxina no pacman
-
-`sudo pacman -Rsn $(pacman -Qdtq)`
-
-`sudo pacman -Sc && sudo pacman-optimize`
-
-⠀
-____________
+## UserStyles
 <a name="userstyles"></a>
 
-[Amazon - Dark slate](https://userstyles.org/styles/133725/amazon-dark-slate)
+- [Amazon - Dark slate](https://userstyles.org/styles/133725/amazon-dark-slate)
 
-[Archlinux and ArchAssault Dark](https://userstyles.org/styles/108169/archlinux-and-archassault-dark)
+- [Archlinux and ArchAssault Dark](https://userstyles.org/styles/108169/archlinux-and-archassault-dark)
 
-[Black & Orange [pocketappz]](https://userstyles.org/styles/99401/greasyfork-org-black-orange-pocketappz)
+- [Black & Orange [pocketappz]](https://userstyles.org/styles/99401/greasyfork-org-black-orange-pocketappz)
 
-[Crunchyroll - Dark Theme](https://userstyles.org/styles/68293/crunchyroll-dark-theme)
+- [Coursera Dark Videos](https://userstyles.org/styles/126906/coursera-dark-videos)
 
-[Dark Google - Material](https://userstyles.org/styles/125727/dark-google-material)
+- [Coursera | Pitch Black](https://userstyles.org/styles/130934/coursera-pitch-black)
 
-[Dark Inverted](https://userstyles.org/styles/132158/dark-inverted)
+- [Crunchyroll - Dark Theme](https://userstyles.org/styles/68293/crunchyroll-dark-theme)
 
-[Dark LWN](https://userstyles.org/styles/37157/dark-lwn)
+- [Dark Google - Material](https://userstyles.org/styles/125727/dark-google-material)
 
-[Dark/Night (Facebook) Messenger](https://userstyles.org/styles/134433/dark-night-facebook-messenger)
+- [Dark Inverted](https://userstyles.org/styles/132158/dark-inverted)
 
-[Darker Pirate Bay](https://userstyles.org/styles/94506/darker-pirate-bay)
+- [Dark LWN](https://userstyles.org/styles/37157/dark-lwn)
 
-[DarkSearch for Google](https://userstyles.org/styles/118959/darksearch-for-google)
+- [Dark/Night (Facebook) Messenger](https://userstyles.org/styles/134433/dark-night-facebook-messenger)
 
-[DarkTube](https://userstyles.org/styles/117673/darktube)
+- [Darker Pirate Bay](https://userstyles.org/styles/94506/darker-pirate-bay)
 
-[Dusky Gray Facebook [Dark Theme]](https://userstyles.org/styles/118180/dusky-gray-facebook-dark-theme)
+- [DarkSearch for Google](https://userstyles.org/styles/118959/darksearch-for-google)
 
-[Facebook Messenger - the dark side](https://userstyles.org/styles/112397/facebook-messenger-the-dark-side)
+- [DarkTube](https://userstyles.org/styles/117673/darktube)
 
-[GitHub Dark](https://userstyles.org/styles/37035/github-dark)
+- [Dusky Gray Facebook [Dark Theme]](https://userstyles.org/styles/118180/dusky-gray-facebook-dark-theme)
 
-[gnome LightsOut Dark grey / sombre](https://userstyles.org/styles/122231/gnome-lightsout-dark-grey-sombre)
+- [Facebook Messenger - the dark side](https://userstyles.org/styles/112397/facebook-messenger-the-dark-side)
 
-[Google Calendar - Dark Style](https://userstyles.org/styles/102256/google-calendar-dark-style)
+- [GitHub Dark](https://userstyles.org/styles/37035/github-dark)
 
-[Google Docs Dark UI](https://userstyles.org/styles/120097/google-docs-dark-ui)
+- [gnome LightsOut Dark grey / sombre](https://userstyles.org/styles/122231/gnome-lightsout-dark-grey-sombre)
 
-[Google Drive Dark](https://userstyles.org/styles/105045/google-drive-dark)
+- [Google Calendar - Dark Style](https://userstyles.org/styles/102256/google--calendar-dark-style)
 
-[Google Play Music | Clean Simple Dark | CSD](https://userstyles.org/styles/126966/google-play-music-clean-simple-dark-csd)
+- [Google Docs Dark UI](https://userstyles.org/styles/120097/google-docs-dark-ui)
 
-[Humble Store - Eye Friendly](https://userstyles.org/styles/101319/humble-store-eye-friendly)
+- [Google Drive Dark](https://userstyles.org/styles/105045/google-drive-dark)
 
-[Library Genesis (LibGen) | libgen.io](https://userstyles.org/styles/99196/library-genesis-libgen-libgen-io)
+- [Google Play Music | Clean Simple Dark | CSD](https://userstyles.org/styles/126966/google-play-music-clean-simple-dark-csd)
 
-[NewsBlur - Dark Theme by Splike](https://userstyles.org/styles/124890/newsblur-dark-theme-by-splike)
+- [Humble Store - Eye Friendly](https://userstyles.org/styles/101319/humble-store-eye-friendly)
 
-[NT Dark](https://userstyles.org/styles/132961/nt-dark)
+- [Library Genesis (LibGen) | libgen.io](https://userstyles.org/styles/99196/library-genesis-libgen-libgen-io)
 
-[Phoronix nightmode](https://userstyles.org/styles/118469/phoronix-nightmode)
+- [NewsBlur - Dark Theme by Splike](https://userstyles.org/styles/124890/newsblur-dark-theme-by-splike)
 
-[Pixiv - Dark Theme](https://userstyles.org/styles/133057/pixiv-dark-theme)
+- [NT Dark](https://userstyles.org/styles/132961/nt-dark)
 
-[Simplify Google Calendar Design](https://userstyles.org/styles/114656/simplify-google-calendar-design)
+- [Phoronix nightmode](https://userstyles.org/styles/118469/phoronix-nightmode)
 
-[Slashdot Flat Greyscale](https://userstyles.org/styles/15710/slashdot-flat-greyscale)
+- [Pixiv - Dark Theme](https://userstyles.org/styles/133057/pixiv-dark-theme)
 
-[StackExchange Dark](https://userstyles.org/styles/35345/stackoverflow-dark)
+- [Simplify Google Calendar Design](https://userstyles.org/styles/114656/simplify-google-calendar-design)
 
-[Stackoverflow Dark](https://userstyles.org/styles/35345/stackoverflow-dark)
+- [Slashdot Flat Greyscale](https://userstyles.org/styles/15710/slashdot-flat-greyscale)
 
-[Stylish Extra Dark Chrome Editor (High Contrast)](https://userstyles.org/styles/113469/stylish-extra-dark-chrome-editor-high-contrast)
+- [StackExchange Dark](https://userstyles.org/styles/35345/stackoverflow-dark)
 
-[Telegram Solarized Dark Grey](https://userstyles.org/styles/125669/telegram-solarized-dark-grey)
+- [Stackoverflow Dark](https://userstyles.org/styles/35345/stackoverflow-dark)
 
-[Twitter - Dark n Simple](https://userstyles.org/styles/128569/twitter-dark-n-simple)
+- [Stylish Extra Dark Chrome Editor (High Contrast)](https://userstyles.org/styles/113469/stylish-extra-dark-chrome-editor-high-contrast)
 
-[Twitter Theme](https://userstyles.org/styles/103677/twitter-theme)
+- [Telegram Solarized Dark Grey](https://userstyles.org/styles/125669/telegram-solarized-dark-grey)
 
-[Undistractify StackOverflow](https://userstyles.org/styles/110637/undistractify-stackoverflow)
+- [Twitter - Dark n Simple](https://userstyles.org/styles/128569/twitter-dark-n-simple)
 
-[Userstyles Dark | aperopia](https://userstyles.org/styles/105609/userstyles-dark-aperopia)
+- [Twitter Theme](https://userstyles.org/styles/103677/twitter-theme)
 
-[Viki Black-Silver Edition 1.4](https://userstyles.org/styles/130971/viki-black-silver-edition-1-4)
+- [Undistractify StackOverflow](https://userstyles.org/styles/110637/undistractify-stackoverflow)
 
-[WA-Web - Dark Skin [WITH MORE CONTRAST]](https://userstyles.org/styles/131071/wa-web-dark-skin-with-more-contrast)
+- [Userstyles Dark | aperopia](https://userstyles.org/styles/105609/userstyles-dark-aperopia)
 
-[Wikipedia Minimalistic Dark Material Design](https://userstyles.org/styles/122072/wikipedia-minimalistic-dark-material-design)
+- [Viki Black-Silver Edition 1.4](https://userstyles.org/styles/130971/viki-black-silver-edition-1-4)
 
-[YouTube - Nyan Cat progress bar video player theme](https://userstyles.org/styles/95033/youtube-nyan-cat-progress-bar-video-player-theme)
+- [WA-Web - Dark Skin [WITH MORE CONTRAST]](https://userstyles.org/styles/131071/wa-web-dark-skin-with-more-contrast)
 
-[◆Techcrunch](https://userstyles.org/styles/85918/techcrunch)
+- [Wikipedia Minimalistic Dark Material Design](https://userstyles.org/styles/122072/wikipedia-minimalistic-dark-material-design)
+
+- [YouTube - Nyan Cat progress bar video player theme](https://userstyles.org/styles/95033/youtube-nyan-cat-progress-bar-video-player-theme)
+
+- [◆Techcrunch](https://userstyles.org/styles/85918/techcrunch)
+
+- [◆Cleaner Cso Online](https://userstyles.org/styles/124340/cleaner-cso-online)
+
 ⠀
 ____________
 <a name="userscripts"></a>
+
+⠀
