@@ -384,15 +384,11 @@ e para corrigir o controle do brightness:
 ⠀
 ##### vamos evitar tofus (retângulos vazios, caracteres não disponíveis)
 
-`# pacaur --noconfirm -S powerline-fonts ttf-hack ttf-font-awesome ttf-roboto`
+`$ sudo pacman --noconfirm -S noto-fonts ttf-liberation wqy-zenhei wqy-microhei wqy-microhei-lite`
 
-`$ sudo pacman --noconfirm -S noto-fonts`
+`# pacaur --noconfirm --noedit -S powerline-fonts ttf-hack ttf-font-awesome ttf-roboto`
 
-`$ sudo pacman --noconfirm -S ttf-liberation wqy-zenhei wqy-microhei wqy-microhei-lite`
-
-alguns extras:
-
-`# pacaur --noconfirm -S font-mathematica ttf-monapo ttf-liberation`
+extras: `# pacaur --noconfirm --noedit -S font-mathematica ttf-monapo ttf-liberation`
 
 ⠀
 ##### painel de volume completão
@@ -412,11 +408,11 @@ alguns extras:
 
 ⠀
 ##### mpv e seus amiguinhos:
-`# pacaur --noconfirm -S mpv-build-git youtube-dl-git youtube-mpv-git youtube-upload-git`
+`# pacaur --noconfirm --noedit -S mpv-build-git youtube-dl-git youtube-mpv-git youtube-upload-git`
 
 ⠀
 ###### kodi é cheio de plugins legais
-`pacaur --noconfirm --noedit -S kodi`
+`# pacaur --noconfirm --noedit -S kodi`
 
 ⠀
 ##### visualizador de imagens que adoro
@@ -461,7 +457,7 @@ alguns extras:
 
 ⠀
 ##### tradutor e calculadora commandline
-`# pacaur --noconfirm -S translate-git wcalc`
+`# pacaur --noconfirm --noedit -S translate-git wcalc`
 
 ⠀
 ##### inúteis mas legais (reparou né?)
@@ -496,8 +492,24 @@ outros utilitários pro steam:
 `# pacaur --noconfirm --noedit -S gtk-chtheme`
 
 ⠀
+##### [adwaita dark gtk2 gtk3](https://github.com/axxapy/Adwaita-dark-gtk2)
+`# cd /usr/share/themes`
+
+`$ sudo git clone https://github.com/axxapy/Adwaita-dark-gtk2.git Adwaita-dark`
+
+`# cd /usr/share/themes/Adwaita`
+
+`$ sudo cp gtk-2.0 gtk-2.0-bkp`
+
+`$ sudo cp -R ../Adwaita-dark/gtk-2.0 ./`
+
+⠀
 ##### paper icon theme
 `# pacaur --noconfirm --noedit -S paper-icon-theme-git-latest`
+
+⠀
+##### adwaita para qt4
+`# pacaur --noconfirm --noedit -S adwaita-qt4`
 
 ⠀
 ##### powerpill

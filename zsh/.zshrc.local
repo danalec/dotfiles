@@ -379,6 +379,7 @@ alias md='mkdir -v -p'
 alias mem_hogs='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
 alias mkdir="mkdir -v -p"
 alias mkpkg='makepkg'
+alias mpv='mpv --fs --save-position-on-quit .'  # play current folder
 alias mroe=more
 alias mv='mv -iv'
 alias nano='$EDITOR'
@@ -390,8 +391,8 @@ alias pi='seq -f '4/%g' 1 2 99999 | paste -sd-+ | bc -l'
 alias prikey="more ~/.ssh/id_rsa | xclip -selection clipboard | echo '=> private key copied to pasteboard.'"
 alias pubkey="more ~/.ssh/id_rsa.pub | xclip -selection clipboard | echo '=> public key copied to pasteboard.'"
 alias Q='exit'
-alias rd=rmdir
 alias rcp='rsync -v --progress'
+alias rd=rmdir
 alias record="ffmpeg -f x11grab -s 1920x1080 -an -r 16 -loglevel quiet -i :0.0 -b:v 15M -y" #pass a filename
 alias rm='rm -iv'
 alias rmdir='rmdir -v'
