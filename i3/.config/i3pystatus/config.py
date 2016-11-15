@@ -84,6 +84,8 @@ status.register(
 status.register(
     "backlight",
     format=" {percentage}%",
+    on_leftclick="exec xbacklight set 100",
+    on_rightclick="exec xbacklight set 70",
 )
 
 # show/control screen brightness

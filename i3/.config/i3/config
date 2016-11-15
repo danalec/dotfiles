@@ -361,25 +361,25 @@ exec --no-startup-id xautolock -detectsleep -time 10 -notify 30 \
 -corners 0-00 -locker $lock_screen &
 
 # misc startup programs
-exec --no-startup-id pcmanfm -d on && \
+exec --no-startup-id pcmanfm -d & \
 notify-send -u normal -t 300 -i info 'loaded: pcmanfm' 'startup'
 
-exec --no-startup-id xmodmap ~/.xmodmap on && \
+exec --no-startup-id xmodmap ~/.xmodmap & \
 notify-send -u normal -t 300 -i info 'loaded: xmodmap' 'startup'
 
-exec --no-startup-id numlockx on && \
+exec --no-startup-id numlockx & \
 notify-send -u normal -t 300 -i info 'loaded: numlockx' 'startup'
 
-exec --no-startup-id insync start && \
+exec --no-startup-id insync start & \
 notify-send -u normal -t 300 -i info 'loaded: insync' 'startup'
 
-exec --no-startup-id imwheel && \
+exec --no-startup-id imwheel & \
 notify-send -u normal -t 300 -i info 'loaded: imwheel' 'startup'
 
-exec --no-startup-id keybase && \
+exec --no-startup-id keybase & \
 notify-send -u normal -t 300 -i info 'loaded: keybase' 'startup'
 
-exec --no-startup-id i3-msg "workspace $ws1; exec $terminal" && \
+exec --no-startup-id i3-msg "workspace $ws1; exec $terminal" & \
 notify-send -u normal -t 300 -i info 'loaded: terminal' 'startup'
 
 # color theme
