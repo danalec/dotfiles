@@ -519,6 +519,10 @@ outros utilitários pro steam:
 `# pacaur --noconfirm --noedit -S powerpill`
 
 ⠀
+##### extratores adicionais
+`# sudo pacman --noconfirm -S p7zip unace lrzip`
+
+⠀
 ##### este wrapper de lixeira é excelente:
 `# gpg --recv-keys 50F33E2E5B0C3D900424ABE89BDCF497A4BBCC7F`
 

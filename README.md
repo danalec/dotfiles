@@ -107,6 +107,7 @@ $ cat fsociety00.dat
  ├─i3pystatus   > m45t3r's awesome fork, next-generation of status
  ├─rofi         > window switcher, run dialog and dmenu replacement config
  └─termite      > terminal emulator with vte3 color config and vi bindings
+ install        > ArchLinux Installation CheatSheet
  irssi          > the best irc client theme
  mc             > midnight commander ui colors
  mpd            > music player daemon setup & ncurses mpc++ ui/color
