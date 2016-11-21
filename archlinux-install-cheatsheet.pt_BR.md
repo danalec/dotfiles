@@ -284,7 +284,7 @@ agora, o símbolo **$** irá denotar a necessidade de previlégio elevado e **#*
 #####  agora vamos montar e instalar manualmente
 `# cd cower && makepkg`
 
-`$ sudo pacman -U cower-*-x86_64.pkg.tar.xz`
+`$ sudo pacman -U cower-*.pkg.tar.xz`
 
 ##### já vamo baixar o pacaur, usando o cower:
 `# cower -d pacaur`
@@ -292,7 +292,7 @@ agora, o símbolo **$** irá denotar a necessidade de previlégio elevado e **#*
 ##### montamos o pacaur e instalamos:
 `# cd pacaur && makepkg`
 
-`# sudo pacman -U pacaur-*-any.pkg.tar.xz`
+`# sudo pacman -U pacaur-*.pkg.tar.xz`
 
 ⠀
 ----------

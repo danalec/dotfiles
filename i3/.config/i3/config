@@ -189,6 +189,7 @@ for_window [class="^Pavucontrol$"] floating enable
 for_window [class="Wine"] floating enable
 for_window [class="Skype"] floating enable
 for_window [title="MonoDevelop External Console"] floating enable
+for_window [window_role="pop-up"] floating enable
 
 # https://github.com/ValveSoftware/steam-for-linux/issues/1040
 for_window [class="^Steam$" title="^Friends$"] floating enable
@@ -229,6 +230,10 @@ bindsym $mod+Escape mode "$mode_system"
 
 # resize window (you can also use the mouse for that)
 mode "Resize" {
+    # Pressing left will shrink the window’s width.
+    # Pressing right will grow the window’s width.
+    # Pressing up will shrink the window’s height.
+    # Pressing down will grow the window’s height.
     # vi-like
     bindsym h resize shrink width 10 px or 10 ppt
     bindsym j resize grow height 10 px or 10 ppt
@@ -248,25 +253,42 @@ mode "Resize" {
 bindsym $mod+r mode "Resize"
 
 # external screen management
-set $mode_display Screen  :CR [v]ga on, [h]dmi on, v[g]a off, h[d]mi off
-mode "$mode_display" {
-    bindsym v exec --no-startup-id xrandr --output VGA-0 --auto && $set_wallpaper, mode "default" && \
-    notify-send -u normal -t 300 -i info ' VGA-0' 'screen'
+set $display_layout_vga Display  VGA:  ,  , [o]ff
+mode "$display_layout_vga" {
+    bindsym Left exec xrandr --output VGA0 --auto --left-of LVDS-0 && $set_wallpaper, mode "default" && \
+    notify-send -u normal -t 300 -i info ' VGA-0' 'screen'
+    bindsym Right exec xrandr --output VGA0 --auto --right-of LVDS-0 && $set_wallpaper, mode "default" && \
+    notify-send -u normal -t 300 -i info ' VGA-0' 'screen'
+    bindsym o exec xrandr --output VGA0 --auto --off && $set_wallpaper, mode "default" && \
+    notify-send -u normal -t 300 -i info ' VGA-0' 'screen'
 
-    bindsym h exec --no-startup-id xrandr --output HDMI-0 --auto && $set_wallpaper, mode "default" && \
-    notify-send -u normal -t 300 -i info ' HDMI-0' 'screen'
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 
-    bindsym g exec --no-startup-id xrandr --output VGA-0 --auto --off && $set_wallpaper, mode "default" && \
-    notify-send -u normal -t 300 -i info ' VGA1' 'screen'
-
-    bindsym d exec --no-startup-id xrandr --output HDMI-0 --auto --off && $set_wallpaper, mode "default" && \
+set $display_layout_hdmi Display  HDMI:  ,  , [o]ff
+mode "$display_layout_hdmi" {
+    bindsym Left exec xrandr --output HDMI0 --auto --left-of LVDS-0 && $set_wallpaper, mode "default" && \
+    notify-send -u normal -t 300 -i info ' HDMI-0' 'screen'
+    bindsym Right exec xrandr --output HDMI0 --auto --right-of LVDS-0 && $set_wallpaper, mode "default" && \
+    notify-send -u normal -t 300 -i info ' HDMI-0' 'screen'
+    bindsym o exec xrandr --output HDMI0 --auto --off && $set_wallpaper, mode "default" && \
     notify-send -u normal -t 300 -i info ' HDMI-0' 'screen'
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+set $display_mode Screen [v]ga, [h]dmi
+mode "$display_mode" {
+    bindsym v mode "$display_layout_vga"
+    bindsym h mode "$display_layout_hdmi"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+p mode "$mode_display"
+bindsym $mod+p mode "$display_mode"
 
 # start i3pystatus to display status bar
 bar {
@@ -283,6 +305,12 @@ bar {
         urgent_workspace #cc6666 #cc6666 #ffffff
     }
 }
+
+# color theme
+client.focused #81a2be #81a2be #1d1f21 #282a2e
+client.focused_inactive #373b41 #373b41 #969896 #282a2e
+client.unfocused #282a2e #282a2e #969896 #282a2e
+client.urgent #373b41 #cc6666 #ffffff #cc6666
 
 # volume control
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 1 +5% && \
@@ -382,8 +410,3 @@ notify-send -u normal -t 300 -i info 'loaded: keybase' 'startup'
 exec --no-startup-id i3-msg "workspace $ws1; exec $terminal" & \
 notify-send -u normal -t 300 -i info 'loaded: terminal' 'startup'
 
-# color theme
-client.focused #81a2be #81a2be #1d1f21 #282a2e
-client.focused_inactive #373b41 #373b41 #969896 #282a2e
-client.unfocused #282a2e #282a2e #969896 #282a2e
-client.urgent #373b41 #cc6666 #ffffff #cc6666

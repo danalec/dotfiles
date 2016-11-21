@@ -95,14 +95,14 @@ $ cat fsociety00.dat
 ```
 ```
  bin            > some fun stuff
- compton        > minimal composite config for opacity
  cower          > pretentious AUR agent config
  figlet         > non ordinary to be, custom 3d fonts 
  gdm-theme      > microsoft windows 3.11 vap0rwave background
- git            > global git config and aliases
+ git            > global git config
  gtk            > gtk and some gnome configs
  guide          > archlinux installation cheatsheet
  i3             > m45t3r's fucking awesome i3pystatus hacks, theme, imwheel, xmodmap configs
+ ├─compton      > minimal composite config for opacity
  ├─dunst        > lightweight and customizable notification daemon config
  ├─i3pystatus   > m45t3r's awesome fork, next-generation of status
  ├─rofi         > window switcher, run dialog and dmenu replacement config

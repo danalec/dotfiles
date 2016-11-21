@@ -295,6 +295,12 @@ psgrep() {
     fi
 }
 
+pathadd() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="${PATH:+"$PATH:"}$1"
+    fi
+}
+
 if type hub > /dev/null 2>&1; then
   function git() {
     hub "$@"
@@ -415,6 +421,7 @@ alias xsel='xsel -b'
 alias ~='cd ~'
 
 # experimental
+alias chrome='chrome-dev'
 alias back='popd > /dev/null'
 alias free='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches'
 alias hello='nmap -sP 192.168.1.0/24; arp-scan --localnet | grep "192.168.1.[0-9]* *ether"'

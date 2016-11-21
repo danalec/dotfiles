@@ -1,5 +1,12 @@
 {
-	"color_scheme": "Packages/Theme - amCoder/amCoder (Bright).tmTheme",
+	"auto_complete_triggers":
+	[
+		{
+			"characters": ".",
+			"selector": "source"
+		}
+	],
+	"color_scheme": "Packages/User/SublimeLinter/amCoder (Bright) (SL).tmTheme",
 	"font_face": "Inconsolata",
 	"font_size": 14,
 	"ignored_packages":

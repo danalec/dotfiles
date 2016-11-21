@@ -73,6 +73,15 @@ path=(
   $path
 )
 
+# check if go is present
+if [ -f "/usr/bin/go" ]; then
+  export GOPATH=~/go
+  path=(
+    $GOPATH/bin
+    $path
+  )
+fi
+
 # check if pythonrc is present
 if [ -f "$HOME/.pythonrc.py" ]; then
   export PYTHONSTARTUP="$HOME/.pythonrc.py"
