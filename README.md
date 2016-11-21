@@ -117,6 +117,7 @@ $ cat fsociety00.dat
  pcmanfm        > file manager settings
  pygments       > add syntax highlighting to cat and less commands
  python         > python some config stuff
+ qt             > qt theme config
  ranger         > file manager with image previews and z3bra theme
  redshift       > adjusts the screen color temperature according of the place
  ssh            > remote ssh server keep alive

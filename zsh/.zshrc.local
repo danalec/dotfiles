@@ -179,7 +179,9 @@ beep() {
 # lazypack
 cd() { builtin cd "$@"; ls -lahF --color=auto; }
 
-edit() { sudo subl3 "$@"; }
+:e() { subl3 "$@"; }
+
+pac() { sudo pacman "$@"; }
 
 greppy() { grep -n "$1" *.py; }
 
@@ -234,6 +236,16 @@ httpHeaders () { /usr/bin/curl -I -L $@ ; }
 
 httpDebug () { /usr/bin/curl $@ -o /dev/null -w "dns: %{time_namelookup} connect: %{time_connect} pretransfer: %{time_pretransfer} starttransfer: %{time_starttransfer} total: %{time_total}\n" ; }
 
+# get the content type of an http resource
+htmime () {
+  if [[ -z $1 ]]; then
+    print "USAGE: htmime <URL>"
+    return 1
+  fi
+  mime=$(curl -sIX HEAD $1 | sed -nr "s/Content-Type: (.+)/\1/p")
+  print $mime
+}
+
 json_post() {
   url=$1
   method=$2
@@ -270,6 +282,11 @@ c() {
   done
 }
 
+# print a separator banner, as wide as the terminal
+hr() {
+  print ${(l:COLUMNS::=:)}
+}
+
 dls () {
  # directory LS
  echo `ls -l | grep "^d" | awk '{ print $9 }' | tr -d "/"`
@@ -301,6 +318,36 @@ pathadd() {
     fi
 }
 
+function url-encode; {
+    setopt extendedglob
+    echo "${${(j: :)@}//(#b)(?)/%$[[##16]##${match[1]}]}"
+}
+
+:w() {
+    xdg-open "http://en.wikipedia.org/w/index.php?search=`url-encode "${(j: :)@}"`"
+}
+:yt() {
+    xdg-open "https://www.youtube.com/results?search_query=`url-encode "${(j: :)@}"`"
+}
+:g() {
+    xdg-open "https://www.google.com/search?q=`url-encode "${(j: :)@}"`"
+}
+:gi() {
+    xdg-open "http://www.duckduckgo.com/?q=!gi+`url-encode "${(j: :)@}"`"
+}
+:gh() {
+    xdg-open "https://github.com/search?q=`url-encode "${(j: :)@}"`"
+}
+:s() {
+    xdg-open "http://www.duckduckgo.com/?q=`url-encode "${(j: :)@}"`"
+}
+:d() {
+    xdg-open "http://www.duckduckgo.com/?q=!d+`url-encode "${(j: :)@}"`"
+}
+:t() {
+    xdg-open "http://www.duckduckgo.com/?q=!t+`url-encode "${(j: :)@}"`"
+}
+
 if type hub > /dev/null 2>&1; then
   function git() {
     hub "$@"
@@ -315,6 +362,40 @@ else # root!
   USER_LEVEL="%F{red}"
 fi
 
+# display a list of supported colors
+function lscolors {
+  ((cols = $COLUMNS - 4))
+  s=$(printf %${cols}s)
+  for i in {000..$(tput colors)}; do
+    echo -e $i $(tput setaf $i; tput setab $i)${s// /=}$(tput op);
+  done
+}
+
+# Create short urls via http://goo.gl using curl(1).
+# Contributed back to grml zshrc
+# API reference: https://code.google.com/apis/urlshortener/
+function zurl {
+  if [[ -z $1 ]]; then
+    print "USAGE: $0 <URL>"
+    return 1
+  fi
+
+  local url=$1
+  local api="https://www.googleapis.com/urlshortener/v1/url"
+  local data
+
+  # Prepend "http://" to given URL where necessary for later output.
+  if [[ $url != http(s|)://* ]]; then
+    url="http://$url"
+  fi
+  local json="{\"longUrl\": \"$url\"}"
+
+  data=$(curl --silent -H "Content-Type: application/json" -d $json $api)
+  # Match against a regex and print it
+  if [[ $data =~ '"id": "(http://goo.gl/[[:alnum:]]+)"' ]]; then
+    print $match
+  fi
+}
 
 # aliases
 alias -g ...='../..'
@@ -421,7 +502,6 @@ alias xsel='xsel -b'
 alias ~='cd ~'
 
 # experimental
-alias chrome='chrome-dev'
 alias back='popd > /dev/null'
 alias free='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches'
 alias hello='nmap -sP 192.168.1.0/24; arp-scan --localnet | grep "192.168.1.[0-9]* *ether"'
@@ -474,9 +554,14 @@ alias nginxlogs="less +F /var/log/nginx/error.log"
 alias herr='tail /var/log/httpd/error_log'
 
 # pacaur
-alias pacaru="pacaur --noconfirm --noedit -S "
-alias pacauru="pacaru"
-alias yaourt="pacaur"
+alias aur="pacaur --noconfirm --noedit "
+alias apacaur="aur -S"
+alias yaourt="echo 'yaourt? nope. have pacaur instead.' && pacaur"
+
+# pacman
+alias apac="pac --noconfirm -S "
+alias apacman="apac"
+alias pacman="pac"
 
 # sudo
 alias _='sudo '
@@ -490,8 +575,6 @@ alias node="sudo node"
 alias npm="sudo npm"
 alias npminstall="sudo rm -rf node_modules && sudo npm cache clear && sudo npm cache clean && npm install"
 alias openports='sudo lsof -i | grep LISTEN'        # all listening connections
-alias pacaman="sudo pacman --noconfirm -S "
-alias pacman="sudo pacman "
 alias please='sudo $(fc -ln -1)'
 alias pls='sudo '
 alias plz='sudo '
@@ -517,4 +600,3 @@ if which ack-grep &> /dev/null; then
 else
   alias afind='ack -il'
 fi
-

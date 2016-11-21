@@ -259,6 +259,11 @@ se precisar desligar wifi: `$ sudo systemctl disable netctl-auto@wlp4s0.service`
 ##### ou o driver da comunidade: `pacman -S xf86-video-nouveau mesa-vdpau libva-mesa-driver`
 
 ⠀
+##### é usuário SLI ou CrossFire? edite: /etc/modprobe.d/acpi.conf
+> ##### video.allow_duplicates=1
+> ##### acpi_enforce_resources=lax
+
+⠀
 ##### antes de remover o pendrive e reboot, deixe já preparado:
 `pacman --noconfirm -S zsh wget curl git vim neovim`
 
@@ -311,12 +316,13 @@ para adicionar a configuração do pacman: `sudo stow pacman -t /`
 
 (e inicie uma sessão zsh):`/bin/zsh` ou altere a sessão do usuário: `chsh -s $(which zsh)`
 
-utilize como o exemplo `pacauru stow` e `pacaman mc`
+utilize como o exemplo `apacaur stow` e `apacman mc`
 ⠀
 ----------
 ## parte 4: moar!
 <a name="parte4"></a>
 ##### tá faltando um montão de programa, temos ainda que instalar vários:
+###### base packages
 
 `$ sudo pacman --noconfirm -S stow compton rsync unzip unrar tmux tree lsof lha mc`
 
@@ -398,11 +404,6 @@ extras: `# pacaur --noconfirm --noedit -S font-mathematica ttf-monapo ttf-libera
 ##### acpi para ler algumas informações da máquina
 `$ sudo pacman --noconfirm -S acpi`
 
-##### é usuário SLI ou CrossFire? edite: /etc/modprobe.d/acpi.conf
-> ##### video.allow_duplicates=1
-> ##### acpi_enforce_resources=lax
-
-⠀
 ##### vamos remover porque nunca mais iremos usar (pelo menos eu não quero)
 `$ sudo pacman -Rns nano vi`
 
@@ -599,7 +600,7 @@ ____________
 
 ⠀
 ##### net-tools and others
-`$ sudo pacman --noconfirm -S openssh openssl net-tools mtr traceroute dnsutils whois nmap wavemon gnome-nettool`
+`$ sudo pacman --noconfirm -S openssh openssl net-tools mtr traceroute dnsutils whois nmap wavemon gnome-nettool sshfs proxychains-ng`
 
 ⠀
 ##### fail2ban

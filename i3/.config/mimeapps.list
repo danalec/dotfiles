@@ -1,0 +1,16 @@
+[Added Associations]
+video/x-matroska=mpv.desktop;
+text/x-python=sublime_text_3.desktop;
+text/x-lua=sublime_text_3.desktop;
+application/x-shellscript=sublime_text_3.desktop;
+text/plain=sublime_text_3.desktop;
+application/pdf=chromium.desktop;
+image/png=gthumb.desktop;chromium.desktop;
+application/octet-stream=sublime_text_3.desktop;
+
+[Default Applications]
+text/plain=sublime_text_3.desktop
+text/x-python=sublime_text_3.desktop
+text/x-lua=sublime_text_3.desktop
+application/pdf=chromium.desktop
+image/png=gthumb.desktop
