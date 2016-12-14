@@ -7,11 +7,13 @@
 		}
 	],
 	"color_scheme": "Packages/User/SublimeLinter/amCoder (Bright) (SL).tmTheme",
+	"draw_indent_guides": true,
 	"font_face": "Inconsolata",
 	"font_size": 14,
 	"ignored_packages":
 	[
 		"Vintage"
 	],
-	"theme": "amCoder.sublime-theme"
+	"theme": "amCoder.sublime-theme",
+	"translate_tabs_to_space": true
 }

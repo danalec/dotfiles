@@ -15,9 +15,9 @@ git clone https://aur.archlinux.org/cower.git /tmp/$TMPCOWERDIR
 
 echo 'makepkg'
 cd /tmp/$TMPCOWERDIR
-makepkg -s
+makepkg -si
 
-sudo pacman --noconfirm -U cower-*.pkg.tar.xz
+#sudo pacman --noconfirm -U cower-*.pkg.tar.xz
 
 echo 'cleaning temporary folder'
 rm -rf /tmp/$TMPCOWERDIR

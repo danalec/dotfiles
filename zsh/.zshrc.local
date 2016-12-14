@@ -554,14 +554,14 @@ alias nginxlogs="less +F /var/log/nginx/error.log"
 alias herr='tail /var/log/httpd/error_log'
 
 # pacaur
-alias aur="pacaur --noconfirm --noedit "
-alias apacaur="aur -S"
-alias yaourt="echo 'yaourt? nope. have pacaur instead.' && pacaur"
+alias aur="pacaur --noconfirm --noedit --aur"
+alias aaur="aur -S"
+alias apacaur="aaur"
+alias yaourt="echo 'yaourt? nope. have pacaur instead.' && pacaur --help"
 
 # pacman
 alias apac="pac --noconfirm -S "
 alias apacman="apac"
-alias pacman="pac"
 
 # sudo
 alias _='sudo '

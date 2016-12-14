@@ -9,9 +9,9 @@ git clone https://aur.archlinux.org/pacaur.git /tmp/$TMPPACAURDIR
 
 echo 'makepkg'
 cd /tmp/$TMPPACAURDIR
-makepkg -s
+makepkg -si
 
-sudo pacman --noconfirm -U pacaur-*.pkg.tar.xz
+#sudo pacman --noconfirm -U pacaur-*.pkg.tar.xz
 
 echo 'cleaning temporary folder'
 rm -rf /tmp/$TMPPACAURDIR

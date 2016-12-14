@@ -62,8 +62,8 @@
 					"sort_column_secondary"		""
 					"sort_column_asc"		"1"
 					"sort_column_secondary_asc"		"1"
-					"selection"		"494680"
-					"section"		"#steam_recentlyplayed_today"
+					"selection"		"491260"
+					"section"		"#steam_recentlyplayed_previously"
 					"Collapsers"
 					{
 						"#Steam_GamesSection_Favorites"		"0"
@@ -433,8 +433,8 @@
 					"sort_column_secondary"		""
 					"sort_column_asc"		"1"
 					"sort_column_secondary_asc"		"1"
-					"selection"		"494680"
-					"section"		"#steam_recentlyplayed_today"
+					"selection"		"491260"
+					"section"		"#steam_recentlyplayed_previously"
 					"Collapsers"
 					{
 						"#Steam_GamesSection_Favorites"		"0"
@@ -817,8 +817,8 @@
 					"sort_column_secondary"		"#Steam_IconsColumn"
 					"sort_column_asc"		"0"
 					"sort_column_secondary_asc"		"0"
-					"selection"		"494680"
-					"section"		"#steam_recentlyplayed_today"
+					"selection"		"491260"
+					"section"		"#steam_recentlyplayed_previously"
 					"Collapsers"
 					{
 						"#Steam_GamesSection_Favorites"		"0"
@@ -1239,7 +1239,7 @@
 					{
 						"_hidden"		"0"
 						"#Steam_Game_DLC_NameColumn_hidden"		"0"
-						"#Steam_Game_DLC_Enabled_hidden"		"0"
+						"#Steam_Game_DLC_Enabled_hidden"		"1"
 						"#Steam_Game_DLC_PurchaseTime_hidden"		"0"
 						"sort_column"		"#Steam_Game_DLC_PurchaseTime"
 						"sort_column_secondary"		"#Steam_Game_DLC_NameColumn"
@@ -1317,9 +1317,9 @@
 		}
 		"DialogMode"		"0"
 		"xpos"		"1"
-		"ypos"		"23"
+		"ypos"		"26"
 		"wide"		"1918"
-		"tall"		"1056"
+		"tall"		"1053"
 	}
 	"Servers"
 	{
@@ -1873,10 +1873,10 @@
 				{
 				}
 			}
-			"xpos"		"482"
-			"ypos"		"28"
-			"wide"		"476"
-			"tall"		"1050"
+			"xpos"		"419"
+			"ypos"		"37"
+			"wide"		"942"
+			"tall"		"698"
 		}
 		"ChatRoomDlgFriend.res_81078068"
 		{
@@ -2076,6 +2076,16 @@
 			"TradeInviteBar"
 			{
 			}
+			"ToolWindowSheet"
+			{
+				"ChatRoomDlg"
+				{
+				}
+			}
+			"xpos"		"896"
+			"ypos"		"502"
+			"wide"		"396"
+			"tall"		"351"
 		}
 		"ChatRoomDlgFriend.res_119833908"
 		{
@@ -2873,10 +2883,10 @@
 				{
 				}
 			}
-			"xpos"		"961"
-			"ypos"		"23"
-			"wide"		"958"
-			"tall"		"1056"
+			"xpos"		"419"
+			"ypos"		"37"
+			"wide"		"942"
+			"tall"		"698"
 		}
 		"ChatRoomDlgFriend.res_98492105"
 		{
@@ -2914,6 +2924,111 @@
 			"ypos"		"23"
 			"wide"		"958"
 			"tall"		"1056"
+		}
+		"ChatRoomDlgFriend.res_58813831"
+		{
+			"TitlePanel"
+			{
+			}
+			"VoiceBar"
+			{
+				"micvolume"
+				{
+				}
+				"SpeakerVolume"
+				{
+				}
+			}
+			"GameInviteBar"
+			{
+			}
+			"BIBar"
+			{
+			}
+			"BABar"
+			{
+			}
+			"TradeInviteBar"
+			{
+			}
+			"ToolWindowSheet"
+			{
+				"ChatRoomDlg"
+				{
+				}
+			}
+			"xpos"		"419"
+			"ypos"		"37"
+			"wide"		"942"
+			"tall"		"698"
+		}
+		"ChatRoomDlgFriend.res_151946471"
+		{
+			"TitlePanel"
+			{
+			}
+			"VoiceBar"
+			{
+				"micvolume"
+				{
+				}
+				"SpeakerVolume"
+				{
+				}
+			}
+			"GameInviteBar"
+			{
+			}
+			"BIBar"
+			{
+			}
+			"BABar"
+			{
+			}
+			"TradeInviteBar"
+			{
+			}
+			"ToolWindowSheet"
+			{
+				"ChatRoomDlg"
+				{
+				}
+			}
+			"xpos"		"896"
+			"ypos"		"502"
+			"wide"		"396"
+			"tall"		"351"
+		}
+		"ChatRoomDlgFriend.res_89670769"
+		{
+			"TitlePanel"
+			{
+			}
+			"VoiceBar"
+			{
+				"micvolume"
+				{
+				}
+				"SpeakerVolume"
+				{
+				}
+			}
+			"GameInviteBar"
+			{
+			}
+			"BIBar"
+			{
+			}
+			"BABar"
+			{
+			}
+			"TradeInviteBar"
+			{
+			}
+			"xpos"		"419"
+			"ypos"		"37"
+			"wide"		"942"
+			"tall"		"698"
 		}
 	}
 }

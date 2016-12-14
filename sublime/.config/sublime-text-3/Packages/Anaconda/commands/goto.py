@@ -6,6 +6,8 @@ import sublime
 import sublime_plugin
 
 from ..anaconda_lib.worker import Worker
+from ..anaconda_lib.workers.market import Market
+from ..anaconda_lib.helpers import is_remote_session
 from ..anaconda_lib.explore_panel import ExplorerPanel
 from ..anaconda_lib.helpers import prepare_send_data, is_python
 
@@ -35,20 +37,44 @@ class AnacondaGoto(sublime_plugin.TextCommand):
         """
 
         if not data['result']:
-            sublime.status_message('Could not find symbol')
-            return
+            # fallback to ST3 builtin Goto Definition
+            return self.view.window().run_command('goto_definition')
 
         symbols = []
         for result in data['result']:
+            path = self._infere_context_data(result[1])
             symbols.append({
                 'title': result[0],
                 'location': 'File: {} Line: {} Column: {}'.format(
-                    result[1], result[2], result[3]
+                    path, result[2], result[3]
                 ),
-                'position': '{}:{}:{}'.format(result[1], result[2], result[3])
+                'position': '{}:{}:{}'.format(path, result[2], result[3])
             })
 
         ExplorerPanel(self.view, symbols).show([])
+
+    def _infere_context_data(self, path: str) -> str:
+        """If this is a remote session, infere context data if any
+        """
+
+        if is_remote_session(self.view):
+            window = self.view.window().id()
+            try:
+                interpreter = Market().get(window).interpreter
+            except Exception as e:
+                print('while getting interp for Window ID {}: {}'.format(
+                    window, e)
+                )
+                return path
+            directory_map = interpreter.pathmap
+            if directory_map is None:
+                return path
+
+            for local_dir, remote_dir in directory_map.items():
+                if remote_dir in path:
+                    return path.replace(remote_dir, local_dir)
+
+        return path
 
 
 class AnacondaGotoAssignment(AnacondaGoto):
@@ -57,7 +83,7 @@ class AnacondaGotoAssignment(AnacondaGoto):
     JEDI_COMMAND = 'goto_assignment'
 
 
-class AnacondaGotoPythonObject(sublime_plugin.TextCommand):
+class AnacondaGotoPythonObject(AnacondaGoto):
     """Open prompt asking for Python path and JediGoto
     """
 
@@ -90,23 +116,3 @@ class AnacondaGotoPythonObject(sublime_plugin.TextCommand):
             'Provide object path:', '',
             self.input_package, None, None
         )
-
-    def on_success(self, data):
-        """Called when there is a response from the query
-        """
-
-        if not data['result']:
-            sublime.status_message('Symbol not found...')
-            return
-
-        symbols = []
-        for result in data['result']:
-            symbols.append({
-                'title': result[0],
-                'location': 'File: {} Line: {} Column: {}'.format(
-                    result[1], result[2], result[3]
-                ),
-                'position': '{}:{}:{}'.format(result[1], result[2], result[3])
-            })
-
-        ExplorerPanel(self.view, symbols).show([])

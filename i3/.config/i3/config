@@ -30,7 +30,7 @@
 
 # default applications
 set $terminal termite -d "`xcwd`"
-set $browser chromium
+set $browser chromium-dev
 set $file_manager pcmanfm -n "`xcwd`"
 set $lock_screen "$HOME/.config/i3/scripts/venv/bin/python \
 $HOME/.config/i3/scripts/lock_screen.py"
@@ -255,12 +255,9 @@ bindsym $mod+r mode "Resize"
 # external screen management
 set $display_layout_vga Display  VGA:  ,  , [o]ff
 mode "$display_layout_vga" {
-    bindsym Left exec xrandr --output VGA-0 --auto --left-of LVDS-0 && $set_wallpaper && \
-        notify-send -u normal -t 500 -i info "VGA-0" '', mode "default"
-    bindsym Right exec xrandr --output VGA-0 --auto --right-of LVDS-0 && $set_wallpaper && \
-        notify-send -u normal -t 500 -i info "VGA-0" '', mode "default"
-    bindsym o exec xrandr --output VGA-0 --auto --off && $set_wallpaper && \
-        notify-send -u normal -t 500 -i info "VGA-0" '', mode "default"
+    bindsym Left exec xrandr --output VGA-0 --auto --left-of LVDS-0 && $set_wallpaper, mode "default"
+    bindsym Right exec xrandr --output VGA-0 --auto --right-of LVDS-0 && $set_wallpaper, mode "default"
+    bindsym o exec xrandr --output VGA-0 --auto --off && $set_wallpaper, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -268,12 +265,9 @@ mode "$display_layout_vga" {
 
 set $display_layout_hdmi Display  HDMI:  ,  , [o]ff
 mode "$display_layout_hdmi" {
-    bindsym Left exec xrandr --output HDMI-0 --auto --left-of LVDS-0 && $set_wallpaper && \
-        notify-send -u normal -t 500 -i info "HDMI-0" '', mode "default"
-    bindsym Right exec xrandr --output HDMI-0 --auto --right-of LVDS-0 && $set_wallpaper && \
-        notify-send -u normal -t 500 -i info "HDMI-0" '', mode "default"
-    bindsym o exec xrandr --output HDMI-0 --auto --off && $set_wallpaper && \
-        notify-send -u normal -t 500 -i info "HDMI-0" '', mode "default"
+    bindsym Left exec xrandr --output HDMI-0 --auto --left-of LVDS-0 && $set_wallpaper, mode "default"
+    bindsym Right exec xrandr --output HDMI-0 --auto --right-of LVDS-0 && $set_wallpaper, mode "default"
+    bindsym o exec xrandr --output HDMI-0 --auto --off && $set_wallpaper, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
