@@ -19,6 +19,16 @@
 # keybindings (zkbd compatible hash)
 #
 
+# fzf
+export FZF_CTRL_T_COMMAND="find . -not -path '*/\.*' -printf '%P\n'"
+export FZF_ALT_C_COMMAND="find . -not -path '*/\.*' -type d -printf '%P\n'"
+
+# history-substring-search
+#bindkey "${terminfo[kcuu1]}" history-substring-search-up
+#bindkey "${terminfo[kcud1]}" history-substring-search-down
+#bindkey -M vicmd 'k' history-substring-search-up
+#bindkey -M vicmd 'j' history-substring-search-down
+
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Zle-Builtins
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Standard-Widgets
@@ -177,7 +187,7 @@ beep() {
 }
 
 # lazypack
-cd() { builtin cd "$@"; ls -lahF --color=auto; }
+#cd() { builtin cd "$@"; ls -lahF --color=auto; }
 
 :e() { subl3 "$@"; }
 
@@ -415,12 +425,12 @@ alias 8='cd -8'
 alias 9='cd -9'
 
 # List directory contents
-alias l='ls --color -lah'
-alias ll="ls -lahF --color=auto"
-alias la='ls -lAhF --color=auto'
-alias ls='ls --color=auto -hFg --color=auto'
-alias lsa='ls -lah --color=auto'
-alias lsl="ls -lhF --color=auto"
+#alias l='ls --color -lah'
+#alias ll="ls -lahF --color=auto"
+#alias la='ls -lAhF --color=auto'
+#alias ls='ls --color=auto -hFg'
+#alias lsa='ls -lah --color=auto'
+#alias lsl="ls -lhF --color=auto"
 
 # Push and pop directories on directory stack
 alias pu='pushd'

@@ -18,34 +18,42 @@
 #
 # █▓▒░ 修正、改変、再配布何でも可 ░▒▓█
 
-# zplug location
-ZPLUG_HOME="$ZDOTDIR/.zplug"
+unset ZPLUG_CACHE_FILE
 
-# is zplug installed?
+# define zplug location
+export ZPLUG_HOME="$HOME/.zplug"
+
+# check if zplug is installed, if not install it
 if [[ ! -d "$ZPLUG_HOME" ]]; then
   git clone https://github.com/zplug/zplug "$ZPLUG_HOME"
-  source $ZPLUG_HOME/init.zsh && zplug update --self
+  # source $ZPLUG_HOME/init.zsh && zplug update --self
 fi
 
 # source zplug/zplug
 source "$ZPLUG_HOME/init.zsh"
 
 # let zplug manage zplug
-zplug "zplug/zplug"
+# zplug "zplug/zplug"
 
-# powerlevel9k
-# disabled when terminal does not support 256 colors
-zplug "bhilburn/powerlevel9k", \
-  use:"powerlevel9k.zsh-theme", \
-  if: "[ `tput colors` -ge 256 ]"
-
-# zsh-users
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-history-substring-search"
-zplug "zsh-users/zsh-syntax-highlighting"
+if [ `tput colors` -ge 256 ]; then
+  # 256 colors themes
+  zplug "bhilburn/powerlevel9k", use:"powerlevel9k.zsh-theme"
+else
+  # fallback when 256 colors are unavailable (i.e. Linux's TTY)
+  zplug "themes/steeef", from:oh-my-zsh
+fi
 
 # oh-my-zsh
+zplug "lib/completion", from:oh-my-zsh
+zplug "lib/compfix", from:oh-my-zsh
+zplug "lib/directories", from:oh-my-zsh
+zplug "lib/functions", from:oh-my-zsh
+zplug "lib/grep", from:oh-my-zsh
+zplug "lib/history", from:oh-my-zsh
+zplug "lib/key-bindings", from:oh-my-zsh
+zplug "lib/misc", from:oh-my-zsh
+zplug "lib/termsupport", from:oh-my-zsh
+zplug "lib/theme-and-appearance", from:oh-my-zsh
 zplug "plugins/adb", from:oh-my-zsh
 zplug "plugins/cp", from:oh-my-zsh
 zplug "plugins/extract", from:oh-my-zsh
@@ -69,7 +77,20 @@ zplug "modules/directory", from:prezto
 zplug "modules/environment", from:prezto
 zplug "modules/spectrum", from:prezto
 
-# others
+# zsh-users
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-autosuggestions", at:features/async
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-syntax-highlighting"
+
+# misc
+# zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
+zplug "junegunn/fzf", use:"shell/*.zsh"
+zplug "Tarrasch/zsh-autoenv"
+zplug "schischi/xcwd", \
+  as:command, \
+  hook-build:"make", \
+  use:"xcwd"
 zplug "glidenote/hub-zsh-completion"
 zplug "Tarrasch/zsh-autoenv"
 #zplug "lukechilds/zsh-nvm"
@@ -88,7 +109,7 @@ zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 zplug "peco/peco", as:command, from:gh-r, use:"*amd64*"
 
 # fzf-tmux の peco バージョン
-zplug "b4b4r07/dotfiles", as:command, use:bin/peco-tmux
+#zplug "b4b4r07/dotfiles", as:command, use:bin/peco-tmux
 
 # rename-to:rm とすれば rm にリネームして使える（おすすめしないけど）
 #zplug "b4b4r07/zsh-gomi", as:command, use:bin, rename-to:rm
@@ -135,7 +156,7 @@ zstyle ':prezto:module:terminal' auto-title 'yes'
 zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
 zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
 
-# install plugins
+# Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
@@ -144,7 +165,7 @@ if ! zplug check --verbose; then
 fi
 
 # run zplug
-zplug load --verbose
+zplug load #--verbose
 
 # eval "$(fasd --init auto)"
 # vim: ft=zsh

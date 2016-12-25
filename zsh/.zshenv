@@ -95,3 +95,4 @@ export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
 if [ -f "$ZDOTDIR/.zshenv.local" ]; then
   source "$ZDOTDIR/.zshenv.local"
 fi
+

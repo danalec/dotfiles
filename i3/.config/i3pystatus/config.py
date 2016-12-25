@@ -27,7 +27,7 @@ def make_bar(percentage):
     return bars[index]
 
 
-# Inject it in battery module, so it will display unicode icons instead
+# inject it in battery module, so it will display unicode icons instead
 # of the (ugly) default bars
 battery.make_bar = make_bar
 status = Status()
@@ -78,6 +78,7 @@ status.register(
     "pulseaudio",
     format=" {volume}%",
     format_muted=" Mute",
+    on_leftclick="pavucontrol",
 )
 
 # show/control screen brightness
@@ -173,17 +174,28 @@ status.register(
 )
 
 # show current music info
+player_format = '{status} [{artist} - {title} \[{song_length}\]]'
+player_status = {
+    'play': '',
+    'pause': '',
+    'stop': '',
+}
+
 status.register(
-    "playerctl",
-    format='{status} [{artist} - {title} \[{length}\]]',
-    format_not_running='',
-    status={
-        'playing': '',
-        'paused': '',
-        'stopped': '',
-    },
+    "now_playing",
+    format=player_format,
+    status=player_status,
     on_leftclick="playerctl play-pause",
     on_rightclick="playerctl next",
+    on_upscroll=None,
+    on_downscroll=None,
+)
+
+status.register(
+    "mpd",
+    format=player_format,
+    status=player_status,
+    hide_inactive=True,
     on_upscroll=None,
     on_downscroll=None,
 )

@@ -1,6 +1,11 @@
+# Ignore zshrc.local
+#zshrc.local
 
-icons/
-mpd/.config/mpd/mpd.log
+# Ignore Python's virtualenvs
+venv/
+
+# Ignore Python's cache dir
+__pycache__/
 ncmpcpp/.ncmpcpp/error.log
 ranger/.config/ranger/bookmarks
 ranger/.config/ranger/colorschemes/__init__.py
@@ -10,6 +15,3 @@ ranger/.config/ranger/tagged
 sublime/.config/sublime-text-3/cache/
 sublime/.config/sublime-text-3/local/
 vim/.vim/bundle/
-
-# Ignore python virtualenvs
-venv/
