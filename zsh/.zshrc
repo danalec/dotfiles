@@ -29,8 +29,8 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv virtualenv vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode background_jobs status)
 
 # zsh
-#alias open="xdg-open "$@" &>/dev/null"
-alias open="open_command"
+alias open="xdg-open "$@" &>/dev/null"
+#alias open="open_command"
 alias reload='clear; source $ZDOTDIR/.zshrc && rm -rf "$ZPLUG_HOME/zcompdump*" && zsh --version'
 
 # 環境個別設定を読み込む
