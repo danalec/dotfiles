@@ -11,7 +11,7 @@
 # ░  code  ░ https://github.com/danalec/dotfiles
 #
 # ~danalec/.zshenv
-# last modified : 2016-11-14
+# last modified : 2017-01-16
 #
 #█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
 
@@ -70,6 +70,7 @@ path=(
   $HOME/bin
   /usr/local/bin
   /usr/bin
+  /usr/bin/core_perl
   $path
 )
 
