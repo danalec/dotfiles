@@ -11,7 +11,7 @@
 # ░  code  ░ https://github.com/danalec/dotfiles
 #
 # ~danalec/.config/i3/config
-# last modified : 2016-11-15
+# last modified : 2017-01-16
 #
 #█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
 #
@@ -30,7 +30,7 @@
 
 # default applications
 set $terminal termite -d "`xcwd`"
-set $browser chromium-dev
+set $browser chromium
 set $file_manager pcmanfm -n "`xcwd`"
 set $lock_screen "$HOME/.config/i3/scripts/venv/bin/python \
 $HOME/.config/i3/scripts/lock_screen.py"
