@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl"
+
 echo 'installing requirements'
 sudo pacman --noconfirm -S yajl expac
 

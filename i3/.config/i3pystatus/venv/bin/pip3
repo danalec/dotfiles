@@ -1,4 +1,4 @@
-#!/home/danalec/dotfiles/i3/.config/i3pystatus/venv/bin/python
+#!/media/peito/Data/danalec/dotfiles/i3/.config/i3pystatus/venv/bin/python
 
 # -*- coding: utf-8 -*-
 import re

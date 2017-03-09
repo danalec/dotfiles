@@ -99,7 +99,7 @@ utilize o gdisk para modificar a flag
 
 ⠀
 ##### e montar tudo
-`mount -o defaults,relatime,discard,ssd,nodev,nosuid /dev/mapper/root /mnt`
+`mount -o defaults,relatime,discard,ssd /dev/mapper/root /mnt`
 
 ⠀
 ##### criar algumas pastas que faltaram
@@ -334,7 +334,7 @@ utilize como o exemplo `apacaur stow` e `apacman mc`
 ##### agora vamos escolher os WM (Window Manager, aka interface gráfica):
 - caso você escolha (instalar o gdm), não precisará instalar o xorg-server:
 
-`$ sudo pacman --noconfirm -S gdm gnome-tweak-tool gnome-control-center gvfs gvfs-mtp xorg-xprop`
+`$ sudo pacman --noconfirm -S gdm gnome-tweak-tool gnome-control-center gvfs gvfs-mtp xorg-xprop xorg-xbacklight`
 
 `# sudo systemctl enable gdm.service`
 
@@ -400,6 +400,10 @@ extras: `# pacaur --noconfirm --noedit -S font-mathematica ttf-monapo ttf-libera
 ##### painel de volume completão
 `# pacaur --noconfirm --noedit -S pavucontrol`
 
+
+##### tutorial de normalização de volume em breve!
+`# pacaur --noconfirm --noedit -S ladspa swh-plugins`
+
 ⠀
 ##### acpi para ler algumas informações da máquina
 `$ sudo pacman --noconfirm -S acpi`
@@ -450,11 +454,11 @@ extras: `# pacaur --noconfirm --noedit -S font-mathematica ttf-monapo ttf-libera
 ###### rtorrent
 `# pacaur --noconfirm --noedit -S rtorrent-vi-color rtorrent-systemd`
 
-`# pacaur --noconfirm --noedit -S rutorrent-git`
+`# pacaur --noedit --noconfirm -S rtorrent-color rutorrent-git`
 
 ⠀
 ###### mas na falta de saco pra configurar, vamos usar o deluge mesmo
-`# pacaur --noconfirm --noedit -S deluge`
+`# pacaur --noconfirm --noedit -S deluge-git`
 
 ⠀
 ##### tradutor e calculadora commandline
@@ -506,6 +510,7 @@ outros utilitários pro steam:
 
 ⠀
 ##### paper icon theme
+`# pacaur --noconfirm --noedit -S paper-icon-theme-git`
 `# pacaur --noconfirm --noedit -S paper-icon-theme-git-latest`
 
 ⠀
@@ -656,11 +661,11 @@ ____________
 ###### `$ sudo systemctl mask systemd-backlight@backlight\:acpi_video0.service`
 
 ⠀
-###### grsec: grsec-common linux-grsec linux-grsec-docs linux-grsec-headers nvidia-grsec
-
+###### grsec: grsec-common linux-grsec linux-grsec-docs linux-grsec-headers nvidia-grsec acpi_call-grsec
 ⠀
-###### grsec: linux-libre-grsec linux-libre-grsec-docs linux-libre-grsec-headers acpi_call-grsec nvidia-grsec
 
+##### Greg Kroah-Hartman (kernel stable)
+`gpg --recv-keys 38DBBDC86092693E`
 ⠀
 ##### llvm
 mantenha seu sistema atualizado antes de começar
@@ -839,6 +844,7 @@ ____________
 
 - [Better Reading with Big Titles by Sahin Boydas](https://userstyles.org/styles/127167)
 
+- [Soundcloud.com - Nightmode ](https://userstyles.org/styles/107360/soundcloud-com-nightmode)
 ⠀
 ____________
 <a name="userscripts"></a>
@@ -931,8 +937,6 @@ https://greasyfork.org/en/scripts/21947-improved-steam-achievements
 
 https://greasyfork.org/en/scripts/16323-youtube-player-controls
 
-https://greasyfork.org/en/scripts/14520-yahoo-mail-ad-blocker
-
 https://greasyfork.org/en/scripts/19740-wikia-ad-skipper
 
 https://greasyfork.org/en/scripts/19306-twitterinstacleaner
@@ -954,4 +958,17 @@ https://greasyfork.org/en/scripts/17125-steamcompanion-center-mod
 https://greasyfork.org/en/scripts/19166-steamcompanion-auto-giveaway-enterer
 
 https://greasyfork.org/en/scripts/18450-steam-bypass-age-confirmation-prompts
+
+https://greasyfork.org/en/scripts/23432-hacker-news-date-tooltips
+
+https://greasyfork.org/en/scripts/23257-hacker-news-better-ghosted-comments
+
+https://greasyfork.org/en/scripts/23257-hacker-news-better-ghosted-comments
+
+https://greasyfork.org/en/scripts/2961-hacker-news-author-hilight
+
+https://greasyfork.org/en/scripts/16911-sort-hacker-news
+
+https://greasyfork.org/en/scripts/7209-hacker-news-open-links-in-new-tab
+
 ⠀
