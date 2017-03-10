@@ -17,6 +17,8 @@
 
 # 環境変数の設定
 
+export LANG="en_US.UTF-8"
+
 # source zplug configuration
 source "$ZDOTDIR/.zplugrc"
 

@@ -39,13 +39,13 @@ if type npm > /dev/null; then
 fi
 
 # check if ruby-gem is installed, if yes then import it to PATH
-if type gem > /dev/null; then
-  export GEM_HOME="$HOME/.gem"
-  path=(
-    $GEM_HOME/ruby/*/bin
-    $path
-  )
-fi
+#if type gem > /dev/null; then
+#  export GEM_HOME="$HOME/.gem"
+#  path=(
+#    $GEM_HOME/ruby/*/bin
+#    $path
+#  )
+#fi
 
 manpath=(
   $HOME/local/man

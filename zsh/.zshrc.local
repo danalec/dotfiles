@@ -11,7 +11,7 @@
 # ░  code  ░ https://github.com/danalec/dotfiles
 #
 # ~danalec/.zshrc.local
-# last modified : 2016-11-14
+# last modified : 2017-03-09
 #
 #█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
 
@@ -461,7 +461,6 @@ alias emacs='$EDITOR'
 alias fgrep='fgrep --color=auto'
 alias h='history'
 alias identify='cat ~/.zhistory | sort | uniq -c | sort -n'
-alias ip="curl ipinfo.io/ip"
 alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 alias irc="irssi"
 alias k9='kill -9'
@@ -508,6 +507,7 @@ alias up='cd ../'
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"' # URL-encode strings
 alias vi='$EDITOR'
 alias week='date +%V'
+alias whatismyip="curl ipinfo.io/ip"
 alias xsel='xsel -b'
 alias ~='cd ~'
 

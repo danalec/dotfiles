@@ -72,7 +72,7 @@ zplug "plugins/virtualenv", from:oh-my-zsh
 zplug "robbyrussell/oh-my-zsh", use:"lib/{clipboard,compfix,completion,correction,diagnostics,functions,git,grep,nvm,prompt_info_functions,spectrum,termsupport}.zsh"
 
 # prezto
-zplug "modules/ssh", from:prezto
+#zplug "modules/ssh", from:prezto
 zplug "modules/directory", from:prezto
 zplug "modules/environment", from:prezto
 zplug "modules/spectrum", from:prezto

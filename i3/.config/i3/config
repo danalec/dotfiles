@@ -11,7 +11,7 @@
 # ░  code  ░ https://github.com/danalec/dotfiles
 #
 # ~danalec/.config/i3/config
-# last modified : 2017-01-16
+# last modified : 2017-03-09
 #
 #█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
 #
@@ -30,8 +30,11 @@
 
 # default applications
 set $terminal termite -d "`xcwd`"
+#set $coolterminal cool-retro-term --workdir "`xcwd`"
 set $browser chromium
+#set $file_manager dolphin "`xcwd`"
 set $file_manager pcmanfm -n "`xcwd`"
+#set $file_manager pantheon-files "`xcwd`"
 set $lock_screen "$HOME/.config/i3/scripts/venv/bin/python \
 $HOME/.config/i3/scripts/lock_screen.py"
 set $set_wallpaper nitrogen --restore
@@ -61,6 +64,7 @@ focus_follows_mouse no
 
 # start a terminal
 bindsym $mod+Return exec $terminal
+#bindsym $mod+Shift+Return exec $coolterminal
 
 # start a browser
 bindsym $mod+n exec $browser
@@ -144,6 +148,16 @@ set $ws7  "7:  "
 set $ws8  "8:  "
 set $ws9  "9:  "
 set $ws10 "10:  "
+set $ws11  "11:  "
+set $ws12  "12:  "
+set $ws13  "13:  "
+set $ws14  "14:  "
+set $ws15  "15:  "
+set $ws16  "16:  "
+set $ws17  "17:  "
+set $ws18  "18:  "
+set $ws19  "19:  "
+set $ws20 "20:  "
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -156,6 +170,16 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
+bindsym Ctrl+$mod+1 workspace $ws11
+bindsym Ctrl+$mod+2 workspace $ws12
+bindsym Ctrl+$mod+3 workspace $ws13
+bindsym Ctrl+$mod+4 workspace $ws14
+bindsym Ctrl+$mod+5 workspace $ws15
+bindsym Ctrl+$mod+6 workspace $ws16
+bindsym Ctrl+$mod+7 workspace $ws17
+bindsym Ctrl+$mod+8 workspace $ws18
+bindsym Ctrl+$mod+9 workspace $ws19
+bindsym Ctrl+$mod+0 workspace $ws20
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -168,6 +192,16 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym Ctrl+$mod+Shift+1 move container to workspace $ws11
+bindsym Ctrl+$mod+Shift+2 move container to workspace $ws12
+bindsym Ctrl+$mod+Shift+3 move container to workspace $ws13
+bindsym Ctrl+$mod+Shift+4 move container to workspace $ws14
+bindsym Ctrl+$mod+Shift+5 move container to workspace $ws15
+bindsym Ctrl+$mod+Shift+6 move container to workspace $ws16
+bindsym Ctrl+$mod+Shift+7 move container to workspace $ws17
+bindsym Ctrl+$mod+Shift+8 move container to workspace $ws18
+bindsym Ctrl+$mod+Shift+9 move container to workspace $ws19
+bindsym Ctrl+$mod+Shift+0 move container to workspace $ws20
 
 # move workspaces to another monitor
 # vi-like
@@ -182,26 +216,27 @@ bindsym Ctrl+$alt+Up move workspace to output up
 bindsym Ctrl+$alt+Right move workspace to output right
 
 #assign
-assign [class="^Keepassx2$"] $ws9
+assign [class="^Pavucontrol$"] $ws20
+assign [class="^Synergy$"] $ws20
 
 #floating
-for_window [class="^Pavucontrol$"] floating enable
+#for_window [class="^Keepassx2$"] floating enable
 for_window [class="Wine"] floating enable
 for_window [class="Skype"] floating enable
 for_window [title="MonoDevelop External Console"] floating enable
 for_window [window_role="pop-up"] floating enable
 
 # https://github.com/ValveSoftware/steam-for-linux/issues/1040
-for_window [class="^Steam$" title="^Friends$"] floating enable
-for_window [class="^Steam$" title="Steam - News"] floating enable
-for_window [class="^Steam$" title=".* - Chat"] floating enable
-for_window [class="^Steam$" title="^Settings$"] floating enable
-for_window [class="^Steam$" title=".* - event started"] floating enable
-for_window [class="^Steam$" title=".* CD key"] floating enable
-for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
-for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
-for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
-for_window [title="^Steam Keyboard$"] floating enable
+#for_window [class="^Steam$" title="^Friends$"] floating enable
+#for_window [class="^Steam$" title="Steam - News"] floating enable
+#for_window [class="^Steam$" title=".* - Chat"] floating enable
+#for_window [class="^Steam$" title="^Settings$"] floating enable
+#for_window [class="^Steam$" title=".* - event started"] floating enable
+#for_window [class="^Steam$" title=".* CD key"] floating enable
+#for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
+#for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
+#for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
+#for_window [title="^Steam Keyboard$"] floating enable
 
 # scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -367,11 +402,17 @@ bindsym $mod+b mode "$mode_keyboard"
 # take screenshots
 bindsym Print exec $fs_screenshot
 
+# monitor align
+exec --no-startup-id xrandr --output HDMI-2 --right-of HDMI-1
+
 # start compositor (since i3 does not support natively)
 exec --no-startup-id compton
 
 # restore wallpaper
 exec --no-startup-id $set_wallpaper
+
+# set keyboard map
+exec --no-startup-id setxkbmap us alt-intl 
 
 # notification manager
 exec --no-startup-id dunst
@@ -383,8 +424,8 @@ exec --no-startup-id xautolock -detectsleep -time 10 -notify 30 \
 -corners 0-00 -locker $lock_screen &
 
 # misc startup programs
-exec --no-startup-id pcmanfm -d & \
-notify-send -u normal -t 300 -i info 'loaded: pcmanfm' 'startup'
+#exec --no-startup-id pcmanfm -d & \
+#notify-send -u normal -t 300 -i info 'loaded: pcmanfm' 'startup'
 
 exec --no-startup-id xmodmap ~/.xmodmap & \
 notify-send -u normal -t 300 -i info 'loaded: xmodmap' 'startup'

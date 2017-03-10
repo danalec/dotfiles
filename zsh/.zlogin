@@ -14,7 +14,7 @@
 # ░  code  ░ https://github.com/danalec/dotfiles
 #
 # ~danalec/.zlogin
-# last modified : 2016-12-25
+# last modified : 2017-02-03
 #
 #█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
 
@@ -28,6 +28,9 @@ if [ -z "$DISPLAY" ] && [ -f "$XINITRC" ]; then
       ;;
     2)
       exec startx "$XINITRC" gnome-session
+      ;;
+    3)
+      exec startx "$XINITRC" startkde
       ;;
   esac
 fi
