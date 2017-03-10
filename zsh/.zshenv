@@ -11,7 +11,7 @@
 # ░  code  ░ https://github.com/danalec/dotfiles
 #
 # ~danalec/.zshenv
-# last modified : 2017-01-16
+# last modified : 2017-03-10
 #
 #█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
 
@@ -88,6 +88,11 @@ if [ -f "$HOME/.pythonrc.py" ]; then
   export PYTHONSTARTUP="$HOME/.pythonrc.py"
 fi
 
+# check if qt5ctis present
+if [ -f "/usr/bin/qt5ct" ]; then
+  export QT_QPA_PLATFORMTHEME="qt5ct"
+fi
+
 # set tips text
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
 
@@ -96,4 +101,3 @@ export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
 if [ -f "$ZDOTDIR/.zshenv.local" ]; then
   source "$ZDOTDIR/.zshenv.local"
 fi
-

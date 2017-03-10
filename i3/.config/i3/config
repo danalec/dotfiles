@@ -32,9 +32,7 @@
 set $terminal termite -d "`xcwd`"
 #set $coolterminal cool-retro-term --workdir "`xcwd`"
 set $browser chromium
-#set $file_manager dolphin "`xcwd`"
-set $file_manager pcmanfm -n "`xcwd`"
-#set $file_manager pantheon-files "`xcwd`"
+set $file_manager dolphin --platformtheme qt5ct "`xcwd`"
 set $lock_screen "$HOME/.config/i3/scripts/venv/bin/python \
 $HOME/.config/i3/scripts/lock_screen.py"
 set $set_wallpaper nitrogen --restore
@@ -148,16 +146,16 @@ set $ws7  "7:  "
 set $ws8  "8:  "
 set $ws9  "9:  "
 set $ws10 "10:  "
-set $ws11  "11:  "
-set $ws12  "12:  "
-set $ws13  "13:  "
-set $ws14  "14:  "
-set $ws15  "15:  "
-set $ws16  "16:  "
-set $ws17  "17:  "
-set $ws18  "18:  "
-set $ws19  "19:  "
-set $ws20 "20:  "
+set $ws11 "11:  "
+set $ws12 "12:  "
+set $ws13 "13:  "
+set $ws14 "14:  "
+set $ws15 "15:  "
+set $ws16 "16:  "
+set $ws17 "17:  "
+set $ws18 "18:  "
+set $ws19 "19:  "
+set $ws20 "20:  "
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -216,8 +214,8 @@ bindsym Ctrl+$alt+Up move workspace to output up
 bindsym Ctrl+$alt+Right move workspace to output right
 
 #assign
-assign [class="^Pavucontrol$"] $ws20
-assign [class="^Synergy$"] $ws20
+assign [class="^Pavucontrol$"] $ws12
+assign [class="^Synergy$"] $ws12
 
 #floating
 #for_window [class="^Keepassx2$"] floating enable
@@ -424,9 +422,6 @@ exec --no-startup-id xautolock -detectsleep -time 10 -notify 30 \
 -corners 0-00 -locker $lock_screen &
 
 # misc startup programs
-#exec --no-startup-id pcmanfm -d & \
-#notify-send -u normal -t 300 -i info 'loaded: pcmanfm' 'startup'
-
 exec --no-startup-id xmodmap ~/.xmodmap & \
 notify-send -u normal -t 300 -i info 'loaded: xmodmap' 'startup'
 
@@ -444,4 +439,3 @@ notify-send -u normal -t 300 -i info 'loaded: keybase' 'startup'
 
 exec --no-startup-id i3-msg "workspace $ws1; exec $terminal" & \
 notify-send -u normal -t 300 -i info 'loaded: terminal' 'startup'
-

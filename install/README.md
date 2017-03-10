@@ -20,9 +20,6 @@ por [Dan Alec](https://twitter.com/danalec) ([danalec@gmail.com](mailto:danalec@
  - [hdparm](#hdparm)
  - [limpeza](#limpeza)
 
- - [userstyles](#userstyles)
- - [userscripts](#userscripts)
-
 ⠀
 ----------
 ## introdução
@@ -334,7 +331,7 @@ utilize como o exemplo `apacaur stow` e `apacman mc`
 ##### agora vamos escolher os WM (Window Manager, aka interface gráfica):
 - caso você escolha (instalar o gdm), não precisará instalar o xorg-server:
 
-`$ sudo pacman --noconfirm -S gdm gnome-tweak-tool gnome-control-center gvfs gvfs-mtp xorg-xprop xorg-xbacklight`
+`$ sudo pacman --noconfirm -S gdm gnome-tweak-tool gnome-control-center gvfs gvfs-mtp xorg-xprop xorg-xbacklight xorg-xkill`
 
 `# sudo systemctl enable gdm.service`
 
@@ -465,7 +462,7 @@ extras: `# pacaur --noconfirm --noedit -S font-mathematica ttf-monapo ttf-libera
 `# pacaur --noconfirm --noedit -S translate-git wcalc`
 
 ⠀
-##### inúteis mas legais (reparou né?)
+##### inúteis mas legais
 `# pacaur --noconfirm --noedit -S sl figlet cowsay ponysay lolcat toilet cmatrix figlet toilet-fonts figlet-fonts`
 
 ⠀
@@ -517,6 +514,8 @@ outros utilitários pro steam:
 ##### adwaita para qt4
 `# pacaur --noconfirm --noedit -S adwaita-qt4`
 
+##### qt5ct qt5gtk2
+`# pacaur --noconfirm --noedit -S qt5ct qt5gtk2`
 ⠀
 ##### powerpill
 
@@ -614,6 +613,10 @@ ____________
 `$ sudo systemctl start fail2ban`
 
 `$ sudo systemctl enable fail2ban`
+
+⠀
+##### dlang: dmd dcd dtools 
+`$ sudo pacman --noconfirm -S dmd dcd dtools`
 
 ⠀
 ____________
@@ -748,227 +751,5 @@ velocidade de leitura: `hdparm -t --direct /dev/sda`
 velocidade de escrita: `sync;time bash -c "(dd if=/dev/zero of=bf bs=8k count=500000; sync)"`
 
 hdd diagnóstico:`sudo smartctl --all /dev/sda2`
-
-⠀
-____________
-## UserStyles
-<a name="userstyles"></a>
-
-- [Amazon - Dark slate](https://userstyles.org/styles/133725/amazon-dark-slate)
-
-- [Archlinux and ArchAssault Dark](https://userstyles.org/styles/108169/archlinux-and-archassault-dark)
-
-- [Black & Orange [pocketappz]](https://userstyles.org/styles/99401/greasyfork-org-black-orange-pocketappz)
-
-- [Coursera Dark Videos](https://userstyles.org/styles/126906/coursera-dark-videos)
-
-- [Coursera | Pitch Black](https://userstyles.org/styles/130934/coursera-pitch-black)
-
-- [Crunchyroll - Dark Theme](https://userstyles.org/styles/68293/crunchyroll-dark-theme)
-
-- [Dark Google - Material](https://userstyles.org/styles/125727/dark-google-material)
-
-- [Dark Inverted](https://userstyles.org/styles/132158/dark-inverted)
-
-- [Dark LWN](https://userstyles.org/styles/37157/dark-lwn)
-
-- [Dark/Night (Facebook) Messenger](https://userstyles.org/styles/134433/dark-night-facebook-messenger)
-
-- [Darker Pirate Bay](https://userstyles.org/styles/94506/darker-pirate-bay)
-
-- [DarkSearch for Google](https://userstyles.org/styles/118959/darksearch-for-google)
-
-- [DarkTube](https://userstyles.org/styles/117673/darktube)
-
-- [Dusky Gray Facebook [Dark Theme]](https://userstyles.org/styles/118180/dusky-gray-facebook-dark-theme)
-
-- [Facebook Messenger - the dark side](https://userstyles.org/styles/112397/facebook-messenger-the-dark-side)
-
-- [GitHub Dark](https://userstyles.org/styles/37035/github-dark)
-
-- [gnome LightsOut Dark grey / sombre](https://userstyles.org/styles/122231/gnome-lightsout-dark-grey-sombre)
-
-- [Google Calendar - Dark Style](https://userstyles.org/styles/102256/google--calendar-dark-style)
-
-- [Google Docs Dark UI](https://userstyles.org/styles/120097/google-docs-dark-ui)
-
-- [Google Drive Dark](https://userstyles.org/styles/105045/google-drive-dark)
-
-- [Google Play Music | Clean Simple Dark | CSD](https://userstyles.org/styles/126966/google-play-music-clean-simple-dark-csd)
-
-- [Humble Store - Eye Friendly](https://userstyles.org/styles/101319/humble-store-eye-friendly)
-
-- [Library Genesis (LibGen) | libgen.io](https://userstyles.org/styles/99196/library-genesis-libgen-libgen-io)
-
-- [NewsBlur - Dark Theme by Splike](https://userstyles.org/styles/124890/newsblur-dark-theme-by-splike)
-
-- [NT Dark](https://userstyles.org/styles/132961/nt-dark)
-
-- [Phoronix nightmode](https://userstyles.org/styles/118469/phoronix-nightmode)
-
-- [Pixiv - Dark Theme](https://userstyles.org/styles/133057/pixiv-dark-theme)
-
-- [Simplify Google Calendar Design](https://userstyles.org/styles/114656/simplify-google-calendar-design)
-
-- [Slashdot Flat Greyscale](https://userstyles.org/styles/15710/slashdot-flat-greyscale)
-
-- [StackExchange Dark](https://userstyles.org/styles/35345/stackoverflow-dark)
-
-- [Stackoverflow Dark](https://userstyles.org/styles/35345/stackoverflow-dark)
-
-- [Stylish Extra Dark Chrome Editor (High Contrast)](https://userstyles.org/styles/113469/stylish-extra-dark-chrome-editor-high-contrast)
-
-- [Telegram Solarized Dark Grey](https://userstyles.org/styles/125669/telegram-solarized-dark-grey)
-
-- [Twitter - Dark n Simple](https://userstyles.org/styles/128569/twitter-dark-n-simple)
-
-- [Twitter Theme](https://userstyles.org/styles/103677/twitter-theme)
-
-- [Undistractify StackOverflow](https://userstyles.org/styles/110637/undistractify-stackoverflow)
-
-- [Userstyles Dark | aperopia](https://userstyles.org/styles/105609/userstyles-dark-aperopia)
-
-- [Viki Black-Silver Edition 1.4](https://userstyles.org/styles/130971/viki-black-silver-edition-1-4)
-
-- [WA-Web - Dark Skin [WITH MORE CONTRAST]](https://userstyles.org/styles/131071/wa-web-dark-skin-with-more-contrast)
-
-- [Wikipedia Minimalistic Dark Material Design](https://userstyles.org/styles/122072/wikipedia-minimalistic-dark-material-design)
-
-- [YouTube - Nyan Cat progress bar video player theme](https://userstyles.org/styles/95033/youtube-nyan-cat-progress-bar-video-player-theme)
-
-- [◆Techcrunch](https://userstyles.org/styles/85918/techcrunch)
-
-- [◆Cleaner Cso Online](https://userstyles.org/styles/124340/cleaner-cso-online)
-
-- [Remove Tumblr Ads](https://userstyles.org/styles/112777/remove-tumblr-ads)
-
-- [Better Reading with Big Titles by Sahin Boydas](https://userstyles.org/styles/127167)
-
-- [Soundcloud.com - Nightmode ](https://userstyles.org/styles/107360/soundcloud-com-nightmode)
-⠀
-____________
-<a name="userscripts"></a>
-
-https://greasyfork.org/en/scripts/18139-nyaa-se-custom-search
-
-https://greasyfork.org/en/scripts/735-anti-adblock-killer-reek
-
-https://greasyfork.org/en/scripts/4881-adsbypasser
-
-https://greasyfork.org/en/scripts/2669-adf-ly-lienscash-com-adfoc-us-bc-vc-sh-st-bypasser
-
-https://greasyfork.org/en/scripts/5729-enhanced-steam-workshop-downloader
-
-https://greasyfork.org/en/scripts/19499-dont-use-adblock-killer
-
-https://greasyfork.org/en/scripts/9165-auto-close-youtube-ads
-
-https://greasyfork.org/en/scripts/16105-bundle-helper
-
-https://github.com/sgeto/Betty/raw/master/Betty.user.js
-
-https://greasyfork.org/en/scripts/15857-direct-links-out
-
-https://greasyfork.org/en/scripts/19315-disable-image-resize-in-feedly
-
-https://greasyfork.org/en/scripts/23329-disable-youtube-60fps-force-30fps
-
-https://greasyfork.org/en/scripts/2180-downalbum
-
-https://greasyfork.org/en/scripts/1317-download-youtube-videos-as-mp4
-
-https://greasyfork.org/en/scripts/3511-enable-right-click-reek
-
-https://greasyfork.org/en/scripts/3481-facebook-hd-video-downloader
-
-https://greasyfork.org/en/scripts/20483-feedly-filtering-and-sorting
-
-https://github.com/nodaguti/Greasemonkey/raw/master/Feedly_Search.user.js
-
-https://openuserjs.org/scripts/reklatsmasters/depositjs
-
-https://greasyfork.org/en/scripts/4423-file-hosting-download-manager-disabler
-
-https://greasyfork.org/en/scripts/23007-folhadesp-remover-paywall-adblock-assinantes
-
-https://greasyfork.org/en/scripts/15947-adblock
-
-https://greasyfork.org/en/scripts/10052-google-drive-direct-links
-
-https://greasyfork.org/en/scripts/7811-hide-ads-on-facebook
-
-https://greasyfork.org/en/scripts/21980-hide-fake-torrents-on-the-pirate-bay
-
-https://greasyfork.org/en/scripts/4783-hide-filesick
-
-https://greasyfork.org/en/scripts/16946-imdb-info-torrent-from-magnet
-
-https://greasyfork.org/en/scripts/4900-kissanime-anti-adblock-blocker
-
-https://github.com/josefandersson/KissMAL/raw/master/kissmal.user.js
-
-https://greasyfork.org/en/scripts/10290-netflix-us-availability-on-imdb-com
-
-https://greasyfork.org/en/scripts/18585-newspaper-paywall-bypasser
-
-https://greasyfork.org/en/scripts/5901-oc-remix-download-links
-
-https://greasyfork.org/en/scripts/8970-primewire-movie-trailers-and-reviews
-
-https://greasyfork.org/en/scripts/5357-remove-google-results-redirect
-
-https://greasyfork.org/en/scripts/16554-reddit-secure-delete-only-comments-more-than-7-days-old
-
-https://greasyfork.org/en/scripts/3695-rutracker-org-magnet-urls
-
-https://github.com/cvzi/Metacritic-userscript/raw/master/Show_metacritic_ratings.user.js
-
-https://greasyfork.org/en/scripts/22891-skip-steam-link-filter
-
-https://greasyfork.org/en/scripts/7992-steam-expand-all-reviews/code
-
-https://greasyfork.org/en/scripts/22104-steam-dlc-wishlister
-
-https://greasyfork.org/en/scripts/5148-steam-extra-profile-links
-
-https://greasyfork.org/en/scripts/5174-steam-extra-game-links
-
-https://greasyfork.org/en/scripts/21947-improved-steam-achievements
-
-https://greasyfork.org/en/scripts/16323-youtube-player-controls
-
-https://greasyfork.org/en/scripts/19740-wikia-ad-skipper
-
-https://greasyfork.org/en/scripts/19306-twitterinstacleaner
-
-https://greasyfork.org/en/scripts/9459-tumblr-com-hide-self-reblogs
-
-https://greasyfork.org/en/scripts/9014-tumblr-image-size
-
-https://greasyfork.org/en/scripts/2250-sts-helper
-
-https://greasyfork.org/en/scripts/22529-lynda-com-downloads
-
-https://greasyfork.org/en/scripts/22829-steam-s-lowest-price
-
-https://greasyfork.org/en/scripts/23916-links-on-netflix-imdb-metacritic-rotten-tomatoes
-
-https://greasyfork.org/en/scripts/17125-steamcompanion-center-mod
-
-https://greasyfork.org/en/scripts/19166-steamcompanion-auto-giveaway-enterer
-
-https://greasyfork.org/en/scripts/18450-steam-bypass-age-confirmation-prompts
-
-https://greasyfork.org/en/scripts/23432-hacker-news-date-tooltips
-
-https://greasyfork.org/en/scripts/23257-hacker-news-better-ghosted-comments
-
-https://greasyfork.org/en/scripts/23257-hacker-news-better-ghosted-comments
-
-https://greasyfork.org/en/scripts/2961-hacker-news-author-hilight
-
-https://greasyfork.org/en/scripts/16911-sort-hacker-news
-
-https://greasyfork.org/en/scripts/7209-hacker-news-open-links-in-new-tab
 
 ⠀

@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/media/peito/Data/danalec/dotfiles/i3/.config/i3pystatus/venv"
+set -gx VIRTUAL_ENV "/home/danalec/Documents/dotfiles/i3/.config/i3pystatus/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

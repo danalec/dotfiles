@@ -11,7 +11,7 @@
 # ░  code  ░ https://github.com/danalec/dotfiles
 #
 # ~danalec/.zshrc.local
-# last modified : 2017-03-09
+# last modified : 2017-03-10
 #
 #█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
 
@@ -517,6 +517,7 @@ alias free='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches'
 alias hello='nmap -sP 192.168.1.0/24; arp-scan --localnet | grep "192.168.1.[0-9]* *ether"'
 alias rmpyc='find . -name \*.pyc -delete'
 alias yyis="echo ~ (•̀ᴗ•́)و ̑̑ "
+alias grabwindowid="xdotool click 1|xwininfo|grep 'Window id:'"
 #alias cd='pushd > /dev/null'   # experimental
 #alias fuck=sudo !!
 #alias gp='git push origin HEAD'
