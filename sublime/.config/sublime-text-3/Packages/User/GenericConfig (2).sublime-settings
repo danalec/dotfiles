@@ -1,0 +1,8 @@
+{
+	"extensions":
+	[
+		"gitignore",
+		".zplugrc",
+		"local"
+	]
+}
