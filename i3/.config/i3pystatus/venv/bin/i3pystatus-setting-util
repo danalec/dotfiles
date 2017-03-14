@@ -1,4 +1,4 @@
-#!/home/danalec/Documents/dotfiles/i3/.config/i3pystatus/venv/bin/python
+#!/home/danalec/dotfiles/i3/.config/i3pystatus/venv/bin/python
 # EASY-INSTALL-ENTRY-SCRIPT: 'i3pystatus','console_scripts','i3pystatus-setting-util'
 __requires__ = 'i3pystatus'
 import re

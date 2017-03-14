@@ -165,7 +165,7 @@ status.register(
     "network",
     format_up="[ {essid} \[{quality}%\] ] {bytes_recv}K  {bytes_sent}K",
     format_down=" {interface}",
-    interface="enp3s0",
+    interface="enp0s31f6",
     next_if_down=True,
     on_leftclick="termite -e 'sudo nmtui'",
     on_rightclick=None,

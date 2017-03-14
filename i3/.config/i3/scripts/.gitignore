@@ -1,0 +1,10 @@
+/*
+!LICENSE
+!.gitignore
+!.autoenv_leave.zsh
+!.autoenv.zsh
+!.directory
+!bootstrap.sh
+!lock_screen.py
+!lock_screen.sh
+!requirements.txt

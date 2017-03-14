@@ -25,7 +25,6 @@
 # - py3status (status bar)
 
 # i3 config file (v4)
-#
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # default applications
@@ -72,7 +71,7 @@ bindsym $mod+m exec $file_manager
 
 # kill focused window
 bindsym $mod+Shift+q kill
-bindsym Mod1+F4 kill
+bindsym $alt+F4 kill
 
 # start rofi in dmenu mode
 bindsym $mod+d exec rofi -show run
@@ -318,7 +317,7 @@ bindsym $mod+p mode "$display_mode"
 
 # start i3pystatus to display status bar
 bar {
-    output HDMI-1
+	tray_output HDMI-1
     position top
     status_command $status_bar
     # status bar color theme
@@ -423,19 +422,19 @@ exec --no-startup-id xautolock -detectsleep -time 10 -notify 30 \
 
 # misc startup programs
 exec --no-startup-id xmodmap ~/.xmodmap & \
-notify-send -u normal -t 300 -i info 'loaded: xmodmap' 'startup'
+notify-send -u normal -t 800 -i info 'loaded: xmodmap' 'startup'
 
 exec --no-startup-id numlockx & \
-notify-send -u normal -t 300 -i info 'loaded: numlockx' 'startup'
+notify-send -u normal -t 800 -i info 'loaded: numlockx' 'startup'
 
 exec --no-startup-id insync start & \
-notify-send -u normal -t 300 -i info 'loaded: insync' 'startup'
+notify-send -u normal -t 800 -i info 'loaded: insync' 'startup'
 
 exec --no-startup-id imwheel & \
-notify-send -u normal -t 300 -i info 'loaded: imwheel' 'startup'
+notify-send -u normal -t 800 -i info 'loaded: imwheel' 'startup'
 
 exec --no-startup-id keybase & \
-notify-send -u normal -t 300 -i info 'loaded: keybase' 'startup'
+notify-send -u normal -t 800 -i info 'loaded: keybase' 'startup'
 
 exec --no-startup-id i3-msg "workspace $ws1; exec $terminal" & \
-notify-send -u normal -t 300 -i info 'loaded: terminal' 'startup'
+notify-send -u normal -t 800 -i info 'loaded: terminal' 'startup'

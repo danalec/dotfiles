@@ -489,7 +489,6 @@ alias pubkey="more ~/.ssh/id_rsa.pub | xclip -selection clipboard | echo '=> pub
 alias Q='exit'
 alias rcp='rsync -v --progress'
 alias rd=rmdir
-alias record="ffmpeg -f x11grab -s 1920x1080 -an -r 16 -loglevel quiet -i :0.0 -b:v 15M -y" #pass a filename
 alias rm='rm -iv'
 alias rmdir='rmdir -v'
 alias rmv='rsync -v --progress --remove-source-files'
@@ -517,11 +516,19 @@ alias free='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches'
 alias hello='nmap -sP 192.168.1.0/24; arp-scan --localnet | grep "192.168.1.[0-9]* *ether"'
 alias rmpyc='find . -name \*.pyc -delete'
 alias yyis="echo ~ (•̀ᴗ•́)و ̑̑ "
-alias grabwindowid="xdotool click 1|xwininfo|grep 'Window id:'"
 #alias cd='pushd > /dev/null'   # experimental
 #alias fuck=sudo !!
 #alias gp='git push origin HEAD'
 #alias npminstall="sudo rm -rf node_modules && sudo npm cache clear && sudo npm cache clean && sudo PYTHON=/usr/bin/python2 npm install"
+
+# ffmpeg record experimental
+alias recordfull="ffmpeg -f x11grab -s `xrandr | grep 'current' | awk '{print $8}'` x `xrandr | grep 'current' | awk '{print $10}'` -an -r 16 -loglevel quiet -i :0.0 -b:v 15M -y"
+alias record-primary="ffmpeg -f x11grab -s `xrandr | grep 'connected primary'| awk '{print substr($4, 1, length($4)-4)}'` -an -r 16 -loglevel quiet -i :0.0 -b:v 15M -y"
+#alias record-screen2="ffmpeg -f x11grab -s `1920x1080` -an -r 16 -loglevel quiet -i :0.0+2560,0 -b:v 15M -y"
+
+# xdotool experimental
+alias grabwindowid="xdotool click 1|xwininfo|grep 'Window id:'"
+alias grabmousecoord="xdotool getmouselocation --shell"
 
 # fun
 alias ascii="toilet -t -f 3d"
