@@ -1,0 +1,35 @@
+[CompactMode]
+FontWeight=50
+
+[DetailsMode]
+FontWeight=50
+
+[General]
+Version=200
+ViewPropsTimestamp=2017,3,9,15,7,31
+
+[IconsMode]
+FontWeight=50
+
+[KPropertiesDialog]
+Height 1080=365
+Width 1920=520
+Width 2560=428
+
+[MainWindow]
+Height 1080=1059
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAwAAAAAAAADEAAAD/fwCAAAAAvsAAAAWAGYAbwBsAGQAZQByAHMARABvAGMAawAAAAAA/////wAAAAoBAAAD+wAAABQAcABsAGEAYwBlAHMARABvAGMAawEAAAAmAAAD/QAAAFoBAAADAAAAAQAAAAAAAAAA/AIAAAAB+wAAABAAaQBuAGYAbwBEAG8AYwBrAAAAAAD/////AAAACgEAAAMAAAADAAAAAAAAAAD8AQAAAAH7AAAAGAB0AGUAcgBtAGkAbgBhAGwARABvAGMAawAAAAAA/////wAAAAoBAAADAAAEOQAAA/0AAAAEAAAABAAAAAgAAAAI/AAAAAEAAAACAAAAAQAAABYAbQBhAGkAbgBUAG8AbwBsAEIAYQByAQAAAAD/////AAAAAAAAAAA=
+ToolBarsMovable=Disabled
+Width 1920=1918
+Width 2560=1278
+
+[Notification Messages]
+ConfirmDelete=true
+
+[PreviewSettings]
+Plugins=comicbookthumbnail,djvuthumbnail,directorythumbnail,imagethumbnail,jpegthumbnail,windowsexethumbnail,textthumbnail
+
+[SettingsDialog]
+Height 1080=454
+Width 2560=520

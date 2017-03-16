@@ -14,7 +14,7 @@
 # ░  code  ░ https://github.com/danalec/dotfiles
 #
 # ~danalec/.zplugrc
-# last modified : 2016-11-14
+# last modified : 2017-03-14
 #
 # █▓▒░ 修正、改変、再配布何でも可 ░▒▓█
 
@@ -33,7 +33,7 @@ fi
 source "$ZPLUG_HOME/init.zsh"
 
 # let zplug manage zplug
-# zplug "zplug/zplug"
+#zplug "zplug/zplug"
 
 if [ `tput colors` -ge 256 ]; then
   # 256 colors themes
@@ -83,9 +83,7 @@ zplug "zsh-users/zsh-autosuggestions", at:features/async
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-syntax-highlighting"
 
-# misc
-# zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
-zplug "junegunn/fzf", use:"shell/*.zsh"
+# misc   
 zplug "Tarrasch/zsh-autoenv"
 zplug "schischi/xcwd", \
   as:command, \
@@ -95,9 +93,19 @@ zplug "glidenote/hub-zsh-completion"
 zplug "Tarrasch/zsh-autoenv"
 #zplug "lukechilds/zsh-nvm"
 
+zplug "clvv/fasd", \
+    as:command, \
+    hook-build:"PREFIX=$HOME make install"
+
 #zplug "jhawthorn/fzy", \
 #    as:command, \
 #    hook-build:"make && sudo make install"
+
+# interactive filter
+# why use fzf http://qiita.com/b4b4r07/items/9e1bbffb1be70b6ce033
+
+# zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
+zplug "junegunn/fzf", use:"shell/*.zsh"
 
 # fzf-bin にホスティングされているので注意
 # またファイル名が fzf-bin となっているので rename-to:fzf としてリネームする
@@ -106,7 +114,7 @@ zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 
 # 必要ならばアーキテクチャ指定
-zplug "peco/peco", as:command, from:gh-r, use:"*amd64*"
+#zplug "peco/peco", as:command, from:gh-r
 
 # fzf-tmux の peco バージョン
 #zplug "b4b4r07/dotfiles", as:command, use:bin/peco-tmux
@@ -143,8 +151,8 @@ zplug "stedolan/jq", \
 #    as:command, \
 #    hook-build:"make"
 
-zplug "mrowa44/emojify", as:command
-zplug "b4b4r07/emoji-cli", on:"stedolan/jq"
+#zplug "mrowa44/emojify", as:command
+#zplug "b4b4r07/emoji-cli", on:"stedolan/jq"
 
 # configuration here needs to be processed before zplug load
 # prezto

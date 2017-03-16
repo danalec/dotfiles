@@ -9,7 +9,7 @@
 	"color_scheme": "Packages/User/SublimeLinter/amCoder (Bright) (SL).tmTheme",
 	"draw_indent_guides": true,
 	"font_face": "Inconsolata",
-	"font_size": 11,
+	"font_size": 13,
 	"ignored_packages":
 	[
 		"Vintage"

@@ -97,6 +97,7 @@ $ cat fsociety00.dat
  bin            > some fun stuff
  cower          > pretentious AUR agent config
  figlet         > non ordinary to be, custom 3d fonts 
+ dolphin        > kde's dolphin file manager config
  gdm-theme      > microsoft windows 3.11 vap0rwave background
  git            > global git config
  gtk            > gtk and some gnome configs
@@ -115,6 +116,7 @@ $ cat fsociety00.dat
  nvim           > the future of vim config, zplug and powerlevel9k
  pacman         > pacman colors, progress bar animations and some repositories
  pcmanfm        > file manager settings
+ pulseaudio     > ladspa config for pulseaudio
  pygments       > add syntax highlighting to cat and less commands
  python         > python some config stuff
  qt             > qt theme config

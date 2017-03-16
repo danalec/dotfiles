@@ -398,8 +398,16 @@ extras: `# pacaur --noconfirm --noedit -S font-mathematica ttf-monapo ttf-libera
 `# pacaur --noconfirm --noedit -S pavucontrol`
 
 
-##### tutorial de normalização de volume em breve!
+##### ladspa : como normalizar o som
 `# pacaur --noconfirm --noedit -S ladspa swh-plugins`
+
+edite ~/.config/pulse/default.pa
+
+`.nofail
+.include /etc/pulse/default.pa
+load-module module-ladspa-sink  sink_name=ladspa_sink  plugin=dyson_compress_1403  label=dysonCompress  control=0,1,0.5,0.99
+load-module module-ladspa-sink  sink_name=ladspa_normalized  master=ladspa_sink  plugin=fast_lookahead_limiter_1913  label=fastLookaheadLimiter  control=10,0,0.8
+set-default-sink ladspa_normalized`
 
 ⠀
 ##### acpi para ler algumas informações da máquina

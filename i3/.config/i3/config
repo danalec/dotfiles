@@ -138,12 +138,12 @@ bindsym $mod+z focus child
 set $ws1  "1:  "
 set $ws2  "2:  "
 set $ws3  "3:  "
-set $ws4  "4:  "
-set $ws5  "5:  "
-set $ws6  "6:  "
+set $ws4  "4:  "
+set $ws5  "5:  "
+set $ws6  "6:  "
 set $ws7  "7:  "
 set $ws8  "8:  "
-set $ws9  "9:  "
+set $ws9  "9:  "
 set $ws10 "10:  "
 set $ws11 "11:  "
 set $ws12 "12:  "
@@ -215,6 +215,7 @@ bindsym Ctrl+$alt+Right move workspace to output right
 #assign
 assign [class="^Pavucontrol$"] $ws12
 assign [class="^Synergy$"] $ws12
+assign [class="^Keepassx2$"] $ws4
 
 #floating
 #for_window [class="^Keepassx2$"] floating enable
@@ -296,9 +297,9 @@ mode "$display_layout_vga" {
 
 set $display_layout_hdmi Display  HDMI:  ,  , [o]ff
 mode "$display_layout_hdmi" {
-    bindsym Left exec xrandr --output HDMI-0 --auto --left-of LVDS-0 && $set_wallpaper, mode "default"
-    bindsym Right exec xrandr --output HDMI-0 --auto --right-of LVDS-0 && $set_wallpaper, mode "default"
-    bindsym o exec xrandr --output HDMI-0 --auto --off && $set_wallpaper, mode "default"
+    bindsym Left exec xrandr --output HDMI-1 --auto --left-of LVDS-0 && $set_wallpaper, mode "default"
+    bindsym Right exec xrandr --output HDMI-1 --auto --right-of LVDS-0 && $set_wallpaper, mode "default"
+    bindsym o exec xrandr --output HDMI-1 --auto --off && $set_wallpaper, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
