@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [ "$1" == "low" ]
+then
+ pactl set-sink-volume 1 -5%
+ TEXT=$(amixer sget Master | tail -1 | cut -d' ' -f6 | sed 's/\(\[\|\]\)//g')
+elif [ "$1" == "high" ]
+then
+ pactl set-sink-volume 1 +5%
+ ICON="/usr/share/icons/Adwaita/16x16/status/audio-volume-high.png"
+ TEXT=$(amixer sget Master | tail -1 | cut -d' ' -f6 | sed 's/\(\[\|\]\)//g')
+elif [ "$1" == "mute" ]
+then
+ set-sink-mute 1 toggle
+ ICON="/usr/share/icons/Adwaita/16x16/status/audio-volume-muted.png"
+ TEXT=$(amixer sget Master | tail -1 | cut -d' ' -f8 | sed 's/\(\[\|\]\)//g')
+else
+ echo "Usage volume [low | high | mute]\n"
+fi
+
+ID=$(cat $HOME/.dunst_volume)
+if [ $ID -gt "0" ]
+then
+ dunstify -p -r $ID -i $ICON "Volume: $TEXT" >$HOME/.dunst_volume
+else
+ dunstify -p -i $ICON "Volume: $TEXT" >$HOME/.dunst_volume
+fi

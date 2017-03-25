@@ -1,10 +1,11 @@
 /*
-!LICENSE
-!.gitignore
-!.autoenv_leave.zsh
 !.autoenv.zsh
+!.autoenv_leave.zsh
 !.directory
+!.gitignore
 !bootstrap.sh
+!LICENSE
 !lock_screen.py
 !lock_screen.sh
 !requirements.txt
+!volume

@@ -372,18 +372,27 @@ se você usa netflix, precisará: `pacaur --noconfirm --noedit -S chromium-widev
 
 ⠀
 ##### agora vamos instalar o que falta para meu dotfiles:
-`$ sudo pacman -S i3-wm scrot nitrogen imagemagick ffmpeg`
+`$ sudo pacman -S i3-wm scrot nitrogen imagemagick ffmpeg dunst`
 
-`# pacaur --noconfirm --noedit -S ranger-git redshift-gtk-git xcwd-git xdg-user-dirs`
+`# pacaur --noconfirm --noedit -S ranger-git redshift-gtk-git dunstify pamixer`
+
+
+`# pacaur --noconfirm --noedit -S xcwd-git xdg-user-dirs xdg-utils xdg-user-dirs-gtk`
+
+todo: `ln -s ~/.config/mimeapps.list ~/.local/share/applications/mimeapps.list`
+
+
 
 para gerar as pastas:
 
 `# LC_ALL=C xdg-user-dirs-update`
 
-e para corrigir o controle do brightness:
+para corrigir o controle do brightness:
 
+para nvidia
 `sudo chmod 777 /sys/class/backlight/nv_backlight/brightness`
-
+ou para intel
+`sudo chmod 777 /sys/class/backlight/acpi_video0/brightness`
 ⠀
 ##### vamos evitar tofus (retângulos vazios, caracteres não disponíveis)
 
@@ -594,6 +603,10 @@ ____________
 ## + programas que provavelmente não te interessarão
 <a name="parte6"></a>
 
+##### sox (opusfile libmad) ecasound
+`$ sudo pacman --noconfirm -S sox opusfile libmad ecasound`
+
+⠀
 ##### meld
 `$ sudo pacman --noconfirm -S meld`
 

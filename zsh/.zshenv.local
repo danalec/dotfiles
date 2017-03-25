@@ -80,7 +80,7 @@ export LANG="en_US.UTF-8"
 
 # グローバル変数
 export EDITOR='nvim'
-export BROWSER="chromium-dev"
+export BROWSER="chromium"
 export PAGER='less'
 export LESS='-R'
 export IMAGEVIEWER="gthumb"

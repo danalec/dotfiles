@@ -470,7 +470,7 @@ alias ln="ln -v"
 alias ln='ln -v'
 alias lol="base64 </dev/urandom | lolcat"
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
-alias manhtml='man --html=$BROWSER '
+alias man2html='man --html=$BROWSER '
 alias md='mkdir -v -p'
 alias mem_hogs='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
 alias mkdir="mkdir -v -p"
