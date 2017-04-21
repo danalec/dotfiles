@@ -115,7 +115,6 @@ $ cat fsociety00.dat
  mpv            > m45t3r's awesome mpv, very fucking high quality stuff
  nvim           > the future of vim config, zplug and powerlevel9k
  pacman         > pacman colors, progress bar animations and some repositories
- pcmanfm        > file manager settings
  pulseaudio     > ladspa config for pulseaudio
  pygments       > add syntax highlighting to cat and less commands
  python         > python some config stuff
