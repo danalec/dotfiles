@@ -7,22 +7,23 @@ gpg --keyserver pgp.mit.edu --recv-keys 487EACC08557AD082088DABA1EB2638FF56C0C53
 gpg --keyserver pgp.mit.edu --recv-keys 1EB2638FF56C0C53
 
 echo 'creating temporary folder'
-TMPDIR="${0##*/}-$$"
-mkdir -v "/tmp/$TMPDIR"
+TMPCOWERDIR="cower-$$"
+mkdir -v "/tmp/$TMPCOWERDIR"
+TMPPACAURDIR="pacaur-$$"
+mkdir -v "/tmp/$TMPPACAURDIR"
 
+cd /tmp/$TMPCOWERDIR
 echo 'downloading cower'
-cd /tmp/$TMPDIR || exit 1
 curl -L https://aur.archlinux.org/cgit/aur.git/snapshot/cower.tar.gz | tar xz
 
-echo 'cower makepkg'
+cd /tmp/$TMPCOWERDIR/cower
+echo 'makepkg cower'
 makepkg --syncdeps --install --noconfirm
 
+cd /tmp/$TMPPACAURDIR
 echo 'downloading pacaur'
-cd /tmp/$TMPDIR || exit 1
 curl -L https://aur.archlinux.org/cgit/aur.git/snapshot/pacaur.tar.gz | tar xz
 
-echo 'pacaur makepkg'
+cd /tmp/$TMPPACAURDIR/pacaur
+echo 'makepkg pacaur'
 makepkg --syncdeps --install --noconfirm
-
-echo 'cleaning temporary folder'
-rm -rf "/tmp/$TMPDIR"
