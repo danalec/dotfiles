@@ -299,6 +299,14 @@ const Settings = new Lang.Class({
                             this._builder.get_object('application_button_isolation_button'),
                             'active',
                             Gio.SettingsBindFlags.DEFAULT);
+        this._settings.bind('show-windows-preview',
+                            this._builder.get_object('windows_preview_button'),
+                            'active',
+                            Gio.SettingsBindFlags.DEFAULT);
+        this._settings.bind('hot-keys',
+                            this._builder.get_object('hot_keys_switch'),
+                            'active',
+                            Gio.SettingsBindFlags.DEFAULT);
         this._settings.bind('show-favorites',
                             this._builder.get_object('show_favorite_switch'),
                             'active',
@@ -327,6 +335,11 @@ const Settings = new Lang.Class({
         this._builder.get_object('click_action_combo').set_active(this._settings.get_enum('click-action'));
         this._builder.get_object('click_action_combo').connect('changed', Lang.bind (this, function(widget) {
             this._settings.set_enum('click-action', widget.get_active());
+        }));
+
+        this._builder.get_object('scroll_action_combo').set_active(this._settings.get_enum('scroll-action'));
+        this._builder.get_object('scroll_action_combo').connect('changed', Lang.bind (this, function(widget) {
+            this._settings.set_enum('scroll-action', widget.get_active());
         }));
 
         this._builder.get_object('shift_click_action_combo').connect('changed', Lang.bind (this, function(widget) {
@@ -395,8 +408,6 @@ const Settings = new Lang.Class({
             dialog.show_all();
 
         }));
-
-        this._settings.bind('scroll-switch-workspace', this._builder.get_object('switch_workspace_switch'), 'active', Gio.SettingsBindFlags.DEFAULT);
 
         // Appearance Panel
 
@@ -487,6 +498,10 @@ const Settings = new Lang.Class({
         this._settings.bind('opaque-background', this._builder.get_object('customize_opacity_switch'), 'active', Gio.SettingsBindFlags.DEFAULT);
         this._builder.get_object('custom_opacity_scale').set_value(this._settings.get_double('background-opacity'));
         this._settings.bind('opaque-background', this._builder.get_object('custom_opacity'), 'sensitive', Gio.SettingsBindFlags.DEFAULT);
+
+        this._settings.bind('force-straight-corner',
+            this._builder.get_object('force_straight_corner_switch'),
+            'active', Gio.SettingsBindFlags.DEFAULT);
 
         // About Panel
 

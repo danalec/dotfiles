@@ -333,11 +333,11 @@ utilize como o exemplo `apacaur stow` e `apacman mc`
 
 `$ sudo pacman --noconfirm -S gdm gnome-tweak-tool gnome-control-center gvfs gvfs-mtp xorg-xprop xorg-xbacklight xorg-xkill`
 
-`# sudo systemctl enable gdm.service`
+`$ sudo systemctl enable gdm.service`
 
 se você quer continuar instalando utilitários do gnome, aqui vão alguns úteis:
 
-`# pacaur --noconfirm -S chrome-gnome-shell-git`
+`$ pacaur --noconfirm -S chrome-gnome-shell-git`
 
 instale também o: [Gnome Extension](https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=en) e acesse https://extensions.gnome.org para adicionar as extensões ao gnome desktop
 
@@ -380,6 +380,8 @@ se você usa netflix, precisará: `pacaur --noconfirm --noedit -S chromium-widev
 `# pacaur --noconfirm --noedit -S xcwd-git xdg-user-dirs xdg-utils xdg-user-dirs-gtk`
 
 todo: `ln -s ~/.config/mimeapps.list ~/.local/share/applications/mimeapps.list`
+
+i3-config-wizard
 
 
 
@@ -603,6 +605,13 @@ ____________
 ## + programas que provavelmente não te interessarão
 <a name="parte6"></a>
 
+##### ripgrep-simd (rust rustup)
+`$ sudo pacman --noconfirm -S rust`
+`# pacaur --noconfirm --noedit -S rustup-git`
+`# rustup override set nightly`
+`# pacaur --noconfirm --noedit -S ripgrep-simd`
+
+⠀
 ##### sox (opusfile libmad) ecasound
 `$ sudo pacman --noconfirm -S sox opusfile libmad ecasound`
 

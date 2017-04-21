@@ -187,26 +187,15 @@ beep() {
 }
 
 # lazypack
-cd() { builtin cd "$@"; ls -lahF --color=auto; }
-
-:e() { subl3 "$@"; }
-
+cd() { builtin cd "$@"; ls -lhF --color=auto; }
 pac() { sudo pacman "$@"; }
-
 greppy() { grep -n "$1" *.py; }
-
 mcd () { mkdir -p "$1" && cd "$1"; }
-
 myps() { ps $@ -u "$USER" -o pid,%cpu,%mem,start,time,bsdtime,command ; }
-
 zipf () { zip -r "$1".zip "$1" ; }
-
 fpid () { lsof -t -c "$@" ; }               # find pid of process
-
 ff () { /usr/bin/find . -name "$@" ; }      # find file under the current directory
-
 ffs () { /usr/bin/find . -name "$@"'*' ; }  # find file whose name starts with a given string
-
 ffe () { /usr/bin/find . -name '*'"$@" ; }  # find file whose name ends with a given string
 
 extract () {
@@ -293,14 +282,9 @@ c() {
 }
 
 # print a separator banner, as wide as the terminal
-hr() {
-  print ${(l:COLUMNS::=:)}
-}
+hr() { print ${(l:COLUMNS::=:)} }
 
-dls () {
- # directory LS
- echo `ls -l | grep "^d" | awk '{ print $9 }' | tr -d "/"`
-}
+dls () { echo `ls -l | grep "^d" | awk '{ print $9 }' | tr -d "/"` }
 
 dgrep() {
     # A recursive, case-insensitive grep that excludes binary files
@@ -333,30 +317,15 @@ function url-encode; {
     echo "${${(j: :)@}//(#b)(?)/%$[[##16]##${match[1]}]}"
 }
 
-:w() {
-    xdg-open "http://en.wikipedia.org/w/index.php?search=`url-encode "${(j: :)@}"`"
-}
-:yt() {
-    xdg-open "https://www.youtube.com/results?search_query=`url-encode "${(j: :)@}"`"
-}
-:g() {
-    xdg-open "https://www.google.com/search?q=`url-encode "${(j: :)@}"`"
-}
-:gi() {
-    xdg-open "http://www.duckduckgo.com/?q=!gi+`url-encode "${(j: :)@}"`"
-}
-:gh() {
-    xdg-open "https://github.com/search?q=`url-encode "${(j: :)@}"`"
-}
-:s() {
-    xdg-open "http://www.duckduckgo.com/?q=`url-encode "${(j: :)@}"`"
-}
-:d() {
-    xdg-open "http://www.duckduckgo.com/?q=!d+`url-encode "${(j: :)@}"`"
-}
-:t() {
-    xdg-open "http://www.duckduckgo.com/?q=!t+`url-encode "${(j: :)@}"`"
-}
+:e() { subl3 "$@"; }
+:w() { xdg-open "http://en.wikipedia.org/w/index.php?search=`url-encode "${(j: :)@}"`" }
+:yt() { xdg-open "https://www.youtube.com/results?search_query=`url-encode "${(j: :)@}"`" }
+:g() { xdg-open "https://www.google.com/search?q=`url-encode "${(j: :)@}"`" }
+:gi() { xdg-open "http://www.duckduckgo.com/?q=!gi+`url-encode "${(j: :)@}"`" }
+:gh() { xdg-open "https://github.com/search?q=`url-encode "${(j: :)@}"`" }
+:s() { xdg-open "http://www.duckduckgo.com/?q=`url-encode "${(j: :)@}"`" }
+:d() { xdg-open "http://www.duckduckgo.com/?q=!d+`url-encode "${(j: :)@}"`" }
+:t() { xdg-open "http://www.duckduckgo.com/?q=!t+`url-encode "${(j: :)@}"`" }
 
 if type hub > /dev/null 2>&1; then
   function git() {
@@ -425,10 +394,9 @@ alias 8='cd -8'
 alias 9='cd -9'
 
 # List directory contents
-alias l='ls --color -lah'
 alias ll="ls -lahF --color=auto"
 alias la='ls -lAhF --color=auto'
-alias ls='ls --color=auto -hFg'
+alias ls='ls -hFg --color=auto '
 alias lsa='ls -lah --color=auto'
 alias lsl="ls -lhF --color=auto"
 

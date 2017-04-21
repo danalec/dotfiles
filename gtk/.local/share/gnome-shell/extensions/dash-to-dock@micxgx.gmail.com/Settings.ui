@@ -1087,6 +1087,29 @@
                             <property name="width">2</property>
                           </packing>
                         </child>
+                        <child>
+                          <object class="GtkCheckButton" id="windows_preview_button">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="margin_top">3</property>
+                            <property name="xalign">0</property>
+                            <property name="draw_indicator">True</property>
+                            <child>
+                              <object class="GtkLabel" id="windows_previews_label">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Show open windows previews.</property>
+                                <property name="use_markup">True</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">1</property>
+                            <property name="width">2</property>
+                          </packing>
+                        </child>
                       </object>
                     </child>
                   </object>
@@ -1123,7 +1146,7 @@
                             <property name="can_focus">False</property>
                             <property name="hexpand">True</property>
                             <property name="xalign">0</property>
-                            <property name="label" translatable="yes">If disabled, these settings are acccessible from gnome-tweak-tool or the extension website.</property>
+                            <property name="label" translatable="yes">If disabled, these settings are accessible from gnome-tweak-tool or the extension website.</property>
                             <property name="wrap">True</property>
                             <style>
                               <class name="dim-label"/>
@@ -1202,6 +1225,90 @@
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkFrame" id="hot_keys_frame">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label_xalign">0</property>
+            <property name="shadow_type">in</property>
+            <child>
+              <object class="GtkListBox" id="hot_keys_listbox">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="selection_mode">none</property>
+                <child>
+                  <object class="GtkListBoxRow" id="hot_keys_listboxrow">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <child>
+                      <object class="GtkGrid" id="hot_keys_grid">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">12</property>
+                        <property name="margin_right">12</property>
+                        <property name="margin_top">12</property>
+                        <property name="margin_bottom">12</property>
+                        <property name="column_spacing">32</property>
+                        <child>
+                          <object class="GtkLabel" id="hot_keys_description">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="hexpand">True</property>
+                            <property name="xalign">0</property>
+                            <property name="label" translatable="yes">Enable Super+(0-9) as shortcuts to activate apps. It can also be used together with Shift and Ctrl.</property>
+                            <property name="use_markup">True</property>
+                            <property name="wrap">True</property>
+                            <style>
+                              <class name="dim-label"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="hot_keys_label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="hexpand">True</property>
+                            <property name="xalign">0</property>
+                            <property name="label" translatable="yes">Use hotkeys to activate apps</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSwitch" id="hot_keys_switch">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="halign">end</property>
+                            <property name="valign">center</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">0</property>
+                            <property name="height">2</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child type="label_item">
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
           </packing>
         </child>
         <child>
@@ -1312,11 +1419,11 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">1</property>
+            <property name="position">2</property>
           </packing>
         </child>
         <child>
-          <object class="GtkFrame" id="built_in_theme_frame1">
+          <object class="GtkFrame" id="built_in_theme_frame_scroll">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="label_xalign">0</property>
@@ -1327,11 +1434,11 @@
                 <property name="can_focus">False</property>
                 <property name="selection_mode">none</property>
                 <child>
-                  <object class="GtkListBoxRow" id="listboxrow7">
+                  <object class="GtkListBoxRow" id="listboxrow_scroll">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <child>
-                      <object class="GtkGrid" id="switch_workspace_grid">
+                      <object class="GtkGrid" id="buitin_theme_scroll">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="margin_left">12</property>
@@ -1340,14 +1447,13 @@
                         <property name="margin_bottom">12</property>
                         <property name="column_spacing">32</property>
                         <child>
-                          <object class="GtkLabel" id="switch_workspace_description">
+                          <object class="GtkLabel" id="builtin_theme_description_scroll">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="hexpand">True</property>
-                            <property name="xalign">0</property>
-                            <property name="label" translatable="yes">With fixed icon size, only the edge of the dock and the &lt;i&gt;Show Applications&lt;/i&gt; icon are active.</property>
-                            <property name="use_markup">True</property>
+                            <property name="label" translatable="yes">Behaviour when scrolling on the icon of an application.</property>
                             <property name="wrap">True</property>
+                            <property name="xalign">0</property>
                             <style>
                               <class name="dim-label"/>
                             </style>
@@ -1358,12 +1464,12 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="switch_workspace_label">
+                          <object class="GtkLabel" id="builtin_theme_label_scroll">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="hexpand">True</property>
+                            <property name="label" translatable="yes">Scroll action</property>
                             <property name="xalign">0</property>
-                            <property name="label" translatable="yes">Switch workspace by scrolling on the dock</property>
                           </object>
                           <packing>
                             <property name="left_attach">0</property>
@@ -1371,11 +1477,27 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkSwitch" id="switch_workspace_switch">
+                          <object class="GtkBox" id="click_box_scroll">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="halign">end</property>
-                            <property name="valign">center</property>
+                            <property name="can_focus">False</property>
+                            <property name="spacing">6</property>
+                            <child>
+                              <object class="GtkComboBoxText" id="scroll_action_combo">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="valign">center</property>
+                                <items>
+                                  <item translatable="yes">Do nothing</item>
+                                  <item translatable="yes">Cycle through windows</item>
+                                  <item translatable="yes">Switch workspace</item>
+                                </items>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -1396,7 +1518,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">2</property>
+            <property name="position">3</property>
           </packing>
         </child>
       </object>
@@ -1873,6 +1995,51 @@
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkListBoxRow" id="listboxrow_rnd_border">
+                    <property name="width_request">100</property>
+                    <property name="height_request">80</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="spacing">32</property>
+                        <child>
+                          <object class="GtkLabel" id="force_straight_corner_label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="valign">center</property>
+                            <property name="xpad">12</property>
+                            <property name="label" translatable="yes">Force straight corner
+</property>
+                            <property name="xalign">0</property>
+                          </object>
+                          <packing>
+                            <property name="expand">True</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSwitch" id="force_straight_corner_switch">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="valign">center</property>
+                            <property name="margin_left">3</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="padding">12</property>
                             <property name="position">1</property>
                           </packing>
                         </child>

@@ -11,7 +11,7 @@
 # ░  code  ░ https://github.com/danalec/dotfiles
 #
 # ~danalec/.config/i3/config
-# last modified : 2017-03-10
+# last modified : 2017-03-27
 #
 #█▓▒░ 修正、改変、再配布何でも可 ░▒▓█
 #
@@ -29,9 +29,10 @@
 
 # default applications
 set $browser exec chromium
-set $file_manager exec dolphin --platformtheme qt5ct "`xcwd`"
+#set $file_manager exec dolphin --platformtheme qt5ct "`xcwd`"
+set $file_manager exec nautilus "`xcwd`"
 set $fs_screenshot exec "scrot `xdg-user-dir PICTURES`/%Y-%m-%d-%T-screenshot.png"
-set $lock_screen exec "$HOME/.config/i3/scripts/venv/bin/python $HOME/.config/i3/scripts/lock_screen.py"
+set $lock_screen "$HOME/.config/i3/scripts/venv/bin/python $HOME/.config/i3/scripts/lock_screen.py"
 set $set_wallpaper exec nitrogen --restore
 set $terminal exec termite -d "`xcwd`"
 set $status_bar "$HOME/.config/i3pystatus/venv/bin/python $HOME/.config/i3pystatus/config.py"
@@ -46,14 +47,20 @@ font pango:Roboto Condensed, FontAwesome 8
 
 # disable window title
 for_window [class="^.*"] border pixel 1
+bindsym Ctrl+$mod+b border toggle
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# disable mouse focus
+# disable mouse focus and warping
 focus_follows_mouse no
+mouse_warping none
+
+# hide edge borders
+hide_edge_borders both
 
 bindsym $mod+Return $terminal
+#bindsym $mod+Return $terminal & i3-msg move for_window [class="termite"] to workspace $ws1
 bindsym $mod+n $browser
 bindsym $mod+m $file_manager
 
@@ -122,71 +129,79 @@ bindsym $mod+a focus parent
 bindsym $mod+z focus child
 
 # workspace names
-# font awesome
-set $ws1  "1:  "
-set $ws2  "2:  "
-set $ws3  "3:  "
-set $ws4  "4:  "
-set $ws5  "5:  "
-set $ws6  "6:  "
-set $ws7  "7:  "
-set $ws8  "8:  "
-set $ws9  "9:  "
-set $ws10 "10:  "
-set $ws11 "11:  "
-set $ws12 "12:  "
-set $ws13 "13:  "
-set $ws14 "14:  "
-set $ws15 "15:  "
-set $ws16 "16:  "
-set $ws17 "17:  "
-set $ws18 "18:  "
-set $ws19 "19:  "
-set $ws20 "20:  "
+set $ws1  " F1:  "
+set $ws2  " F2:  "
+set $ws3  " F3:  "
+set $ws4  " F4:  "
+set $ws5  " F5:  "
+set $ws6  " F6:  "
+set $ws7  " F7:  "
+set $ws8  " F8:  "
+set $ws9  " F9:  "
+set $ws10 "F10:  "
+set $ws21 "F11:  "
+set $ws22 "F12:  "
+
+set $ws11 "1:  "
+set $ws12 "2:  "
+set $ws13 "3:  "
+set $ws14 "4:  "
+set $ws15 "5:  "
+set $ws16 "6:  "
+set $ws17 "7:  "
+set $ws18 "8:  "
+set $ws19 "9:  "
+set $ws20 "0:  "
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
-bindsym Ctrl+$mod+1 workspace $ws11
-bindsym Ctrl+$mod+2 workspace $ws12
-bindsym Ctrl+$mod+3 workspace $ws13
-bindsym Ctrl+$mod+4 workspace $ws14
-bindsym Ctrl+$mod+5 workspace $ws15
-bindsym Ctrl+$mod+6 workspace $ws16
-bindsym Ctrl+$mod+7 workspace $ws17
-bindsym Ctrl+$mod+8 workspace $ws18
-bindsym Ctrl+$mod+9 workspace $ws19
-bindsym Ctrl+$mod+0 workspace $ws20
+bindsym $mod+F1 workspace $ws1
+bindsym $mod+F2 workspace $ws2
+bindsym $mod+F3 workspace $ws3
+bindsym $mod+F4 workspace $ws4
+bindsym $mod+F5 workspace $ws5
+bindsym $mod+F6 workspace $ws6
+bindsym $mod+F7 workspace $ws7
+bindsym $mod+F8 workspace $ws8
+bindsym $mod+F9 workspace $ws9
+bindsym $mod+F10 workspace $ws10
+bindsym $mod+F11 workspace $ws21
+bindsym $mod+F12 workspace $ws22
+
+bindsym $mod+1 workspace $ws11
+bindsym $mod+2 workspace $ws12
+bindsym $mod+3 workspace $ws13
+bindsym $mod+4 workspace $ws14
+bindsym $mod+5 workspace $ws15
+bindsym $mod+6 workspace $ws16
+bindsym $mod+7 workspace $ws17
+bindsym $mod+8 workspace $ws18
+bindsym $mod+9 workspace $ws19
+bindsym $mod+0 workspace $ws20
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
-bindsym Ctrl+$mod+Shift+1 move container to workspace $ws11
-bindsym Ctrl+$mod+Shift+2 move container to workspace $ws12
-bindsym Ctrl+$mod+Shift+3 move container to workspace $ws13
-bindsym Ctrl+$mod+Shift+4 move container to workspace $ws14
-bindsym Ctrl+$mod+Shift+5 move container to workspace $ws15
-bindsym Ctrl+$mod+Shift+6 move container to workspace $ws16
-bindsym Ctrl+$mod+Shift+7 move container to workspace $ws17
-bindsym Ctrl+$mod+Shift+8 move container to workspace $ws18
-bindsym Ctrl+$mod+Shift+9 move container to workspace $ws19
-bindsym Ctrl+$mod+Shift+0 move container to workspace $ws20
+bindsym $mod+Shift+F1 move container to workspace $ws1
+bindsym $mod+Shift+F2 move container to workspace $ws2
+bindsym $mod+Shift+F3 move container to workspace $ws3
+bindsym $mod+Shift+F4 move container to workspace $ws4
+bindsym $mod+Shift+F5 move container to workspace $ws5
+bindsym $mod+Shift+F6 move container to workspace $ws6
+bindsym $mod+Shift+F7 move container to workspace $ws7
+bindsym $mod+Shift+F8 move container to workspace $ws8
+bindsym $mod+Shift+F9 move container to workspace $ws9
+bindsym $mod+Shift+F10 move container to workspace $ws10
+bindsym $mod+Shift+F11 move container to workspace $ws21
+bindsym $mod+Shift+F12 move container to workspace $ws22
+
+bindsym $mod+Shift+1 move container to workspace $ws11
+bindsym $mod+Shift+2 move container to workspace $ws12
+bindsym $mod+Shift+3 move container to workspace $ws13
+bindsym $mod+Shift+4 move container to workspace $ws14
+bindsym $mod+Shift+5 move container to workspace $ws15
+bindsym $mod+Shift+6 move container to workspace $ws16
+bindsym $mod+Shift+7 move container to workspace $ws17
+bindsym $mod+Shift+8 move container to workspace $ws18
+bindsym $mod+Shift+9 move container to workspace $ws19
+bindsym $mod+Shift+0 move container to workspace $ws20
 
 # move workspaces to another monitor
 # vi-like
@@ -194,34 +209,27 @@ bindsym Ctrl+$alt+h move workspace to output left
 bindsym Ctrl+$alt+j move workspace to output down
 bindsym Ctrl+$alt+k move workspace to output up
 bindsym Ctrl+$alt+l move workspace to output right
+
 # arrow keys
 bindsym Ctrl+$alt+Left move workspace to output left
 bindsym Ctrl+$alt+Down move workspace to output down
 bindsym Ctrl+$alt+Up move workspace to output up
 bindsym Ctrl+$alt+Right move workspace to output right
 
-#assign
-#assign [class="^Pavucontrol$"] $ws12
-assign [class="^Keepassx2$"] $ws4
-
 #floating
 for_window [window_role="pop-up"] floating enable
 
 # https://github.com/ValveSoftware/steam-for-linux/issues/1040
-#for_window [class="^Steam$" title="^Friends$"] floating enable
-#for_window [class="^Steam$" title="Steam - News"] floating enable
-#for_window [class="^Steam$" title=".* - Chat"] floating enable
-#for_window [class="^Steam$" title="^Settings$"] floating enable
-#for_window [class="^Steam$" title=".* - event started"] floating enable
-#for_window [class="^Steam$" title=".* CD key"] floating enable
-#for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
-#for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
-#for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
-#for_window [title="^Steam Keyboard$"] floating enable
-
-#for_window [class="^Keepassx2$"] floating enable
-#for_window [class="Wine"] floating enable
-#for_window [class="Skype"] floating enable
+for_window [class="^Steam$" title="^Friends$"] floating enable
+for_window [class="^Steam$" title="Steam - News"] floating enable
+for_window [class="^Steam$" title=".* - Chat"] floating enable
+for_window [class="^Steam$" title="^Settings$"] floating enable
+for_window [class="^Steam$" title=".* - event started"] floating enable
+for_window [class="^Steam$" title=".* CD key"] floating enable
+for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
+for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
+for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
+for_window [title="^Steam Keyboard$"] floating enable
 
 # scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -306,7 +314,7 @@ bindsym $mod+p mode "$display_mode"
 
 # start i3pystatus to display status bar
 bar {
-	tray_output HDMI-1
+    tray_output HDMI-1
     position top
     status_command $status_bar
     # status bar color theme
@@ -328,12 +336,12 @@ client.unfocused #282a2e #282a2e #969896 #282a2e
 client.urgent #373b41 #cc6666 #ffffff #cc6666
 
 # multimedia keys
-bindsym XF86Calculator $terminal 
+bindsym XF86Calculator $terminal
 bindsym XF86Explorer $terminal ranger
 bindsym XF86Tools $terminal
 bindsym XF86Favorites $browser && xdotool search --onlyvisible --class "Chromium" windowfocus && xdotool type chrome://bookmarks && xdotool key Return
 bindsym XF86HomePage $browser
-bindsym XF86Mail $browser && xdotool search --onlyvisible --class "Chromium" windowfocus && xdotool type https://mail.google.com/mail && xdotool key Return
+bindsym XF86Mail $terminal
 
 # volume control
 bindsym XF86AudioRaiseVolume exec pamixer -i 5

@@ -38,6 +38,12 @@ const State = {
     HIDING:  3
 };
 
+const scrollAction = {
+    DO_NOTHING: 0,
+    CYCLE_WINDOWS: 1,
+    SWITCH_WORKSPACE: 2
+};
+
 /**
  * A simple St.Widget with one child whose allocation takes into account the
  * slide out of its child via the _slidex parameter ([0:1]).
@@ -183,6 +189,8 @@ const DashSlideContainer = new Lang.Class({
 
 const DockedDash = new Lang.Class({
     Name: 'DashToDock.DockedDash',
+
+    _numHotkeys: 10,
 
     _init: function(settings) {
         this._rtl = (Clutter.get_default_text_direction() == Clutter.TextDirection.RTL);
@@ -377,6 +385,7 @@ const DockedDash = new Lang.Class({
         // Load optional features
         this._optionalScrollWorkspaceSwitch();
         this._optionalWorkspaceIsolation();
+        this._optionalHotKeys();
 
          // Delay operations that require the shell to be fully loaded and with
          // user theme applied.
@@ -508,11 +517,14 @@ const DockedDash = new Lang.Class({
         // Reshow panel corners
         this._revertPanelCorners();
         this._resetLegacyTray();
+
+        // Remove keybindings
+        this._disableHotKeys();
     },
 
     _bindSettingsChanges: function() {
-        this._settings.connect('changed::scroll-switch-workspace', Lang.bind(this, function() {
-            this._optionalScrollWorkspaceSwitch(this._settings.get_boolean('scroll-switch-workspace'));
+        this._settings.connect('changed::scroll-action', Lang.bind(this, function() {
+            this._optionalScrollWorkspaceSwitch();
         }));
 
         this._settings.connect('changed::dash-max-icon-size', Lang.bind(this, function() {
@@ -762,21 +774,17 @@ const DockedDash = new Lang.Class({
 
     _checkDockDwell: function(x, y) {
         let monitor = this._monitor;
-
-        // Check for the dock area
-        let shouldDwell = (x >= this.staticBox.x1 && x <= this.staticBox.x2 &&
-                           y >= this.staticBox.y1  && y <= this.staticBox.y2);
-
+        let shouldDwell;
         // Check for the correct screen edge
         // Position is approximated to the lower integer
         if (this._position == St.Side.LEFT)
-            shouldDwell = shouldDwell && (x == this._monitor.x);
+            shouldDwell = (x == this._monitor.x);
         else if (this._position == St.Side.RIGHT)
-            shouldDwell = shouldDwell && (x == this._monitor.x + this._monitor.width - 1);
+            shouldDwell = (x == this._monitor.x + this._monitor.width - 1);
         else if (this._position == St.Side.TOP)
-            shouldDwell = shouldDwell && (y == this._monitor.y);
+            shouldDwell = (y == this._monitor.y);
         else if (this._position == St.Side.BOTTOM)
-            shouldDwell = shouldDwell && (y == this._monitor.y + this._monitor.height - 1);
+            shouldDwell = (y == this._monitor.y + this._monitor.height - 1);
 
         if (shouldDwell) {
             // We only set up dwell timeout when the user is not hovering over the dock
@@ -870,8 +878,50 @@ const DockedDash = new Lang.Class({
         // would never be triggered and the dock would stay visible forever.
         let triggerTimeoutId =  Mainloop.timeout_add(250, Lang.bind(this, function() {
             triggerTimeoutId = 0;
-            this._hoverChanged();
-            return GLib.SOURCE_REMOVE;
+
+            let [x, y, mods] = global.get_pointer();
+            let shouldHide = true;
+            switch (this._position) {
+            case St.Side.LEFT:
+                if (x <= this.staticBox.x2 &&
+                    x >= this._monitor.x &&
+                    y >= this._monitor.y &&
+                    y <= this._monitor.y + this._monitor.height) {
+                    shouldHide = false;
+                }
+                break;
+            case St.Side.RIGHT:
+                if (x >= this.staticBox.x1 &&
+                    x <= this._monitor.x + this._monitor.width &&
+                    y >= this._monitor.y &&
+                    y <= this._monitor.y + this._monitor.height) {
+                    shouldHide = false;
+                }
+                break;
+            case St.Side.TOP:
+                if (x >= this._monitor.x &&
+                    x <= this._monitor.x + this._monitor.width &&
+                    y <= this.staticBox.y2 &&
+                    y >= this._monitor.y) {
+                    shouldHide = false;
+                }
+                break;
+            case St.Side.BOTTOM:
+                if (x >= this._monitor.x &&
+                    x <= this._monitor.x + this._monitor.width &&
+                    y >= this.staticBox.y1 &&
+                    y <= this._monitor.y + this._monitor.height) {
+                    shouldHide = false;
+                }
+            }
+            if (shouldHide) {
+                this._hoverChanged();
+                return GLib.SOURCE_REMOVE;
+            }
+            else {
+                return GLib.SOURCE_CONTINUE;
+            }
+
         }));
 
         this._show();
@@ -911,31 +961,31 @@ const DockedDash = new Lang.Class({
             let x1, x2, y1, y2, direction;
 
             if (this._position == St.Side.LEFT) {
-                x1 = this.staticBox.x1;
-                x2 = this.staticBox.x1;
-                y1 = this.staticBox.y1;
-                y2 = this.staticBox.y2;
+                x1 = this._monitor.x;
+                x2 = this._monitor.x;
+                y1 = this._monitor.y;
+                y2 = this._monitor.y + this._monitor.height;
                 direction = Meta.BarrierDirection.POSITIVE_X;
             }
             else if (this._position == St.Side.RIGHT) {
-                x1 = this.staticBox.x2;
-                x2 = this.staticBox.x2;
-                y1 = this.staticBox.y1;
-                y2 = this.staticBox.y2;
+                x1 = this._monitor.x + this._monitor.width;
+                x2 = this._monitor.x + this._monitor.width;
+                y1 = this._monitor.y;
+                y2 = this._monitor.y + this._monitor.height;
                 direction = Meta.BarrierDirection.NEGATIVE_X;
             }
             else if (this._position == St.Side.TOP) {
-                x1 = this.staticBox.x1;
-                x2 = this.staticBox.x2;
-                y1 = this.staticBox.y1;
-                y2 = this.staticBox.y1;
+                x1 = this._monitor.x;
+                x2 = this._monitor.x + this._monitor.width;
+                y1 = this._monitor.y;
+                y2 = this._monitor.y;
                 direction = Meta.BarrierDirection.POSITIVE_Y;
             }
             else if (this._position == St.Side.BOTTOM) {
-                x1 = this.staticBox.x1;
-                x2 = this.staticBox.x2;
-                y1 = this.staticBox.y2;
-                y2 = this.staticBox.y2;
+                x1 = this._monitor.x;
+                x2 = this._monitor.x + this._monitor.width;
+                y1 = this._monitor.y + this._monitor.height;
+                y2 = this._monitor.y + this._monitor.height;
                 direction = Meta.BarrierDirection.NEGATIVE_Y;
             }
 
@@ -964,12 +1014,20 @@ const DockedDash = new Lang.Class({
         let monitorIndex = this._settings.get_int('preferred-monitor');
         let extendHeight = this._settings.get_boolean('extend-height');
 
-        if ((monitorIndex > 0) && (monitorIndex < Main.layoutManager.monitors.length))
-            this._monitor = Main.layoutManager.monitors[monitorIndex];
+        // The dock goes on the primary monitor if requested (monitorIndex==0) or if the setting
+        // is incosistent (e.g. desired monitor not connected).
+        if ((monitorIndex <= 0) || (monitorIndex > Main.layoutManager.monitors.length -1))
+            monitorIndex = Main.layoutManager.primaryIndex;
         else {
-            monitorIndex = Main.layoutManager.primaryIndex
-            this._monitor = Main.layoutManager.primaryMonitor;
+            // Gdk and shell monitors numbering differ at least under wayland:
+            // While the primary monitor appears to be always index 0 in Gdk,
+            // the shell can assign a different number (Main.layoutManager.primaryMonitor)
+            // remap monitors numbering from settings (Gdk) to shell
+            if (monitorIndex <= Main.layoutManager.primaryIndex)
+                monitorIndex = (monitorIndex + 1) % Main.layoutManager.monitors.length;
         }
+
+        this._monitor = Main.layoutManager.monitors[monitorIndex];
 
         // Note: do not use the workarea coordinates in the direction on which the dock is placed,
         // to avoid a loop [position change -> workArea change -> position change] with
@@ -1050,7 +1108,6 @@ const DockedDash = new Lang.Class({
         this._adjustPanelCorners();
 
         this._adjustLegacyTray();
-        this._updateStaticBox();
     },
 
     _adjustLegacyTray: function() {
@@ -1283,14 +1340,18 @@ const DockedDash = new Lang.Class({
     _optionalScrollWorkspaceSwitch: function() {
         let label = 'optionalScrollWorkspaceSwitch';
 
-        this._settings.connect('changed::scroll-switch-workspace', Lang.bind(this, function() {
-            if (this._settings.get_boolean('scroll-switch-workspace'))
+        function isEnabled() {
+            return this._settings.get_enum('scroll-action') === scrollAction.SWITCH_WORKSPACE;
+        }
+
+        this._settings.connect('changed::scroll-action', Lang.bind(this, function() {
+            if (Lang.bind(this, isEnabled)())
                 Lang.bind(this, enable)();
             else
                 Lang.bind(this, disable)();
         }));
 
-        if (this._settings.get_boolean('scroll-switch-workspace'))
+        if (Lang.bind(this, isEnabled)())
             Lang.bind(this, enable)();
 
         function enable() {
@@ -1437,7 +1498,77 @@ const DockedDash = new Lang.Class({
                 return Main.activateWindow(windows[0]);
             return this.open_new_window(-1);
         }
+    },
+
+    _activateApp: function(appIndex) {
+        let children = this.dash._box.get_children().filter(function(actor) {
+                return actor.child &&
+                       actor.child._delegate &&
+                       actor.child._delegate.app;
+        });
+
+        // Apps currently in the dash
+        let apps = children.map(function(actor) {
+                return actor.child._delegate;
+            });
+
+        // Activate with button = 1, i.e. same as left click
+        let button = 1;
+        if (appIndex < apps.length)
+            apps[appIndex].activate(button);
+    },
+
+    _optionalHotKeys: function() {
+        this._hotKeysEnabled = false;
+        if (this._settings.get_boolean('hot-keys'))
+            this._enableHotKeys();
+
+        this._signalsHandler.add([
+            this._settings,
+            'changed::hot-keys',
+            Lang.bind(this, function() {
+                    if (this._settings.get_boolean('hot-keys'))
+                        Lang.bind(this, this._enableHotKeys)();
+                    else
+                        Lang.bind(this, this._disableHotKeys)();
+            })
+        ]);
+    },
+
+    _enableHotKeys: function() {
+        if (this._hotKeysEnabled)
+            return;
+
+        // Setup keyboard bindings for dash elements
+        let keys = ['app-hotkey-', 'app-shift-hotkey-', 'app-ctrl-hotkey-',  // Regular numbers
+                    'app-hotkey-kp-', 'app-shift-hotkey-kp-', 'app-ctrl-hotkey-kp-']; // Key-pad numbers
+        keys.forEach( function(key) {
+            for (let i = 0; i < this._numHotkeys; i++) {
+                let appNum = i;
+                Main.wm.addKeybinding(key + (i + 1), this._settings,
+                                      Meta.KeyBindingFlags.NONE,
+                                      Shell.ActionMode.NORMAL | Shell.ActionMode.OVERVIEW,
+                                      Lang.bind(this, function() {this._activateApp(appNum);}));
+            }
+        }, this);
+
+        this._hotKeysEnabled = true;
+    },
+
+    _disableHotKeys: function() {
+        if (!this._hotKeysEnabled)
+            return;
+
+        let keys = ['app-hotkey-', 'app-shift-hotkey-', 'app-ctrl-hotkey-',  // Regular numbers
+                    'app-hotkey-kp-', 'app-shift-hotkey-kp-', 'app-ctrl-hotkey-kp-']; // Key-pad numbers
+        keys.forEach( function(key) {
+            for (let i = 0; i < this._numHotkeys; i++)
+                Main.wm.removeKeybinding(key + (i + 1));
+        }, this);
+
+        this._hotKeysEnabled = false;
     }
+
 });
 
 Signals.addSignalMethods(DockedDash.prototype);

@@ -7,11 +7,11 @@
     <property name="can_focus">False</property>
     <property name="type_hint">dialog</property>
     <property name="program_name">Dynamic Panel Transparency</property>
-    <property name="version">v11</property>
+    <property name="version">Version Unknown</property>
     <property name="comments" translatable="yes">Classy transparency for your panel.</property>
-    <property name="website">https://rockon999.github.io/dynamic-panel-transparency/</property>
+    <property name="website">http://evanwelsh.com/dynamic-panel-transparency</property>
     <property name="website_label" translatable="yes">Website</property>
-    <property name="authors">rockon999</property>
+    <property name="authors">Evan Welsh (rockon999)</property>
     <property name="translator_credits">narzb
 varlesh
 jonnius
@@ -67,6 +67,11 @@ frnogueira
   </object>
   <object class="GtkAdjustment" id="adjustment4">
     <property name="upper">10</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment5">
+    <property name="upper">100</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
@@ -282,12 +287,13 @@ frnogueira
             <property name="right_padding">10</property>
             <child>
               <object class="GtkOverlay" id="panel_overlay">
+                <property name="height_request">30</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <child>
-                  <object class="GtkScrolledWindow">
+                  <object class="GtkScrolledWindow" id="panel_scrolled_window">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
+                    <property name="can_focus">False</property>
                     <property name="vscrollbar_policy">never</property>
                     <property name="shadow_type">in</property>
                     <child>

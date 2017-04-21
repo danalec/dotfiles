@@ -1,10 +1,13 @@
 <?xml version="1.0"?>
 <application-state>
   <context id="">
-    <application id="chromium.desktop" open-window-count="1" score="93" last-seen="1479163577"/>
-    <application id="keybase.desktop" open-window-count="0" score="6" last-seen="1479163207"/>
-    <application id="gnome-shell-extension-prefs.desktop" open-window-count="0" score="4" last-seen="1479163393"/>
-    <application id="termite.desktop" open-window-count="0" score="22" last-seen="1479163605"/>
-    <application id="gnome-tweak-tool.desktop" open-window-count="0" score="9" last-seen="1479163235"/>
+    <application id="gnome-control-center.desktop" open-window-count="0" score="7" last-seen="1490502020"/>
+    <application id="org.gnome.Nautilus.desktop" open-window-count="0" score="17" last-seen="1490502768"/>
+    <application id="pavucontrol.desktop" open-window-count="0" score="0" last-seen="1490501852"/>
+    <application id="termite.desktop" open-window-count="1" score="5" last-seen="1490502026"/>
+    <application id="gnome-keyboard-panel.desktop" open-window-count="0" score="0" last-seen="0"/>
+    <application id="chromium.desktop" open-window-count="1" score="127" last-seen="1490502766"/>
+    <application id="gnome-shell-extension-prefs.desktop" open-window-count="0" score="8" last-seen="1490502345"/>
+    <application id="megasync.desktop" open-window-count="0" score="1" last-seen="1490501532"/>
   </context>
 </application-state>

@@ -1,3 +1,187 @@
-
-Nov 01 03:02 : state_file: Unrecognized line in state file:
-Nov 01 03:02 : errno: Failed to stat /home/danalec/music: No such file or directory
+Mar 27 04:21 : avahi: Initializing interface
+Mar 27 04:21 : avahi: Client changed to state 101
+Mar 27 04:21 : avahi: Client is CONNECTING
+Mar 27 04:21 : update: spawned thread for update job id 1
+Mar 27 04:21 : update: starting
+Mar 27 04:21 : state_file: Loading state file /home/danalec/.mpd/state
+Mar 27 04:21 : update: reading FAKE_ - Beside Me Pink and Purple (2016) [FLAC]/01 - Beside Me Pink and Purple.flac
+Mar 27 04:21 : update: added FAKE_ - Beside Me Pink and Purple (2016) [FLAC]/01 - Beside Me Pink and Purple.flac
+Mar 27 04:21 : update: reading FAKE_ - Beside Me Pink and Purple (2016) [FLAC]/02 - Beside Me Pink and Purple - Kitty Asylum Mix.flac
+Mar 27 04:21 : update: added FAKE_ - Beside Me Pink and Purple (2016) [FLAC]/02 - Beside Me Pink and Purple - Kitty Asylum Mix.flac
+Mar 27 04:21 : update: reading FAKE_ - Mad Hatz' Merry Go Round (2016) [FLAC]/01 - Mad Hatz' Merry Go Round.flac
+Mar 27 04:21 : update: added FAKE_ - Mad Hatz' Merry Go Round (2016) [FLAC]/01 - Mad Hatz' Merry Go Round.flac
+Mar 27 04:21 : update: reading FAKE_ - Mad Hatz' Merry Go Round (2016) [FLAC]/02 - Mad Hatz' Merry Go Round (Milk Tea Ecstasy Mix).flac
+Mar 27 04:21 : update: added FAKE_ - Mad Hatz' Merry Go Round (2016) [FLAC]/02 - Mad Hatz' Merry Go Round (Milk Tea Ecstasy Mix).flac
+Mar 27 04:21 : update: reading FAKE_ - The Caterpillar (2016) [FLAC]/01 - The Caterpillar.flac
+Mar 27 04:21 : update: added FAKE_ - The Caterpillar (2016) [FLAC]/01 - The Caterpillar.flac
+Mar 27 04:21 : update: reading FAKE_ - The Caterpillar (2016) [FLAC]/02 - The Caterpillar (Toy Hookah From Holly Mix).flac
+Mar 27 04:21 : update: added FAKE_ - The Caterpillar (2016) [FLAC]/02 - The Caterpillar (Toy Hookah From Holly Mix).flac
+Mar 27 04:21 : update: reading FAKE_ - The Twins (2016) [FLAC]/01 - The Twins.flac
+Mar 27 04:21 : update: added FAKE_ - The Twins (2016) [FLAC]/01 - The Twins.flac
+Mar 27 04:21 : update: reading FAKE_ - The Twins (2016) [FLAC]/02 - The Twins (Breaking Rulez Mix).flac
+Mar 27 04:21 : update: added FAKE_ - The Twins (2016) [FLAC]/02 - The Twins (Breaking Rulez Mix).flac
+Mar 27 04:21 : update: reading FAKE_ - The White Rabbit (2016) [FLAC]/01 - White Rabbit Inc..flac
+Mar 27 04:21 : update: added FAKE_ - The White Rabbit (2016) [FLAC]/01 - White Rabbit Inc..flac
+Mar 27 04:21 : update: reading FAKE_ - The White Rabbit (2016) [FLAC]/02 - White Rabbit Inc. (After-Hours Party in the Factory Mix).flac
+Mar 27 04:21 : update: added FAKE_ - The White Rabbit (2016) [FLAC]/02 - White Rabbit Inc. (After-Hours Party in the Factory Mix).flac
+Mar 27 04:21 : simple_db: removing empty directories from DB
+Mar 27 04:21 : simple_db: sorting DB
+Mar 27 04:21 : simple_db: writing DB
+Mar 27 04:21 : update: finished
+Mar 27 04:22 : state_file: Saving state file /home/danalec/.mpd/state
+Mar 27 04:22 : avahi: Shutting down interface
+Mar 27 04:22 : listen: listen_global_finish called
+Mar 27 04:22 : fifo_output: Removing FIFO "/home/danalec/.mpd/mpd.fifo"
+Mar 27 04:22 : avahi: Initializing interface
+Mar 27 04:22 : avahi: Client changed to state 101
+Mar 27 04:22 : avahi: Client is CONNECTING
+Mar 27 04:22 : state_file: Loading state file /home/danalec/.mpd/state
+Mar 27 04:22 : client: [0] opened from 127.0.0.1:60928
+Mar 27 04:22 : client: [0] process command "status"
+Mar 27 04:22 : exception: Failed to read mixer for 'audio': no such mixer control: PCM
+Mar 27 04:22 : client: [0] command returned 0
+Mar 27 04:22 : client: [0] process command "plchanges "0""
+Mar 27 04:22 : client: [0] command returned 0
+Mar 27 04:22 : client: [0] process command "outputs"
+Mar 27 04:22 : client: [0] command returned 0
+Mar 27 04:22 : client: [0] process command "decoders"
+Mar 27 04:22 : client: [0] command returned 0
+Mar 27 04:22 : client: [0] process command "outputs"
+Mar 27 04:22 : client: [0] command returned 0
+Mar 27 04:22 : client: [0] process command "outputs"
+Mar 27 04:22 : client: [0] command returned 0
+Mar 27 04:22 : client: [0] process command "idle"
+Mar 27 04:22 : client: [0] command returned 1
+Mar 27 04:22 : client: [0] process command "setvol "0""
+Mar 27 04:22 : client: [0] command returned 0
+Mar 27 04:22 : client: [0] process command "idle"
+Mar 27 04:22 : client: [0] command returned 1
+Mar 27 04:22 : client: [0] process command "status"
+Mar 27 04:22 : client: [0] command returned 0
+Mar 27 04:22 : client: [0] process command "idle"
+Mar 27 04:22 : client: [0] command returned 1
+Mar 27 04:22 : client: [0] process command "setvol "1""
+Mar 27 04:22 : client: [0] command returned 0
+Mar 27 04:22 : client: [0] process command "idle"
+Mar 27 04:22 : client: [0] command returned 1
+Mar 27 04:22 : client: [0] process command "status"
+Mar 27 04:22 : client: [0] command returned 0
+Mar 27 04:22 : client: [0] process command "idle"
+Mar 27 04:22 : client: [0] command returned 1
+Mar 27 04:22 : client: [0] process command "setvol "0""
+Mar 27 04:22 : client: [0] command returned 0
+Mar 27 04:22 : client: [0] process command "idle"
+Mar 27 04:22 : client: [0] command returned 1
+Mar 27 04:22 : client: [0] process command "status"
+Mar 27 04:22 : client: [0] command returned 0
+Mar 27 04:22 : client: [0] process command "idle"
+Mar 27 04:22 : client: [0] command returned 1
+Mar 27 04:22 : client: [0] process command "setvol "0""
+Mar 27 04:22 : client: [0] command returned 0
+Mar 27 04:22 : client: [0] process command "idle"
+Mar 27 04:22 : client: [0] command returned 1
+Mar 27 04:22 : client: [0] process command "status"
+Mar 27 04:22 : client: [0] command returned 0
+Mar 27 04:22 : client: [0] process command "idle"
+Mar 27 04:22 : client: [0] command returned 1
+Mar 27 04:22 : state_file: Saving state file /home/danalec/.mpd/state
+Mar 27 04:22 : client: [0] closed
+Mar 27 04:23 : client: [1] opened from 127.0.0.1:33052
+Mar 27 04:23 : client: [1] process command "status"
+Mar 27 04:23 : client: [1] command returned 0
+Mar 27 04:23 : client: [1] process command "plchanges "0""
+Mar 27 04:23 : client: [1] command returned 0
+Mar 27 04:23 : client: [1] process command "outputs"
+Mar 27 04:23 : client: [1] command returned 0
+Mar 27 04:23 : client: [1] process command "decoders"
+Mar 27 04:23 : client: [1] command returned 0
+Mar 27 04:23 : client: [1] process command "outputs"
+Mar 27 04:23 : client: [1] command returned 0
+Mar 27 04:23 : client: [1] process command "outputs"
+Mar 27 04:23 : client: [1] command returned 0
+Mar 27 04:23 : client: [1] process command "idle"
+Mar 27 04:23 : client: [1] command returned 1
+Mar 27 04:23 : client: [1] closed
+Mar 27 04:23 : client: [2] opened from 127.0.0.1:33258
+Mar 27 04:23 : client: [2] process command "status"
+Mar 27 04:23 : client: [2] command returned 0
+Mar 27 04:23 : client: [2] process command "plchanges "0""
+Mar 27 04:23 : client: [2] command returned 0
+Mar 27 04:23 : client: [2] process command "outputs"
+Mar 27 04:23 : client: [2] command returned 0
+Mar 27 04:23 : client: [2] process command "decoders"
+Mar 27 04:23 : client: [2] command returned 0
+Mar 27 04:23 : client: [2] process command "outputs"
+Mar 27 04:23 : client: [2] command returned 0
+Mar 27 04:23 : client: [2] process command "outputs"
+Mar 27 04:23 : client: [2] command returned 0
+Mar 27 04:23 : client: [2] process command "idle"
+Mar 27 04:23 : client: [2] command returned 1
+Mar 27 04:23 : client: [2] process command "setvol "0""
+Mar 27 04:23 : client: [2] command returned 0
+Mar 27 04:23 : client: [2] process command "idle"
+Mar 27 04:23 : client: [2] command returned 1
+Mar 27 04:23 : client: [2] process command "status"
+Mar 27 04:23 : client: [2] command returned 0
+Mar 27 04:23 : client: [2] process command "idle"
+Mar 27 04:23 : client: [2] command returned 1
+Mar 27 04:23 : client: [2] process command "setvol "1""
+Mar 27 04:23 : client: [2] command returned 0
+Mar 27 04:23 : client: [2] process command "idle"
+Mar 27 04:23 : client: [2] command returned 1
+Mar 27 04:23 : client: [2] process command "status"
+Mar 27 04:23 : client: [2] command returned 0
+Mar 27 04:23 : client: [2] process command "idle"
+Mar 27 04:23 : client: [2] command returned 1
+Mar 27 04:23 : client: [2] process command "setvol "1""
+Mar 27 04:23 : client: [2] command returned 0
+Mar 27 04:23 : client: [2] process command "idle"
+Mar 27 04:23 : client: [2] command returned 1
+Mar 27 04:23 : client: [2] process command "status"
+Mar 27 04:23 : client: [2] command returned 0
+Mar 27 04:23 : client: [2] process command "idle"
+Mar 27 04:23 : client: [2] command returned 1
+Mar 27 04:23 : client: [2] process command "setvol "1""
+Mar 27 04:23 : client: [2] command returned 0
+Mar 27 04:23 : client: [2] process command "idle"
+Mar 27 04:23 : client: [2] command returned 1
+Mar 27 04:23 : client: [2] process command "status"
+Mar 27 04:23 : client: [2] command returned 0
+Mar 27 04:23 : client: [2] process command "idle"
+Mar 27 04:23 : client: [2] command returned 1
+Mar 27 04:23 : client: [2] process command "setvol "1""
+Mar 27 04:23 : client: [2] command returned 0
+Mar 27 04:23 : client: [2] process command "idle"
+Mar 27 04:23 : client: [2] command returned 1
+Mar 27 04:23 : client: [2] process command "status"
+Mar 27 04:23 : client: [2] command returned 0
+Mar 27 04:23 : client: [2] process command "idle"
+Mar 27 04:23 : client: [2] command returned 1
+Mar 27 04:23 : client: [2] process command "setvol "1""
+Mar 27 04:23 : client: [2] command returned 0
+Mar 27 04:23 : client: [2] process command "idle"
+Mar 27 04:23 : client: [2] command returned 1
+Mar 27 04:23 : client: [2] process command "status"
+Mar 27 04:23 : client: [2] command returned 0
+Mar 27 04:23 : client: [2] process command "idle"
+Mar 27 04:23 : client: [2] command returned 1
+Mar 27 04:23 : client: [2] process command "setvol "0""
+Mar 27 04:23 : client: [2] command returned 0
+Mar 27 04:23 : client: [2] process command "idle"
+Mar 27 04:23 : client: [2] command returned 1
+Mar 27 04:23 : client: [2] process command "status"
+Mar 27 04:23 : client: [2] command returned 0
+Mar 27 04:23 : client: [2] process command "idle"
+Mar 27 04:23 : client: [2] command returned 1
+Mar 27 04:23 : state_file: Saving state file /home/danalec/.mpd/state
+Mar 27 04:23 : client: [2] closed
+Mar 27 04:25 : state_file: Saving state file /home/danalec/.mpd/state
+Mar 27 04:25 : avahi: Shutting down interface
+Mar 27 04:25 : listen: listen_global_finish called
+Mar 27 04:25 : fifo_output: Removing FIFO "/home/danalec/.mpd/mpd.fifo"
+Mar 27 04:30 : exception: Failed to open mixer for 'audio': no such mixer control: PCM
+Mar 27 04:31 : exception: Bad song index
+Mar 27 04:36 : player: played "FAKE_ - Beside Me Pink and Purple (2016) [FLAC]/01 - Beside Me Pink and Purple.flac"
+Mar 27 04:36 : exception: Failed to open mixer for 'audio': no such mixer control: PCM
+Mar 27 04:42 : player: played "FAKE_ - The Caterpillar (2016) [FLAC]/01 - The Caterpillar.flac"
+Mar 27 04:49 : player: played "FAKE_ - The Caterpillar (2016) [FLAC]/02 - The Caterpillar (Toy Hookah From Holly Mix).flac"

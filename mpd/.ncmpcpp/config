@@ -10,11 +10,12 @@
 # █▓▒░ Setup
 ncmpcpp_directory = "~/.ncmpcpp"
 #lyrics_directory = "~/.lyrics"
-external_editor = "/usr/bin/vim"
+external_editor = "/usr/bin/nvim"
 
 # █▓▒░ MPD Settings
 mpd_crossfade_time = "3"
-mpd_music_dir = "~/music"
+#mpd_music_dir = "~/Music"
+mpd_music_dir = "~/run/media/danalec/coração"
 mpd_host = "127.0.0.1"
 mpd_port = "6601"
 

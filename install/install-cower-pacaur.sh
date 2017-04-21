@@ -4,7 +4,7 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl"
 sudo pacman --noconfirm -S yajl expac
 
 gpg --keyserver pgp.mit.edu --recv-keys 487EACC08557AD082088DABA1EB2638FF56C0C53
-gpg --recv-keys 1EB2638FF56C0C53
+gpg --keyserver pgp.mit.edu --recv-keys 1EB2638FF56C0C53
 
 echo 'creating temporary folder'
 TMPCOWERDIR="${0##*/}-$$"
@@ -27,5 +27,5 @@ echo 'pacaur makepkg'
 makepkg --syncdeps --install --noconfirm
 
 echo 'cleaning temporary folder'
-rm -rf /tmp/$TMPCOWERDIR
-rm -rf /tmp/$TMPPACAURDIR
+rm -rf "/tmp/$TMPCOWERDIR"
+rm -rf "/tmp/$TMPPACAURDIR"

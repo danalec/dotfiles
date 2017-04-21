@@ -14,7 +14,7 @@ const gtk30_ = imports.gettext.domain('gtk30').gettext;
 const AppRow = new Lang.Class({
     Name: 'DynamicPanelTransparency_AppRow',
     Extends: Gtk.ListBoxRow,
-    _init: function (app_info, on_configure, on_remove) {
+    _init: function(app_info, on_configure, on_remove) {
         this.parent();
 
         this.on_configure = on_configure;
@@ -43,7 +43,7 @@ const AppRow = new Lang.Class({
         this.btn = btn;
         this.btn.connect('clicked', Lang.bind(this, this.configure));
 
-        let remove_btn = Gtk.Button.new_with_mnemonic(gtk30_('_Remove'));
+        let remove_btn = Gtk.Button.new_with_mnemonic(gtk30_("_Remove"));
         grid.attach_next_to(remove_btn, btn, Gtk.PositionType.RIGHT, 1, 1);
         remove_btn.vexpand = false;
         remove_btn.valign = Gtk.Align.CENTER;
@@ -55,17 +55,17 @@ const AppRow = new Lang.Class({
         this.margin_end = 1;
         this.connect('key-press-event', Lang.bind(this, this.on_key_press_event));
     },
-    on_key_press_event: function (row, event) {
+    on_key_press_event: function(row, event) {
         if (event.keyval === Gdk.KEY_Delete || event.keyval === Gdk.KEY_KP_Delete || event.keyval === Gdk.KEY_BackSpace) {
             this.remove_btn.activate();
             return true;
         }
         return false;
     },
-    configure: function () {
+    configure: function() {
         this.on_configure.call(this, this.app_name, this.app_id);
     },
-    remove: function () {
+    remove: function() {
         this.on_remove.call(this, this.app_id, this);
     }
 });
@@ -73,7 +73,7 @@ const AppRow = new Lang.Class({
 const CustomRow = new Lang.Class({
     Name: 'DynamicPanelTransparency_CustomRow',
     Extends: Gtk.ListBoxRow,
-    _init: function (wm_class, on_configure, on_remove) {
+    _init: function(name, wm_class, on_configure, on_remove, wm_class_extra = []) {
         this.parent();
 
         this.on_configure = on_configure;
@@ -81,10 +81,12 @@ const CustomRow = new Lang.Class({
         this.app_name = wm_class;
         this.app_id = wm_class;
         this.wm_class = wm_class;
+        this.wm_class_extra = wm_class_extra;
+        this.name = name;
 
         let grid = new Gtk.Grid({ column_spacing: 10 });
 
-        let lbl = new Gtk.Label({ label: this.wm_class, xalign: 0.0 });
+        let lbl = new Gtk.Label({ label: this.name, xalign: 0.0 });
         grid.attach(lbl, 0, 0, 1, 1);
         lbl.hexpand = true;
         lbl.halign = Gtk.Align.START;
@@ -95,7 +97,7 @@ const CustomRow = new Lang.Class({
         this.btn = btn;
         this.btn.connect('clicked', Lang.bind(this, this.configure));
 
-        let remove_btn = Gtk.Button.new_with_mnemonic(gtk30_('_Remove'));
+        let remove_btn = Gtk.Button.new_with_mnemonic(gtk30_("_Remove"));
         grid.attach_next_to(remove_btn, btn, Gtk.PositionType.RIGHT, 1, 1);
         remove_btn.vexpand = false;
         remove_btn.valign = Gtk.Align.CENTER;
@@ -107,18 +109,18 @@ const CustomRow = new Lang.Class({
         this.margin_end = 1;
         this.connect('key-press-event', Lang.bind(this, this.on_key_press_event));
     },
-    on_key_press_event: function (row, event) {
+    on_key_press_event: function(row, event) {
         if (event.keyval === Gdk.KEY_Delete || event.keyval === Gdk.KEY_KP_Delete || event.keyval === Gdk.KEY_BackSpace) {
             this.remove_btn.activate();
             return true;
         }
         return false;
     },
-    configure: function () {
-        this.on_configure.call(this, this.wm_class);
+    configure: function() {
+        this.on_configure.call(this, this.name, this.wm_class, this.wm_class_extra);
     },
-    remove: function () {
-        this.on_remove.call(this, this.app_id, this);
+    remove: function() {
+        this.on_remove.call(this, this.wm_class, this, this.wm_class_extra);
     }
 });
 
@@ -126,7 +128,7 @@ const CustomRow = new Lang.Class({
 const AddAppRow = new Lang.Class({
     Name: 'DynamicPanelTransparency_AddAppRow',
     Extends: Gtk.ListBoxRow,
-    _init: function (options) {
+    _init: function(options) {
         this.parent();
         let img = new Gtk.Image();
         img.set_from_icon_name('list-add-symbolic', Gtk.IconSize.BUTTON);

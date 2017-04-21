@@ -1,9 +1,10 @@
-/* exported get_maximized_width_buffer, get_shell_version,validate, is_undef, clamp, is_maximized, match_colors, remove_file, get_file, write_to_file, get_app_for_window, get_app_for_wmclass, gdk_to_css_color, clutter_to_native_color, deep_freeze */
+/* exported get_maximized_width_buffer, get_maximized_height_buffer, get_shell_version, is_undef, clamp, is_maximized, is_valid, match_colors, remove_file, get_file, write_to_file, gdk_to_css_color, clutter_to_native_color, deep_freeze, strip_args */
 
 const GLib = imports.gi.GLib;
 const Gio = imports.gi.Gio;
 
 /* Global Utility Variables */
+const MAXIMIZED_HEIGHT_BUFFER = 1;
 const MAXIMIZED_WIDTH_BUFFER = 5;
 
 /* Gnome Versioning */
@@ -17,13 +18,23 @@ const PERMISSIONS_MODE = parseInt('0744', 8);
 /* Utility Variable Access */
 
 /**
- * Returns the width buffer for horiztonally maximized windows.
+ * Returns the width buffer for horizontally maximized windows.
  *
  * @returns {Number} The width buffer.
  *
  */
 function get_maximized_width_buffer() {
     return MAXIMIZED_WIDTH_BUFFER;
+}
+
+/**
+ * Returns the height buffer for horizontally maximized windows.
+ *
+ * @returns {Number} The height buffer.
+ *
+ */
+function get_maximized_height_buffer() {
+    return MAXIMIZED_HEIGHT_BUFFER;
 }
 
 /**
@@ -38,19 +49,6 @@ function get_shell_version() {
 
 
 /* Utility Functions */
-
-/**
- * Evaluates parameter 'a' and returns 'b' if 'a' is undefined or null.
- *
- * @param {Object} a - Test value.
- * @param {Object} b - Default return value.
- *
- * @returns {Object} 'b' when 'a' is null or undefined, 'a' otherwise.
- *
- */
-function validate(a, b) {
-    return (is_undef(a) === false ? a : b);
-}
 
 /**
  * Evaluates parameter 'a' and returns true if 'a' is undefined or null or false when not.
@@ -87,23 +85,50 @@ function clamp(value, min, max) {
  *
  */
 function is_maximized(window) {
-    let type = window.get_window_type();
-
-    if (type === imports.gi.Meta.WindowType.DESKTOP) {
-        return false;
-    }
-
     if (window.maximized_vertically) {
         return true;
     }
 
     let frame = window.get_frame_rect();
 
-    if (frame.y <= imports.ui.main.panel.actor.get_height()) {
-        return (window.maximized_horizontally || frame.width >= (window.get_screen().get_size()[0] - MAXIMIZED_WIDTH_BUFFER));
+    let scale_factor = imports.gi.St.ThemeContext.get_for_stage(global.stage).scale_factor;
+
+    let height_buffer = MAXIMIZED_HEIGHT_BUFFER * scale_factor;
+
+    if (frame.y <= (imports.ui.main.panel.actor.get_height() + height_buffer)) {
+        return window.maximized_horizontally;
     }
 
     return false;
+}
+
+/**
+ * Determines if 'window' is a valid window to watch.
+ * TODO: Better way to call this import?
+ *
+ * @param {Object} window - Window to check.
+ *
+ * @returns {Boolean} Whether 'window' is a valid window to watch.
+ *
+ */
+
+//
+function is_valid(window) {
+    const Meta = imports.gi.Meta;
+
+    let windowTypes = [
+        Meta.WindowType.NORMAL,
+        Meta.WindowType.DOCK,
+        Meta.WindowType.DIALOG,
+        Meta.WindowType.MODAL_DIALOG,
+        Meta.WindowType.TOOLBAR,
+        Meta.WindowType.MENU,
+        Meta.WindowType.UTILITY,
+    ];
+
+    let type = window.get_window_type();
+
+    return (windowTypes.indexOf(type) !== -1);
 }
 
 /**
@@ -160,32 +185,14 @@ function write_to_file(file_path, text) {
 function remove_file(file_path) {
     try {
         let file = get_file(file_path);
-        return file.delete(null);
+        let result = file.delete(null);
+        return result;
     } catch (error) {
         log('[Dynamic Panel Transparency] Error removing file: ' + file_path);
         log(error);
     }
 
     return false;
-}
-
-/**
- * Retrieve GAppInfo for a given MetaWindow.
- *
- * @param {Object} window - MetaWindow object.
- *
- * @returns {Object} GAppInfo describing the given MetaWindow.
- *
- */
-function get_app_for_window(window) {
-    const Shell = imports.gi.Shell;
-
-    let shell_app = Shell.WindowTracker.get_default().get_app_from_pid(window.get_pid());
-    if (is_undef(shell_app))
-        shell_app = Shell.AppSystem.get_default().lookup_startup_wmclass(window.get_wm_class());
-    if (is_undef(shell_app))
-        shell_app = Shell.AppSystem.get_default().lookup_desktop_wmclass(window.get_wm_class());
-    return shell_app;
 }
 
 /**
@@ -249,8 +256,8 @@ function match_colors(a, b, alpha = false) {
  *
  */
 function deep_freeze(type, recursive = false) {
-    const freeze_children = function (obj) {
-        Object.keys(obj).forEach(function (value, index, arr) {
+    const freeze_children = function(obj) {
+        Object.keys(obj).forEach(function(value, index, arr) {
             if (typeof (value) === 'object' && !Object.isFrozen(value)) {
                 Object.freeze(value);
                 if (recursive) {
@@ -261,4 +268,16 @@ function deep_freeze(type, recursive = false) {
     };
     Object.freeze(type);
     freeze_children(type);
+}
+
+/**
+ * Prevents any arguments from passing on.
+ *
+ * @param {Object} method - Method to call.
+ *
+ */
+function strip_args(method) {
+    return function() {
+        method.call(this);
+    };
 }

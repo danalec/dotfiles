@@ -173,6 +173,7 @@ const baseIconSizes = [16, 22, 24, 32, 48, 64, 96, 128];
  *   ensure actor is visible on keyfocus inseid the scrollview
  * - add 128px icon size, might be usefull for hidpi display
  * - sync minimization application target position.
+ * - keep running apps ordered.
  */
 const MyDash = new Lang.Class({
     Name: 'DashToDock.MyDash',
@@ -610,6 +611,11 @@ const MyDash = new Lang.Class({
         if (this._maxHeight == -1)
             return;
 
+        // Check if the container is present in the stage. This avoids critical
+        // errors when unlocking the screen
+        if (!this._container.get_stage())
+            return;
+
         let themeNode = this._container.get_theme_node();
         let maxAllocation = new Clutter.ActorBox({
             x1: 0,
@@ -725,7 +731,20 @@ const MyDash = new Lang.Class({
                 newApps.push(favorites[id]);
         }
 
+        // We reorder the running apps so that they don't change position on the
+        // dash with every redisplay() call
         if (this._dtdSettings.get_boolean('show-running')) {
+            // First: add the apps from the oldApps list that are still running
+            for (let i = 0; i < oldApps.length; i++) {
+                let index = running.indexOf(oldApps[i]);
+                if (index > -1) {
+                    let app = running.splice(index, 1)[0];
+                    if (this._dtdSettings.get_boolean('show-favorites') && (app.get_id() in favorites))
+                        continue;
+                    newApps.push(app);
+                }
+            }
+            // Second: add the new apps
             for (let i = 0; i < running.length; i++) {
                 let app = running[i];
                 if (this._dtdSettings.get_boolean('show-favorites') && (app.get_id() in favorites))
